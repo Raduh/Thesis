@@ -131,7 +131,7 @@
   \vspace*{20mm}
   \begin{center}
     \large
-    Bachelor Thesis Proposal in Computer Science
+    Bachelor Thesis in Computer Science
   \end{center}
   \vfill
   \begin{flushright}
@@ -169,10 +169,9 @@
   \mws is such a formula search engine, combining both math and text queries.
   However, it does not yet provide any functionality for faceted search.
 
-  Here I propose one way of solving the faceted search problem in
-  math: by extracting formula schemata from a given set of formulae.
-  Furthermore, I suggest possible ways of integrating this with existing
-  services.
+  In this thesis, I solve the faceted search problem in math, by extracting
+  formula schemata from a given set of formulae. Furthermore, I describe
+  possible ways of integrating this with existing services.
   \tableofcontents
   
   \clearpage \pagenumbering{arabic}
@@ -239,8 +238,8 @@ be rather vague because it will only provide info about the field of
 mathematics to which an article belongs. If the authors use formulae from
 another field in their paper, the results will suffer a drop in relevance.
 
-We propose to solve this problem by extracting formula schemata from the query
-hits as formula facets. A math facet would consist of a set of formula schemata
+I solved this problem by extracting formula schemata from the query
+hits as formula facets. A math facet consists of a set of formula schemata
 generated to further disambiguate the query by refining it in a new dimension.
 For instance, for the query above we could have the formulae in
 Figure~\ref{fig:formula-facets}, which allows the author to drill in on
@@ -263,23 +262,22 @@ $\frac{\red\Gamma\vdash\red{A}\gg\red\alpha}{\red{D}}$
 \end{wrapfigure}
 
 These formula schemata were manually created, but for an application we need to
-generate them automatically from the query. This is the algorithmic problem we
-want to explore in the thesis. 
+generate them automatically from the query. This is the algorithmic problem I explore in the thesis. 
 
 
 \section{Preliminaries}\label{sec:prelim}
 
 In this section we describe the existent systems on which our work will be
-based, with the intention of making this proposal self-contained. We will
+based, with the intention of making this thesis self-contained. We will
 present these systems in detail in the rest of this section, but
-below is a summary of the role they will play in our work:
+below is a summary of the role they play in our work:
 \begin{itemize}
-\item \textbf{MathWebSearch} which will provide the necessary index structure
+\item \textbf{MathWebSearch} which provides the necessary index structure
 for schema search.
-\item \textbf{Elasticsearch} which will provide hits in response to text query,
+\item \textbf{Elasticsearch} which provides hits in response to text query,
     as well as run aggregations on the hits.
     These hits represent formulae to be schematized.
-\item \textbf{Zentralblatt Math} which will also provide formulae to be
+\item \textbf{Zentralblatt Math} which also provides formulae to be
     schematized. The algorithm to obtain these hits, corresponds to their
     current implementation of faceted search.
 \end{itemize}
@@ -308,7 +306,7 @@ The overall workflow of \tms is the following:
     \item \els indexes the annotated documents.
     \item Everything is now ready for answering queries. When a query is
         issued, \MWS will answer the mathematical part and \els will answer the
-        text part.  The results will be combined through a
+        text part.  The results are combined through a
         NodeJS~\cite{nodejs:online} proxy to send a final result set.
 \end{enumerate}
 
@@ -443,7 +441,7 @@ which it can run aggregations, also leading to more relevant results.
 This research project aims to develop a viable service for formulae schemata
 generation and to integrate it with existing services, ultimately providing
 formula faceted search. To the best of our knowledge, this problem has not been
-addressed before. In this section, I propose a possible solution for math
+addressed before. In this section, I describe a possible solution for math
 faceted search.
 
 \subsection{Formalizing the problem}\label{subsec:formal_problem}
@@ -466,7 +464,7 @@ Let us now formulate the problem at hand more carefully.
 \end{definition}
 
 \subsection{An Algorithm for FSG}\label{subsec:fsgAlgorithm}
-The FSG algorithm we propose requires a \MWS index of the corpus.
+The FSG algorithm we implemented requires a \MWS index of the corpus.
 Given such an index, and a set $\cD$ of formulae (as CMML expressions), 
 we can find the set $\cF$ in the following way:
 \begin{itemize}
@@ -569,32 +567,6 @@ work packages:
 
 Figure~\ref{fig:timeline} presents the timeline for completing these milestones.
 
-\begin{figure*}[!ht]
-
-\hspace{-2cm}\begin{tikzpicture}
-%draw horizontal line
-\draw (0,0) -- (0,5.0)[dashed] node[midway,rotate=90, above=0.8cm]{Work
-Packages};
-\draw (0,0) -- (14,0) node[midway,below=0.8cm]{Weeks};
-
-%draw vertical lines
-\foreach \x in {0,1,2,...,14}
-  \draw (\x cm,3pt) -- (\x cm,-3pt);
-\foreach \x [evaluate=\x as \year using int(\x)] in {0,...,14}{
-  \draw (\x,0) node[below=7pt]{$\year$};
-  \draw (\x cm,3pt) -- (\x cm,-3pt);}
-
-\draw[|-|] (0, 0.5) -- (6, 0.5) node[midway, above, align=center, text width=7cm]{Core Algorithm};
-\draw[|-|] (6, 1.5) -- (8, 1.5) node[midway, above, align=center, text width=7cm]{ES Integration};
-\draw[|-|] (8, 2.5) -- (9, 2.5) node[midway, above, align=center, text width=7cm]{Faceted Search Frontend};
-\draw[|-|] (9, 3.5) -- (11, 3.5) node[midway, above, align=center, text width=7cm]{Zentralblatt Integration};
-\draw[|-|] (9, 4.5) -- (14, 4.5) node[midway, above, align=center, text width=7cm]{Thesis Writeup};
-\end{tikzpicture}
-
-\caption{\small{Timeline}}\label{fig:timeline}
-\end{figure*}
-
-\FloatBarrier
 
 \printbibliography
 
