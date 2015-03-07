@@ -107,74 +107,89 @@
 \bibliography{kwarc,rest}
 
 \begin{document}
-  \pagenumbering{roman}
+\pagenumbering{roman}
 
-  \thispagestyle{empty}
+\thispagestyle{empty}
 
-  \begin{flushright}
+\begin{flushright}
     \includegraphics[scale=0.7]{img/jub-logo}
-  \end{flushright}
-  \vspace{20mm}
-  \begin{center}
+\end{flushright}
+\vspace{20mm}
+\begin{center}
     \huge
     \textbf{\mytitle}
-  \end{center}
-  \vspace*{4mm}
-  \begin{center}
-   \Large by
-  \end{center}
-  \vspace*{4mm}
-  \begin{center}
+\end{center}
+\vspace*{4mm}
+\begin{center}
+    \Large by
+\end{center}
+\vspace*{4mm}
+\begin{center}
     \Large
     \textbf{\myname}
-  \end{center}
-  \vspace*{20mm}
-  \begin{center}
+\end{center}
+\vspace*{20mm}
+\begin{center}
     \large
     Bachelor Thesis in Computer Science
-  \end{center}
-  \vfill
-  \begin{flushright}
+\end{center}
+\vfill
+\begin{flushright}
     \large
     \begin{tabular}{c}
-      \mysupervisor \\
-      \hline
-      Supervisor \\
-      \\
+        \mysupervisor \\
+        \hline
+        Supervisor \\
+        \\
     \end{tabular}
-  \end{flushright}
-  \vspace*{8mm}
-  \begin{flushleft}
+\end{flushright}
+\vspace*{8mm}
+\begin{flushleft}
     \large
     Date of Submission: \today \\
     \rule{\textwidth}{1pt}
-  \end{flushleft}
-  \begin{center}
+\end{flushleft}
+\begin{center}
     \Large Jacobs University --- School of Engineering and Science
-  \end{center}
+\end{center}
 
-  \newpage
-  \thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
 
-  \section*{Abstract}
-  Faceted search represents one of the most practical ways to browse a large
-  corpus of information. Information is categorized automatically for
-  a given query and the user is given the opportunity to further refine 
-  his/her query. Many search engines offer a powerful faceted search engine,
-  but only on the textual level. Faceted Search in the context of Math Search
-  is still unexplored territory.
+With my signature, I certify that this thesis has been written by me using
+only the indicated resources and materials. Where I have presented data and
+results, the data and results are complete, genuine, and have been obtained by
+me unless otherwise acknowledged; where my results derive from computer
+programs, these computer programs have been written by me unless otherwise
+acknowledged. I further confirm that this thesis has not been submitted, either
+in part or as a whole, for any other academic degree at this or another
+institution.
 
-  Advanced formula search is the desirable approach for browsing a corpus of
-  mathematical formulae, where purely textual search would fail. 
-  \mws is such a formula search engine, combining both math and text queries.
-  However, it does not yet provide any functionality for faceted search.
+\vspace{20mm}
 
-  In this thesis, I solve the faceted search problem in math, by extracting
-  formula schemata from a given set of formulae. Furthermore, I describe
-  possible ways of integrating this with existing services.
-  \tableofcontents
-  
-  \clearpage \pagenumbering{arabic}
+Radu Hambasan \hfill Bremen, \today
+
+\newpage
+
+\section*{Abstract}
+Faceted search represents one of the most practical ways to browse a large
+corpus of information. Information is categorized automatically for
+a given query and the user is given the opportunity to further refine 
+his/her query. Many search engines offer a powerful faceted search engine,
+but only on the textual level. Faceted Search in the context of Math Search
+is still unexplored territory.
+
+Advanced formula search is the desirable approach for browsing a corpus of
+mathematical formulae, where purely textual search would fail. 
+\mws is such a formula search engine, combining both math and text queries.
+However, it does not yet provide any functionality for faceted search.
+
+In this thesis, I solve the faceted search problem in math, by extracting
+formula schemata from a given set of formulae. Furthermore, I describe
+possible ways of integrating this with existing services.
+\tableofcontents
+
+\clearpage \pagenumbering{arabic}
 
 \section{Introduction}\label{sec:intro}
 
@@ -281,6 +296,9 @@ for schema search.
     schematized. The algorithm to obtain these hits, corresponds to their
     current implementation of faceted search.
 \end{itemize}
+
+\subsection{Project Goals}\label{subsec:prelim:goals}
+\ednote{TODO}
 
 \subsection{MathWebSearch}\label{subsec:prelim:mws}
 
@@ -436,7 +454,7 @@ highly relevant formulae. Moreover, Elasticsearch will have more formulae on
 which it can run aggregations, also leading to more relevant results.
 
 
-\section{The idea}\label{sec:idea}
+\section{Implementation}\label{sec:implementation}
 
 This research project aims to develop a viable service for formulae schemata
 generation and to integrate it with existing services, ultimately providing
@@ -526,47 +544,11 @@ From this set of hits, we need to obtain a set of CMML expressions, to feed
 into our core algorithm. The mechanism used to achieve this is described in the
 next section.
 
-\section{Work Packages}\label{sec:timeline}
+\section{Evaluation}\label{sec:evaluation}
 
-The work described in the previous section will be divided into the following
-work packages:
-\begin{description}
- \item [1. Core Schema Generation Algorithm] \hfill \\
-     The presented core algorithm will be implemented and integrated into \mws.
- \item [2. Elasticsearch Integration] \hfill \\
-     The Elasticsearch aggregation option will provide the hits as
-     \textsf{FormulaID}s. These IDs represent database IDs used internally by
-     \MWS to uniquely identify formulae. After receiving this set of hits, we
-     can issue another query to \els to retrieve the corresponding CMML
-     expressions (because the mapping from identifiers to \cmml is also stored
-     in the annotated documents).
+\section{Conclusion}\label{sec:conclusion}
 
-     The \els querying mechanism will be adapted to be able to handle
-     aggregations. An intermediary proxy will be required to send top hits from
-     \textsf{ES} to \MWS.
- \item [3. Faceted Search Frontend] \hfill \\
-     A frontend will be developed to facilitate communication between users
-     and the schema-search proxy mentioned above, and also to display results
-     back to the user.
- \item [4. Zentralblatt Integration]\hfill \\
-     Zentralblatt's structured search engine will provide the hits as documents'
-     URI. We parse these documents and extract all \textsf{<expr>} nodes. We could
-     also run a filter to ensure they appear only once in the resulting set, but we
-     will not do it for the following reason: if a formula is included multiple
-     times, the associated path through the index (using the algorithm described in
-     Section~\ref{subsec:fsgAlgorithm}) will have a higher hitcount. This is
-     desirable, because the formula occurred multiple times, so it is more
-     representative for the set of documents.
-
-     The schema-proxy will be upgraded, to allow Zentralblatt queries,
-     with document URIs.
- \item [5. Thesis Writeup] \hfill \\
-    The difficulties, findings and results of the research will be extracted
-    into a writeup.
-\end{description}
-
-Figure~\ref{fig:timeline} presents the timeline for completing these milestones.
-
+\section{Applications and future work}\label{sec:future}
 
 \printbibliography
 
