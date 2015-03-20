@@ -251,11 +251,11 @@ be rather vague because it will only provide info about the field of
 mathematics to which an article belongs. If the authors use formulae from
 another field in their paper, the results will suffer a drop in relevance.
 
-I solved this problem by extracting formula schemata from the query
-hits as formula facets. A math facet consists of a set of formula schemata
-generated to further disambiguate the query by refining it in a new dimension.
-For instance, for the query above we could have the formulae in
-Figure~\ref{fig:formula-facets}, which allows the author to drill in on
+I am attempting to solve this problem by extracting formula schemata from the
+query hits as formula facets. A math facet consists of a set of formula
+schemata generated to further disambiguate the query by refining it in a new
+dimension.  For instance, for the query above we could have the formulae in
+Figure~\ref{fig:formula-facets}, which allows the user to drill in on
 \begin{inparaenum}[\em i\rm)]
 \item variation theory and minimal surfaces,
 \item higher-order unification, and 
@@ -275,7 +275,10 @@ $\frac{\red\Gamma\vdash\red{A}\gg\red\alpha}{\red{D}}$
 \end{wrapfigure}
 
 These formula schemata were manually created, but for an application we need to
-generate them automatically from the query. This is the algorithmic problem I explore in the thesis. 
+generate them automatically from the query. Moreover, each schema should
+further expand to show the formula class it represents. Formula classes would
+consist of all formulae sharing the same schema. This is the algorithmic
+problem I explore in the thesis. 
 
 
 \section{Preliminaries}\label{sec:prelim}
