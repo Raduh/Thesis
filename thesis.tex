@@ -174,7 +174,7 @@ Radu Hambasan \hfill Bremen, \today
 \section*{Abstract}
 Faceted search represents one of the most practical ways to browse a large
 corpus of information. Information is categorized automatically for
-a given query and the user is given the opportunity to further refine 
+a given query and the user is given the opportunity to further refine
 his/her query. Many search engines offer a powerful faceted search engine,
 but only on the textual level. Faceted Search in the context of Math Search
 is still unexplored territory.
@@ -205,7 +205,7 @@ mostly relevant for the mathematical formulae they contain and math cannot be
 properly indexed by a textual search engine, because the hierarchical structure
 of the content is also important.
 
-A good math search engine is therefore needed in several applications. 
+A good math search engine is therefore needed in several applications.
 For example, a large airline may have many ongoing research projects and could
 significantly improve efficiency if they had a way of searching for formulae in
 a corpus containing all their previous work. The same holds for all large
@@ -258,7 +258,7 @@ dimension.  For instance, for the query above we could have the formulae in
 Figure~\ref{fig:formula-facets}, which allows the user to drill in on
 \begin{inparaenum}[\em i\rm)]
 \item variation theory and minimal surfaces,
-\item higher-order unification, and 
+\item higher-order unification, and
 \item type theory.
 \end{inparaenum}
 Following the \MWS (see~\ref{subsec:prelim:mws}) tradition, the red identifiers
@@ -278,7 +278,7 @@ These formula schemata were manually created, but for an application we need to
 generate them automatically from the query. Moreover, each schema should
 further expand to show the formula class it represents. Formula classes would
 consist of all formulae sharing the same schema. This is the algorithmic
-problem I explore in the thesis. 
+problem I explore in the thesis.
 
 
 \section{Preliminaries}\label{sec:prelim}
@@ -299,7 +299,20 @@ for schema search.
 \end{itemize}
 
 \subsection{Project Goals}\label{subsec:prelim:goals}
-\ednote{TODO}
+As discussed in section \label{sec:intro}, the goal of this project is to
+develop a scalable formula schematization engine, capable of dividing a set of
+query hits into classes, according to the generated formula schemata.
+
+We have set the following end-user requirement for our system:
+\begin{enumerate}
+    \item it should be able to generate formula schemata from a
+        given set of formulae and the resulting schemata should be easily
+        recognizable by the user.
+    \item it should be able to classify the given set of formulae according to
+        the generated schemata.
+    \item the system should be massively scalable, i.e. capable of answering
+        queries with hundreds of thousands of formulae in a matter of seconds.
+\end{enumerate}
 
 \subsection{MathWebSearch}\label{subsec:prelim:mws}
 
@@ -307,7 +320,7 @@ At its core, the \mws system (MWS) is a content-based search engine for
 mathematical formulae. It indexes MathML formulae, using a technique derived
 from automated theorem proving: Substitution Tree Indexing.
 Recently, it was augumented with full-text search capabilities, combining
-keywords query with unification-based formula search. The engine serving 
+keywords query with unification-based formula search. The engine serving
 text queries is \els~\ref{subsec:prelim:els}.
 From now on, in order to avoid confusion, we will refer to the core system
 (providing just formula query capability) as \MWS and to the complete service
@@ -318,10 +331,10 @@ The overall workflow of \tms is the following:
     \item HTML5 documents representing mathematical articles are
         crawled to generate \MWS harvests~\cite{mwsharvest:online}.
         \textsf{.harvest} is an extension of \mathml which \MWS can index. Its
-        role is to separate the math from the text in a given document. 
-    \item \MWS indexes the harvests. 
+        role is to separate the math from the text in a given document.
+    \item \MWS indexes the harvests.
     \item a second pass is made over the harvests to generate annotated
-        documents (see below). 
+        documents (see below).
     \item \els indexes the annotated documents.
     \item Everything is now ready for answering queries. When a query is
         issued, \MWS will answer the mathematical part and \els will answer the
@@ -362,7 +375,7 @@ it partitions data in shards and is also fault tolerant, because it replicates
 data.  It indexes schema-free JSON documents and the search engine exposes a
 RESTful web interface.  The query is also structured as JSON and supports a
 multitude of features via its domain specific language:  nested queries,
-filters, ranking, scoring, searching using wildcards/ranges and faceted search. 
+filters, ranking, scoring, searching using wildcards/ranges and faceted search.
 
 The faceted search feature\footnote{Faceted search as such is now deprecated in
 ES and was replaced by the more powerful ``aggregations''.} is of particular
@@ -414,7 +427,7 @@ Aggregation Response, captionpos=b, label=lst:es_agg_resp]
     ...
     "aggregations" : {
         "formulae" : {
-            "buckets" : [ 
+            "buckets" : [
                 {
                     "key" : "230",
                     "doc_count" : 10
@@ -437,7 +450,7 @@ than 3,000 journals and 170,000 books\cite{zbmathabout:online}.
 
 Among the services it provides, there is the ``structured search''.
 This is essentially a faceted search engine on the textual level.
-If we succeed in implementing it, we would like to integrate the 
+If we succeed in implementing it, we would like to integrate the
 Formula Schemata Generation Service with the zbMATH faceted search.
 
 After running the current zbMATH faceted search implementation, a set of URIs
@@ -484,7 +497,7 @@ Let us now formulate the problem at hand more carefully.
 
 \subsection{An Algorithm for FSG}\label{subsec:fsgAlgorithm}
 The FSG algorithm we implemented requires a \MWS index of the corpus.
-Given such an index, and a set $\cD$ of formulae (as CMML expressions), 
+Given such an index, and a set $\cD$ of formulae (as CMML expressions),
 we can find the set $\cF$ in the following way:
 \begin{itemize}
     \item Parse the given CMML expressions similarly to \MWS queries,
@@ -492,12 +505,12 @@ we can find the set $\cF$ in the following way:
     \item Choose a reasonable cutoff heuristic, see~\ref{subsec:cutoffheur}.
     \item Unify each expression with the index, up to a given threshold (given by
         the above heuristic).
-    \item Keep a counter for every index path associated with the unifications. 
+    \item Keep a counter for every index path associated with the unifications.
         Since we only match up to a threshold, some formulae will be associated
         with the same path (excluding the leaves).
         We increase the counter each time we find a path already associated
         with a counter.
-    \item We sort these path-counter pairs by counter in descending order and 
+    \item We sort these path-counter pairs by counter in descending order and
         take the first $n$ ($n$ being the width required by the FSG).
     \item If the threshold depth was smaller than a formula's expression
         depth, the path associated with it will have missing components. We
