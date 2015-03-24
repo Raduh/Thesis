@@ -293,9 +293,8 @@ for schema search.
 \item \textbf{Elasticsearch} which provides hits in response to text query,
     as well as run aggregations on the hits.
     These hits represent formulae to be schematized.
-\item \textbf{Zentralblatt Math} which also provides formulae to be
-    schematized. The algorithm to obtain these hits, corresponds to their
-    current implementation of faceted search.
+\item \textbf{arXiv} which provides a large corpus of mathematical documents
+    that we can index and run our system on.
 \end{itemize}
 
 \subsection{Project Goals}\label{subsec:prelim:goals}
@@ -389,10 +388,11 @@ Additionally, we can also impose a limit on the number of the buckets (items)
 for which we want to receive the count.
 
 An ES query which would return the most frequently used formulae (and
-subformulae) for ``Pierre Fermat'', is presented in Listing~\ref{lst:es_agg_query}.
-The key part is the \emph{aggs} fields. We are specifying that we want an
-aggregation called \textit{Formulae} on ``terms'' (i.e. we want bucket
-counting) and the target of the aggregation is the fields \emph{ids}.
+subformulae) for ``Pierre Fermat'', is presented in
+Listing~\ref{lst:es_agg_query}. The key part is the \emph{aggs} fields. We are
+specifying that we want an aggregation called \textit{Formulae} on ``terms''
+(i.e. we want bucket counting) and the target of the aggregation is the fields
+\emph{ids}.
 
 \begin{lstlisting}[language=json,firstnumber=1,caption=Elastic Search Term
 Aggregation Query, captionpos=b, label=lst:es_agg_query]
@@ -443,21 +443,6 @@ Aggregation Response, captionpos=b, label=lst:es_agg_resp]
 }
 \end{lstlisting}
 
-\subsection{Zentralblatt Math}\label{subsec:zblatt}
-\textsf{zbMATH} stores over 3 million entries corresponding to reviews or
-abstracts of mathematical documents, dating back to 1826 and drawn from more
-than 3,000 journals and 170,000 books\cite{zbmathabout:online}.
-
-Among the services it provides, there is the ``structured search''.
-This is essentially a faceted search engine on the textual level.
-If we succeed in implementing it, we would like to integrate the
-Formula Schemata Generation Service with the zbMATH faceted search.
-
-After running the current zbMATH faceted search implementation, a set of URIs
-(referencing scientific articles which answer the user's query) will be
-provided.  We should answer back with a set of formula schemata to be displayed
-to the user as another facet of the result.
-
 \subsection{arXiv}\label{subsec:arxiv}
 \textbf{arXiv} is a repository of over one million publicly accessible
 scientific papers in STEM fields. For the NTCIR-11
@@ -470,11 +455,9 @@ which it can run aggregations, also leading to more relevant results.
 
 \section{Implementation}\label{sec:implementation}
 
-This research project aims to develop a viable service for formulae schemata
-generation and to integrate it with existing services, ultimately providing
-formula faceted search. To the best of our knowledge, this problem has not been
-addressed before. In this section, I describe a possible solution for math
-faceted search.
+In this section, I explain the key details of the formula classifier's
+implementation, the overall system architecture, as well as the challenges and
+tradeoffs associated with the taken design decisions.
 
 \subsection{Formalizing the problem}\label{subsec:formal_problem}
 Let us now formulate the problem at hand more carefully.
@@ -548,15 +531,54 @@ $?x$ which corresponds to the 0-unification. The algorithm above is based on
 this heuristic.  Another possible choice for the cutoff would be expression
 length.  This would output formulae which begin the same way.
 
-\subsection{Integration with existing services}
-The core engine will accept a set of CMML expressions and return a number of
-schemata covering them.  The two applications that follow immediately are
-Zentralblatt and Elasticsearch integration.  Using the features described
-above, they are both capable of providing a set of hits belonging to some
-textual context. This would represent the faceted search at the textual level.
-From this set of hits, we need to obtain a set of CMML expressions, to feed
-into our core algorithm. The mechanism used to achieve this is described in the
-next section.
+\subsection{Design Overview}\label{subsec:design_overview}
+The full faceted search system comprises of the following components: the
+Formula Schematizer~\ref{subsec:fschematizer}, Elasticsearch, a proxy to
+mediate communication between the Schematizer and Elasticsearch and a Web
+front-end. The architecture of the system is shown in
+Figure~\ref{fig:sys_architecture}.
+
+Once the user enters a query (which consists of keywords and a depth), the
+front-end forwards the request to a back-end proxy. The proxy sends the
+text component of the query to Elasticsearch and receives back math
+contained in matching documents. Afterwards, it sends the retrieved math
+and the depth (from the original query) to the Schematizer. The Schematizer
+will respond with a classification of the math in formula classes, as well
+as the corresponding schema for each class. Finally, the proxy forwards the
+result to the front-end which displays it to the user.
+
+In the following sections, I will explain the core components of
+the system in detail and describe the challenges faced during
+implementation.
+
+\begin{figure}[ht]\centering
+    \includegraphics[width=12.8cm]{img/SchemaArchitecture.png}
+    \caption{Faceted search engine architecture}\label{fig:sys_architecture}
+\end{figure}
+
+\subsection{Formula Schematizer}\label{subsec:fschematizer}
+The Schematizer is the most important part of our system. It receives a set of
+formulae in their \cmml representation, generates corresponding formula
+schemata and classifies the formulae according to the generated schemata.
+
+It provides an HTTP endpoint and is therefore self-contained, i.e. it can be
+queried independently, not only as part of the faceted search system.
+As a consequence, the Schematizer displays a high degree of versatility,
+and can be integrated seamlessly with other applications.
+
+Although the algorithm described in Section~\ref{subsec:fsgAlgorithm} works
+well in theory, we needed to adapt it considering some \mws implementation
+details, e.g. the index is read-only (therefore we cannot store extra data into
+the index nodes). Therefore, the overall idea/theory is the same, but now we take the
+following shortcut: instead of unifying every formula with the index, we just
+pretend we do and instead generate a ``signature'' for each formula. This
+signature is the path shown in Section~\ref{subsec:fsgAlgorithm}.
+
+\subsection{Elasticsearch proxy}\label{subsec:esproxy}
+\subsection{ES aggregations}\label{subsec:esagg}
+\subsection{Displaying CMML}\label{subsec:displaying_cmml}
+\subsection{Making the schemata recognizable}\label{subsec:make_sch_recog}
+\subsection{Naming query variables}\label{subsec:naming_qvars}
 
 \section{Evaluation}\label{sec:evaluation}
 
