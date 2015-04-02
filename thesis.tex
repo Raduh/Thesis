@@ -557,22 +557,48 @@ implementation.
 \end{figure}
 
 \subsection{Formula Schematizer}\label{subsec:fschematizer}
-The Schematizer is the most important part of our system. It receives a set of
+The Schematizer is the central part of our system. It receives a set of
 formulae in their \cmml representation, generates corresponding formula
 schemata and classifies the formulae according to the generated schemata.
-
 It provides an HTTP endpoint and is therefore self-contained, i.e. it can be
 queried independently, not only as part of the faceted search system.
 As a consequence, the Schematizer displays a high degree of versatility,
 and can be integrated seamlessly with other applications.
 
 Although the algorithm described in Section~\ref{subsec:fsgAlgorithm} works
-well in theory, we needed to adapt it considering some \mws implementation
+well in theory, we needed to adapt it considering various \mws implementation
 details, e.g. the index is read-only (therefore we cannot store extra data into
 the index nodes). Therefore, the overall idea/theory is the same, but now we take the
 following shortcut: instead of unifying every formula with the index, we just
 pretend we do and instead generate a ``signature'' for each formula. This
 signature is the path shown in Section~\ref{subsec:fsgAlgorithm}.
+
+Naturally, the signature depends on the depth chosen for the cutoff heuristic.
+At depth 0, the signature consists only of the root token of the \cmml
+expression. At full depth (the maximum depth of the expression), the signature
+is the same as the DFS traversal of the \cmml tree.
+\ednote{Explain encoding of tokens}
+\ednote{Add signature examples}
+
+Based on these computed signatures, we divide the input set of formulae into
+formula classes, i.e. all formulae with the same signature belong to the same
+class. For this operation we keep an in-memory hash table, where the keys are
+given by the signatures and the values are sets of formulae which have the
+signature key. After filling the hash table, we sort it according to the number
+of formulae in a given class, since the signatures which cover the most
+formulae should come at the beginning of the reported result.
+
+The Schmatizer caller can place a limit on the maximum number of schemata to be
+returned. If such a limit was specified, we apply it to our sorted list of
+signatures and take only the top ones.
+
+As a last step, we need to construct \cmml trees from the signatures, in order
+to be able to show the schemata as formulae to the user. We are able to do
+this because we know the arity of each token and the depth used for cutoff.
+The tree obtained after the reconstruction might be incomplete, so we insert
+query variables in place of missing subtrees.
+We finally return these \cmml trees with query variables (the formula
+schemata), together with the formulae which they cover.
 
 \subsection{Elasticsearch proxy}\label{subsec:esproxy}
 \subsection{ES aggregations}\label{subsec:esagg}
