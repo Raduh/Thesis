@@ -238,7 +238,7 @@ authors, journals, MSC, but not for formulae. In this way, the user is given
 the ability to further explore the result space, without knowing in advance the
 specifics of what he/she is looking for.  Recently, formula search has been
 added as a component to the structured search facility. However, there is still
-no possiblity of faceted search on the math content of the documents.
+no possibility of faceted search on the math content of the documents.
 
 \begin{figure}[ht]\centering
 \includegraphics[width=12.7cm]{img/faceted-search.pdf}
@@ -318,7 +318,7 @@ We have set the following end-user requirement for our system:
 At its core, the \mws system (MWS) is a content-based search engine for
 mathematical formulae. It indexes MathML formulae, using a technique derived
 from automated theorem proving: Substitution Tree Indexing.
-Recently, it was augumented with full-text search capabilities, combining
+Recently, it was augmented with full-text search capabilities, combining
 keywords query with unification-based formula search. The engine serving
 text queries is \els~\ref{subsec:prelim:els}.
 From now on, in order to avoid confusion, we will refer to the core system
@@ -350,7 +350,7 @@ formula. The index itself is an in-memory trie of substitution paths.
 
 For fast retrieval, in the leaves of the substitution tree, \MWS stores
 \textsf{FormulaID}s. These are numbers uniquely associated with formulae,
-and they are also used to store context and occurences about the respective
+and they are also used to store context and occurrences about the respective
 formula. They are stored in a separate LevelDB~\cite{leveldb:online} database.
 
 A simplified sketch of the index is shown in Figure~\ref{fig:algoindex}.
@@ -381,9 +381,9 @@ ES and was replaced by the more powerful ``aggregations''.} is of particular
 interest to us.
 One way to use this feature is the terms aggregation: a multi-bucket
 aggregation, with dynamically built buckets.
-We can specifiy an array field from a document and ask ES to count how many
+We can specify an array field from a document and ask ES to count how many
 unique items from the array are there in the whole index.
-This list can also be sorted, e.g. most frequently occuring items first.
+This list can also be sorted, e.g. most frequently occurring items first.
 Additionally, we can also impose a limit on the number of the buckets (items)
 for which we want to receive the count.
 
@@ -457,7 +457,7 @@ which it can run aggregations, also leading to more relevant results.
 
 In this section, I explain the key details of the formula classifier's
 implementation, the overall system architecture, as well as the challenges and
-tradeoffs associated with the taken design decisions.
+trade-offs associated with the taken design decisions.
 
 \subsection{Formalizing the problem}\label{subsec:formal_problem}
 Let us now formulate the problem at hand more carefully.
@@ -507,7 +507,7 @@ we can find the set $\cF$ in the following way:
 \end{wrapfigure}
 
 Figure~\ref{fig:algoindex} shows a simplified \MWS index at depth 1.
-The formulae's paths represent their DFS traversal.
+The formulae's paths represent their depth-first traversal.
 Every formula can be reconstructed given its path in the index.
 The circles represent index nodes and the number inside represents
 the token's ID. When we reach a leaf node, we completely described a
@@ -556,7 +556,7 @@ implementation.
     \caption{Faceted search engine architecture}\label{fig:sys_architecture}
 \end{figure}
 
-\subsection{Formula Schematizer}\label{subsec:fschematizer}
+\subsection{The Formula Schematizer}\label{subsec:fschematizer}
 The Schematizer is the central part of our system. It receives a set of
 formulae in their \cmml representation, generates corresponding formula
 schemata and classifies the formulae according to the generated schemata.
@@ -576,7 +576,7 @@ signature is the path shown in Section~\ref{subsec:fsgAlgorithm}.
 Naturally, the signature depends on the depth chosen for the cutoff heuristic.
 At depth 0, the signature consists only of the root token of the \cmml
 expression. At full depth (the maximum depth of the expression), the signature
-is the same as the DFS traversal of the \cmml tree.
+is the same as the depth-first traversal of the \cmml tree.
 \ednote{Explain encoding of tokens}
 \ednote{Add signature examples}
 
@@ -588,7 +588,7 @@ signature key. After filling the hash table, we sort it according to the number
 of formulae in a given class, since the signatures which cover the most
 formulae should come at the beginning of the reported result.
 
-The Schmatizer caller can place a limit on the maximum number of schemata to be
+The Schematizer caller can place a limit on the maximum number of schemata to be
 returned. If such a limit was specified, we apply it to our sorted list of
 signatures and take only the top ones.
 
@@ -600,10 +600,70 @@ query variables in place of missing subtrees.
 We finally return these \cmml trees with query variables (the formula
 schemata), together with the formulae which they cover.
 
-\subsection{Elasticsearch proxy}\label{subsec:esproxy}
+\subsection{The Elasticsearch proxy}\label{subsec:esproxy}
+In order to obtain formulae to feed as input to the Schematizer, we will make
+use of Elasticsearch. The corpus indexed by Elasticsearch consists of 176 GB of
+\arxiv documents annotated using the format described in
+Section~\ref{subsec:prelim:mws}
+
+To mediate the communication between the two components (Elasticsearch and the
+Schematizer), a NodeJS proxy was developed. The proxy exposes an HTTP
+interface, which will be used by an eventual front-end for querying.
+There are three important query parameters: the keywords, the depth and the
+maximum schemata count.
+
+The main task of the proxy is to assemble the Elasticsearch JSON query after
+receiving the parameters from the front-end and forward the Elasticsearch
+results to the Schematizer. To ensure a fast response, only a minimum of
+preprocessing is done between the stages.
+
+Once the Schematizer has generated schemata and has classified the formulae,
+the proxy assembles the results into a JSON object which it sends to the
+front-end.
+
+\subsection{The Front-End}\label{subsec:frontend}
+To demonstrate the capabilities of the Schematizer, as well as provide an
+access point for the user, a simple front-end was developed.
+As shown in figure~\ref{fig:frontend}, the user can enter a set of keywords for
+the query, as well as a schema depth, which defaults to 3. The maximum result
+size is not accessible to the user, to prevent abuses and reduce server load.
+
+\begin{figure}[ht]\centering
+    \includegraphics[width=12.8cm]{img/frontend.png}
+    \caption{Faceted search front-end}\label{fig:frontend}
+\end{figure}
+
 \subsection{ES aggregations}\label{subsec:esagg}
-\subsection{Displaying CMML}\label{subsec:displaying_cmml}
+Initially, the ``aggregations'' feature of Elasticsearch seemed to be a
+suitable improvement for the Schematizer and the ES script was originally
+designed to request math in a term-based aggregation format, as described in
+Section~\ref{subsec:prelim:els}. However, on a closer look we can see that not
+only are aggregations not needed, but they influence the results in a negative
+way.
+
+On a regular query, the top formulae reported using aggregations were trivial
+formulae, i.e. consisting of only one or two symbols. This is because authors
+frequently use short inline math to refer to their results. As a consequence,
+the top returned was completely unusable, because the first hits were
+irrelevant. Moreover, it was impossible to distinguish between long irrelevant
+expressions and infrequently used important expressions since both of them
+ranked the same.
+
+As an added disadvantage of using aggregations, we must mention the time
+overhead. For obtaining accurate results over the entire index, several
+minutes were needed. In order to reach our target time of \~10s, we had to
+drastically shrink down the number of considered aggregations (down to 100).
+As mentioned before, all these 100 expressions were trivial.
+
+Given the drawbacks mentioned above, we decided against using aggregations in
+the Schematizer pipeline. As an alternative, we will retrieve all math content
+from the documents which match the keywords and discard the trivial formulae
+using a configurable length heuristic. In practice, this change allowed us to
+process more than ten thousand formulae in less than five seconds, which is a
+drastic improvement from to the approach using aggregations.
+
 \subsection{Making the schemata recognizable}\label{subsec:make_sch_recog}
+We need to return substitutions, not CMML.
 \subsection{Naming query variables}\label{subsec:naming_qvars}
 
 \section{Evaluation}\label{sec:evaluation}
