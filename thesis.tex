@@ -295,6 +295,7 @@ for schema search.
     These hits represent formulae to be schematized.
 \item \textbf{arXiv} which provides a large corpus of mathematical documents
     that we can index and run our system on.
+\item \textbf{\latexml} which converts \latex expressions to MathML.
 \end{itemize}
 
 \subsection{Project Goals}\label{subsec:prelim:goals}
@@ -451,6 +452,26 @@ MWS indexed over 8.3 million paragraphs (totaling 176 GB) from arXiv. We will
 base our queries on this large index, because it provides a rich database of
 highly relevant formulae. Moreover, Elasticsearch will have more formulae on
 which it can run aggregations, also leading to more relevant results.
+
+\subsection{\latexml}\label{subsec:latexml}
+An overwhelming majority of the digital scientific content is written using
+\latex or \tex, due to its usability and popularity among STEM researchers.
+However, formulae in these formats are not good candidates for searching
+because they do not display the mathematical structure of the underlying
+idea. For this purpose, conversion engines have been developed to convert
+\latex expressions to more organized formats such as \mathml.
+
+An open source example of such a conversion engine is
+\latexml~\cite{Miller:latexml:online}. The \mws project relies heavily on it,
+to convert \arxiv documents from \latex to XHTML which is later indexed by \MWS.
+It exposes a powerful API, allowing definition files to relate \tex elements to
+corresponding XML fragments that should be generated.
+For the scope of this project, we will be more interested in another feature of
+\latexml: cross-referencing between \pmml and \cmml. While converting \tex
+entities to a \pmml tree, each element receives a unique identifier which is
+later referenced from the corresponding \cmml element. In this manner, we can
+modify the \cmml tree and reflect the changes in the \pmml tree which can be
+displayed to the user.
 
 
 \section{Implementation}\label{sec:implementation}
@@ -663,14 +684,86 @@ process more than ten thousand formulae in less than five seconds, which is a
 drastic improvement from to the approach using aggregations.
 
 \subsection{Making the schemata recognizable}\label{subsec:make_sch_recog}
-We need to return substitutions, not CMML.
+As explained in Section~\ref{subsec:fschematizer}, the initial Schematizer
+returned formula schemata as \cmml. Naturally, we would need to transform it to
+\pmml in order to be able to display it to the user. For this purpose we used
+and XSL stylesheet written by David Carlisle~\cite{carlisle:online}. 
+Figure~\ref{fig:cmml_display} shows the initial results of the conversion.
+
+\begin{figure}[ht]\centering
+    \includegraphics[width=12.8cm]{img/firstAttempt.jng}
+    \caption{Displaying Content MathML}\label{fig:cmml_display}
+\end{figure}
+
+It is clear that the conversion leads to somewhat disappointing results.
+Firstly, they are not recognizable and secondly, they contain left-over text
+such as ``subscript'', ``superscript'', ``normal'', etc.
+On a deeper analysis, we can point out two causes for this strange behaviour.
+
+The reason why schemata are hard to recognize is the inherent ambiguity of
+CMML. For instance, a \textsf{csymbol} element can be represented in at least
+three different ways depending on the notation being used. \ednote{@Michael:
+    Deyan told me that there are >3 ways of representing a csymbol. Can you
+    give me some real examples?}
+Also, the two applications \verb|apply(f, a, b)| and \verb|apply(+, a, b)| are
+described similarly by CMML, but represented in a different manner by PMML. If
+the Schematizer replaces the tokens \verb|f|, \verb|a| and
+\verb|b| with query variables, both the of applications will be displayed as
+\verb|?x1(?x2, ?x3)|, even though we would expect \verb|?x1| to be infix
+when it represents the plus operator.
+
+The reason for the left-over text is even simpler: the stylesheet does not
+implement enough conversion rules, so it is not able to convert
+\verb|subscript|, \verb|superscript| and other elements to PMML.
+
+Although this was a significant hindrance for the faceted search engine, we
+managed to overcome it by making use of the cross-reference system
+provided by \latexml, as discussed in Section~\ref{subsec:latexml}. 
+Instead of returning \cmml expressions, the Schematizer will use the first
+formula in each class as a template and ``punch holes into
+it''\ednote{@Michael: too informal?} effectively returning the ID of the nodes
+that are to be substituted with query variables. We will use this IDs to
+replace the referenced PMML nodes with \verb|<mi>| nodes representing the
+qvars.
+
+The procedure above will solve the left-over text issues, using the template's
+initial layout which is valid \pmml. However, we still need to display the
+schemata in a way which provides intuition about its class. Heuristically,
+we can just keep the first child of apply (the operator) unsubstituted and
+replace only the other children (the operands) with query variables.
+The results obtained using this heuristic and the cross-reference system are
+further discussed in Section~\ref{sec:evaluation}.
+
 \subsection{Naming query variables}\label{subsec:naming_qvars}
+As discussed in the section before, we will need a template to modify in order
+to display the schema of a class. We are using the first formula as a template,
+but any formula in a given class would work as a template for that class.
+Since we will process an existing expression, it would be appropriate to name
+the query variables in a way which allows the user to perceive some meaning
+behind them. For this reason, we conceived a naming convention with the
+following rules:
+
+\begin{itemize}
+    \item If the node to be replaced is a leaf, its name will be used for the
+        qvar.
+    \item If the node to be replaced is not a leaf (thus having no name), we
+        will use lowercase alphabetical letters from \textsf{a} to \textsf{z}
+        preceded by a question mark (according to the \MWS tradition).
+    \item If there are more than 26 qvars (thus exceeding the alphabet), we
+        name them $x_{1}, x_{2}, \ldots, x_{max_count}$, also preceded by a
+        question mark. This case should be extremely rare.
+\end{itemize}
 
 \section{Evaluation}\label{sec:evaluation}
+\ednote{include screenshot with final result}
+\ednote{discuss results. Why are some irrelevant?}
 
 \section{Conclusion}\label{sec:conclusion}
+\ednote{more work is to be done to make the results relevant}
 
 \section{Applications and future work}\label{sec:future}
+\ednote{mention NNexus}
+\ednote{next steps? improve style sheet?}
 
 \printbibliography
 
