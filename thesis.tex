@@ -757,20 +757,128 @@ following rules:
 \end{itemize}
 
 \section{Evaluation}\label{sec:evaluation}
-\subsection{Front-End results}
-\subsection{Peformance of the Schematizer}\label{subsec:schematizer_prformance}
-\subsection{The API}
+In this section, we will present an evaluation of our faceted search engine.
+Firstly, we will examine the front-end (\ref{subsec:fe_results_display}),
+obtained after applying the heuristics and improvements described in the
+Implementation section. Next, we will analyze the performance of the
+Schematizer deployed on an \arxiv index (\ref{subsec:schematizer_performance}).
+In the end, we will look at the API that the Schematizer exposes and elaborate
+on its potential (\ref{subsec:schematizer_api}).
+
+\subsection{Front-End results displaying}\label{subsec:fe_results_display}
+Figure~\ref{fig:schemata_group} shows the formula schemata at depth 3 for a
+query containing the keyword ``Kohlhase''. By default, the top 40 schemata are
+shown, but the results are truncated for brevity.
+The bold number on the left side of each result item indicates how many
+formulae are present in each formula class. For instance, the third schema
+represents a formula class containing 10 formulae. The entities marked in red
+are query variables (qvars).
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.8cm]{img/schemataGroup.png}
     \caption{Faceted results at depth 3}\label{fig:schemata_group}
 \end{figure}
 
+Figure~\ref{fig:schema_instantiation} shows the expansion of a formula class.
+There are three formulae in the class given by this particular math schema, as
+indicated by the count on the left upper side. We have one named query
+variable, corresponding to a \cmml leaf and 7 anonymous ones marked with
+letters from \verb|a| to \verb|g|. 
+
+As explained in Section~\ref{subsec:make_sch_recog}, the first formula from the
+class was also used as a template to solve CMML ambiguities. This fact is
+easily noticeable by comparing the first formula with the math schema. It is
+very intuitive that the former is an instantiation of the latter. We can see
+that the named qvar $\red{Z}$ instantiates to $Z$, as expected since it is a
+leaf. Other elements from the formula are at a higher depth, so entire
+nodes are replaced by the qvars, for example $\red{?b}$ replaces $m^{2}_{R}$.
+
+Despite the close relation between the first member of the class and the
+schema, it is slightly less intuitive to see why the other formulae from the
+class are instantiations. Between $\red{Z}$ and $\red{?a}$ there is an
+invisible times operator. Given the presence of this operator, the left
+hand-side of the equality can be expressed in CMML as
+\verb|apply(times, Z, ?a)|, which is equivalent to \verb|apply(f, k, 0)|
+because all arguments of apply are below the cut-off depth. Since we decided to
+keep the first child of apply (the operator) unsubstituted, the left hand-side
+might not initially appear as a function application.
+
+A similar issue arises with $\red{?b} + \red{?c}$ and $\frac{1}{\sqrt{W_k}}$.
+The user could be under the impression that the former is an addition between
+two qvars, when it is actually a function application to two qvars. The
+operator of this function application is division for the second formula.
+Since both the schema operator (addition) and the formula's operator (division)
+are below the cut-off depth, the CMML structure is essentially the same (up to
+the cut-off depth).
+
+As we have seen, there is an important trade-off to be made. We can either show
+a very cryptic schema which instantiates somewhat more intuitively, or show an
+easily recognizable schema with less intuitive instantiations. We have opted
+for the second choice, because it seems that the user would be more interested
+in receiving relevant schemata as titles for the classes.
+
 \begin{figure}[ht]\centering
     \includegraphics[width=12.8cm]{img/schemaInstantiation.png}
     \caption{Expansion of a formula class}\label{fig:schema_instantiation}
 \end{figure}
-\ednote{discuss results. Why are some irrelevant?}
+
+\subsection{Performance of the Schematizer}\label{subsec:schematizer_prformance}
+We designed the Schematizer to be a very lightweight daemon, both as memory
+requirements and as CPU usage. To test if we achieved this goal, we benchmarked
+it on a server running Linux 3.2.0, with 10 cores (Intel Xeon CPU E5-2650
+2.00GHz) and 80 GB of RAM. 
+
+We obtained the 1123 expressions to be schematized by querying Elasticsearch by
+the keyword ``Fermat''. While the overall time taken by the faceted search
+engine was around 5 seconds, less than a second was spent in the Schematizer.
+Also, the CPU utilized by the Schematizer never rose higher than 15\% (as
+indicated by the \textsf{top} utility). Asymptotically, the algorithm would run
+in $O(N)$ time, where $N$ is the number of input formulae. We are able to reach
+linear time performance, because each formula is processed exactly once and the
+signature is stored in a hash table, as discussed in
+Section~\ref{subsec:fschematizer}.
+
+The space complexity is also linear in the number of formulae, because in the
+worst case scenario (large cut-off depth) we will have a schema for every
+formula. To analyze the memory footprint of the Schematizer we used
+Massif~\cite{massif:online}, a heap profiler from Valgrind's tool suite.
+Figure~\ref{fig:heap_usage} shows the total heap memory consumption for a
+single query (containing 1123 expressions). Massif reports time using the
+number of executed instructions as unit of measurement. The heap memory size is
+given in bytes.
+
+There is a short initial steep increase moments after the program started.
+This can be attributed to the dynamic linker. Then, the consumption keeps
+increasing because we are receiving the formulae (storing them in memory) and
+generating the schemata. The peak is reached at 20 MiB, which is impressively
+low. Afterwards, there is a sudden decrease in heap size when we drop the
+schemata which are not needed (because a \textsf{max\_size} parameter was
+specified by the caller). For most of the next part, the heap size stays
+constant because we are only processing the signatures and finding the PMML
+substitution IDs.
+
+\begin{figure}[ht]\centering
+    \includegraphics[width=12.8cm]{img/heapUsage.png}
+    \caption{Schematizer heap usage for a query}\label{fig:heap_usage}
+\end{figure}
+
+All things considered, it is somewhat remarkable that the peak memory usage
+is at only 20 MB and only 15\% of one processor is in use for 1123 formulae.
+Considering the linear complexity, we can accommodate several millions of
+formulae on the mentioned server:
+$$80 GB \cdot \frac{1123}{20 MB} \approx 4.5 \cdot {10}^6 \text{formulae}$$
+
+\subsection{The API}\label{subsec:schematizer_api}
+Another relevant point of interest in the Schematizer is its simple, but
+sufficient API. By providing an HTTP endpoint, any application which wishes to
+use the schematization service can do so, simply by issuing a GET request.
+The content of the GET request must be an \xml document, which \verb|mws:query|
+as the root element. The children of the \verb|mws:query| are the expressions
+to be schematized in \cmml format. The attributes of the query are
+\textsf{answsize} (the maximum number of schemata), \textsf{output} (JSON or
+XML) and \textsf{depth} (the depth for cut-off).  If JSON is used for the
+output, the IDs of PMML substitutions will be returned. If XML is used, formula
+schemata in CMML format will be returned.
 
 \section{Conclusion}\label{sec:conclusion}
 \ednote{more work is to be done to make the results relevant}
