@@ -882,7 +882,22 @@ output, the IDs of PMML substitutions will be returned. If XML is used, formula
 schemata in CMML format will be returned.
 
 \section{Conclusion}\label{sec:conclusion}
-\ednote{more work is to be done to make the results relevant}
+We have presented the design and implementation of a system capable of
+mathematical faceted search. Moreover, we have described a general-purpose
+Schematizer which can generate formula schemata and divide expressions into
+formula classes according to said schemata. Consequently, we have successfully
+addressed all challenges outlined in Section~\ref{subsec:prelim:goals}.
+
+Although the Schematizer provides easily recognizable formulae, some
+instantiations might be counterintuitive, which suggests a better cut-off
+heuristic is needed. Also, some queries (e.g. using an author as keyword)
+provide hits with a very low relevance.  This is because we cannot distinguish
+between the work of the author and work where the author is cited at the
+textual level. As a consequence, searching for ``Fermat'' would also show
+formulae from papers where Fermat was cited and if these papers are numerous,
+as it happens with known authors, would provide the user with misleading
+results. This suggests that a better source of input for the Schematizer might
+be required.
 
 \section{Applications and future work}\label{sec:future}
 \ednote{mention NNexus}
