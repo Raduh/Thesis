@@ -35,6 +35,7 @@
 \usepackage{wrapfig}
 \usepackage{tikz}
 \usepackage{amsfonts}
+\usepackage{amsmath}
 \usepackage{hyperref}
 \newtheorem{definition}{Definition}
 \usepackage{xspace}
@@ -301,7 +302,7 @@ for schema search.
 \end{itemize}
 
 \subsection{Project Goals}\label{subsec:prelim:goals}
-As discussed in section \label{sec:intro}, the goal of this project is to
+As discussed in Section~\ref{sec:intro}, the goal of this project is to
 develop a scalable formula schematization engine, capable of dividing a set of
 query hits into classes, according to the generated formula schemata.
 
@@ -761,7 +762,7 @@ In this section, we will present an evaluation of our faceted search engine.
 Firstly, we will examine the front-end (\ref{subsec:fe_results_display}),
 obtained after applying the heuristics and improvements described in the
 Implementation section. Next, we will analyze the performance of the
-Schematizer deployed on an \arxiv index (\ref{subsec:schematizer_performance}).
+Schematizer deployed on an \arxiv index (\ref{subsec:sch_performance}).
 In the end, we will look at the API that the Schematizer exposes and elaborate
 on its potential (\ref{subsec:schematizer_api}).
 
@@ -822,7 +823,7 @@ in receiving relevant schemata as titles for the classes.
     \caption{Expansion of a formula class}\label{fig:schema_instantiation}
 \end{figure}
 
-\subsection{Performance of the Schematizer}\label{subsec:schematizer_prformance}
+\subsection{Performance of the Schematizer}\label{subsec:sch_performance}
 We designed the Schematizer to be a very lightweight daemon, both as memory
 requirements and as CPU usage. To test if we achieved this goal, we benchmarked
 it on a server running Linux 3.2.0, with 10 cores (Intel Xeon CPU E5-2650
@@ -866,7 +867,7 @@ All things considered, it is somewhat remarkable that the peak memory usage
 is at only 20 MB and only 15\% of one processor is in use for 1123 formulae.
 Considering the linear complexity, we can accommodate several millions of
 formulae on the mentioned server:
-$$80 GB \cdot \frac{1123}{20 MB} \approx 4.5 \cdot {10}^6 \text{formulae}$$
+$$80 GB \cdot \frac{1123}{20 MB} \approx 4.5 \cdot {10}^{6} \text{formulae}$$
 
 \subsection{The API}\label{subsec:schematizer_api}
 Another relevant point of interest in the Schematizer is its simple, but
