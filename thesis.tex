@@ -898,8 +898,41 @@ results. This suggests that a better source of mathematical expressions might
 be required for the Schematizer.
 
 \section{Applications and future work}\label{sec:future}
-\ednote{mention NNexus}
-\ednote{next steps? improve style sheet?}
+As we have already noted in the sections before, the most important improvement
+we can bring to our faceted search engine is a more relevant source of
+formulae. One such source would be \mws. After running a regular \MWS query,
+the resulting math hits can be passed to the Schematizer and again divided into
+formula classes. This approach would have the advantage of using curated
+formulae focused in a specific direction. If the user searches for ``Fermat'',
+he might also provide the math query
+${\red{?a}}^{\red{?n}} + {\red{?b}}^{\red{?n}}={\red{?c}}^{\red{?n}}$.
+By the design of \mws, we would already receive relevant results and we just
+need to classify them and use a suitable description (the schema) for the
+classes. Moreover, since the query hits must be instantiations of the query,
+they would all be structurally similar and hence the relationship between the
+hits from a class and the schema will become much more intuitive.
+
+Another improvement angle that can be worked on is the cut-off heuristic. A
+good idea might be to use a higher cut-off depth for the first child of apply
+(the operator) and a lower cut-off for the other children of apply (the
+operands). This would lead to operator leafs being reached faster than other
+leafs, which in turn would cause formulae with different operators to separate
+into different classes. This should favorably influence the relevance and
+appearance of the results since instantiations will become more
+recognizable to the user. In our current approach, with a constant cut-off depth,
+operators might be treated in the same manner for two formulae, if the cut-off
+is too low.
+
+As soon as the relevance of schemata is improved, we can use the faceted search
+engine to provide mathematical definitions with the help of
+\textsf{NNexus}~\cite{GinCor:nnexusCICM13}. NNexus is an auto-linker for
+mathematical concepts from several encyclopedias, e.g. PlanetMath, Wikipedia.
+Assuming we are able to generate relevant schemata in response to keyword
+queries, we can target the faceted search engine with all the concepts stored
+by NNexus and store a schema for each such concept. Afterwards, for a given
+query, we can obtain the schema and check it against our stored set of
+schemata. If we find it, we can link the given expression to its mathematical
+definition.
 
 \printbibliography
 
