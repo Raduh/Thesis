@@ -51,9 +51,50 @@
 \hyphenation{Wiki-Sym}}}
 
 
-@STRING{kpmessage = "READ the README please!!!!!!!!!!!!!!"}
+@string{kpmessage = "READ the README please!!!!!!!!!!!!!!"}
+@STRING{stexyear = 2014}
 
-@STRING{stexyear = 2013}
+@inproceedings{BreCodJuc:tospsme14,
+  author    = {Thilo Breitsprecher and
+               Mihai Codescu and
+               Constantin Jucovschi and
+               Michael Kohlhase and
+               Lutz Schr{\"{o}}der and
+               Sandro Wartzack},
+  title     = {Towards Ontological Support for Principle Solutions in Mechanical
+               Engineering},
+  year      = {2014},
+  pages     = {427--432},
+  crossref  = {FOIS14},
+  url       = {http://dx.doi.org/10.3233/978-1-61499-438-1-427},
+  doi       = {10.3233/978-1-61499-438-1-427},
+  keywords =  {conference},
+  pubs = {mkohlhase,cjucovschi}}
+
+@inproceedings{IanKohProd:rassmk14,
+  author    = {Mihnea Iancu and
+               Michael Kohlhase and
+               Corneliu{-}Claudiu Prodescu},
+  title     = {Representing, Archiving, and Searching the Space of Mathematical Knowledge},
+  year      = {2014},
+  pages     = {26--30},
+  crossref  = {ICMS14},
+  url       = {http://dx.doi.org/10.1007/978-3-662-44199-2_5},
+  doi       = {10.1007/978-3-662-44199-2_5},
+  keywords = {conference},
+  pubs = {mkohlhase,cprodescu,miancu}}
+
+@inproceedings{KohIan:dlpmmaftg14,
+  author    = {Michael Kohlhase and Mihnea Iancu},
+  title     = {Discourse-Level Parallel Markup and Meaning Adoption in Flexiformal
+               Theory Graphs},
+  year      = {2014},
+  pages     = {36--40},
+  crossref  = {ICMS14},
+  url       = {http://dx.doi.org/10.1007/978-3-662-44199-2_7},
+  doi       = {10.1007/978-3-662-44199-2_7},
+  keywords = {conference},
+  pubs = {mkohlhase,miancu}}
 
 @article{KohMihSperTes:mfs13,
   title={Zentralblatt Column: Mathematical Formula Search},
@@ -65,23 +106,70 @@
   year = {2013}, 
   pubs = {mkohlhase}}
 
+@online{CorTeX:on,
+  label = {CT},
+  title = {{Cor\TeX} Framework},
+  url = {http://cortex.mathweb.org},
+  urldate = {2014-02-14},
+  pubs = {dginev,project/llamapun}}
+
+@inproceedings{Kohlhase:OLE14,
+  author = {Michael Kohlhase},
+  title = {OpenMath Language Extensions}, 
+  url = {http://ceur-ws.org/Vol-1186/paper-14.pdf},
+  crossref = {CICM-WS-WiP2014},
+  pubs = {mkohlhase}}
+
+@inproceedings{Kohlhase:mwsiggm14,
+  author    = {Andrea Kohlhase},
+  title     = {Math Web Search Interfaces and the Generation Gap of Mathematicians},
+  year      = {2014},
+  pages     = {586--593},
+  crossref  = {ICMS14},
+  url       = {http://dx.doi.org/10.1007/978-3-662-44199-2_88},
+  doi       = {10.1007/978-3-662-44199-2_88},
+  pubs = {akohlhase}}
+
+@inproceedings{Kohlhase:eprpo14,
+  author = {Michael Kohlhase},
+  title = {Extension Proposal: Records in Pragmatic OpenMath}, 
+  url = {http://ceur-ws.org/Vol-1186/paper-13.pdf},
+  crossref = {CICM-WS-WiP2014},
+  pubs = {mkohlhase}}
+
+@online{MathHub:law:on,
+  label = {LMH},
+  title = {Local Editing Workflows},
+  url = {http://mathhub.info/help/lmh-workflows},
+  urldate = {2014-04-14},
+  pubs = {dginev,project/llamapun}}
+
+% better use the journal article: KohRab:som12
+@InProceedings{KohRab:som09,
+  title = "Semantics of {OpenMath} and {MathML3}",
+  author = {Michael Kohlhase and Florian Rabe},
+  crossref = {OM09},
+  url = {http://kwarc.info/kohlhase/papers/om09-semantics.pdf},
+  pubs = {mkohlhase,frabe,projects/latin,projects/omdoc}}
+
+
 @article{Kohlhase:mkmtobbtg14,
   title={Mathematical Knowledge Management: Transcending the One-Brain-Barrier with Theory Graphs},
   author = {Michael Kohlhase},
-  url = {http://kwarc.info/kohlhase/papers/ems14.pdf}, 
-  LATERpages = {56--57},
+  url = {http://www.ems-ph.org/journals/newsletter/pdf/2014-06-92.pdf}, 
+  pages = {22--27},
   journal = {EMS Newsletter},
-  LATERmonth = sep,
+  month = jun,
   year = {2014}, 
-  note = {in press},
   pubs = {mkohlhase}}
 
-@unpublished{KohIan:crsmmd14,
+@article{KohIan:crsmmd14,
   author = {Michael Kohlhase and Mihnea Iancu},
   title = {Co-Representing Structure and Meaning of Mathematical Documents},
   url = {http://kwarc.info/kohlhase/papers/omdoc-semantics.pdf},
-  note = {submitted to SDV (Sprache und Datenverarbeitung, International Journal for
-                  Language Data Processing)},
+  journal = {Sprache und Datenverarbeitung, International Journal for
+                  Language Data Processing},
+  note = {Special Issue ``The language of mathematics -- computational, linguistic and logical aspects''; accepted},
   year = {2014},
   pubs = {mkohlhase,miancu}}
 
@@ -116,7 +204,7 @@
   pubs = {clange,projects/formare},
 }
 
-@InProceedings{KohManRab:xses13,
+@InProceedings{KohProLig:xses13,
  title={{XLSearch}: A Search Engine for Spreadsheets},
  author = {Michael Kohlhase and Corneliu Prodescu and Christian Liguda},
  crossref = {EUSPRIG13},
@@ -212,9 +300,16 @@ crossref = {CICM-WS-WiP2013},
 }
 
 @unpublished{MCKLG:ProofSupportCommonLogic13,
+  crossref = {MCKLG:ProofSupportCommonLogic14}}
+@inproceedings{MCKLG:ProofSupportCommonLogic14,
   title = {Proof Support for {Common Logic}},
   author = {Till Mossakowski and Mihai Codescu and Oliver Kutz and Christoph Lange and Michael Gr{\"u}ninger},
-  year = 2013,
+  year = 2014,
+  editor = {Christoph Benzm{\"u}ller and Jens Otten},
+  booktitle = {Automated Reasoning in Quantified Non-Classical Logics (ARQNL)},
+  venue = {Vienna, Austria},
+  eventdate = {2014-07-23},
+  url = {http://www.iltp.de/ARQNL-2014/download/arqnl2014_paper5.pdf},
   pubs = {clange}}
 
 @online{HundredTheoremsEconomics,
@@ -283,12 +378,21 @@ crossref = {CICM-WS-WiP2013},
 
 @mastersthesis{cdavid:mscthesis,
   author =   {Catalin David},
-  title =    {{Semantic Alliance Framework: Integrating Documents and Semantic Services}},
+  title =    {{Semantic Alliance Framework}: Integrating Documents and Semantic Services},
   school =   {Jacobs University Bremen},
   year =     2012,
   type =     {M.\,Sc.\ Thesis},
   url =      {https://svn.eecs.jacobs-university.de/svn/eecs/archive/msc-2012/cdavid.pdf},
-  Pubs = {cdavid,mscthesis,projects/sissi}}
+  pubs = {cdavid,mscthesis,projects/sissi}}
+
+@mastersthesis{cprodescu:mscthesis,
+  author =   {Corneliu C. Prodescu},
+  title =    {Text and Formula Search on {ArXiv} Documents},
+  school =   {Jacobs University Bremen},
+  year =     2014,
+  type =     {M.\,Sc.\ Thesis},
+  SOONurl =      {https://svn.eecs.jacobs-university.de/svn/eecs/archive/msc-2012/cdavid.pdf},
+  Pubs = {crpodescu,mscthesis,projects/mws}}
 
 @inproceedings{KKLMN:BabelSemWebInteroperability12,
   title = {The {Babel} of the Semantic Web Tongues -- In Search of the {Rosetta} Stone of Interoperability},
@@ -305,6 +409,7 @@ crossref = {CICM-WS-WiP2013},
   title = {Mashups using Mathematical Knowledge},
   pages = {171--204},
   pubs={mkohlhase,clange,projects/planetary,projects/sissi},
+  url = {https://sites.google.com/site/mashupbookchapters/semantic-mashups/mathknowledge},
   crossref = {EndresNiggemeyer:SemanticMashups13}}
 
 @misc{Lange:MatheLernenSemWiki08,
@@ -365,8 +470,7 @@ urldate={2014-01-28}}
   label = {SPSHP},
   title = {An Ontology for Spreadsheet Programs}}
 
-@misc{sissi:URL,
-  crossref = {sissi:base},
+@misc{sissi:URL,crossref = {sissi:base},
   howpublished = {Project home page at \url{http://trac.kwarc.info/sissi/}}}
 @online{sissi:on,crossref={sissi:base},urldate={2013-01-04}}
 @misc{sissi:base,
@@ -442,6 +546,24 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
   keywords = {workshop},
   pubs = {clange,projects/ontoiop}}
 
+@inproceedings{MKCL:DOL13,
+  title = {The Distributed Ontology, Modeling and Specification Language},
+  author = {Till Mossakowski and Oliver Kutz and Mihai Codescu and Christoph Lange},
+  note = {Invited paper},
+  booktitle = {Modular Ontologies},
+  editor = {Del Vescovo, Chiara and Torsten Hahmann and David Pearce and Dirk Walther},
+  eventtitle = {7\textsuperscript{th} International Workshop (WoMO)},
+  year = {2013},
+  eventdate = {2013-09-15},
+  venue = {Corunna, Spain},
+  series = {CEUR Workshop Proceedings},
+  number = 1081,
+  address = {Aachen},
+  issn = {1613-0073},
+  url = {http://CEUR-WS.org/Vol-1081},
+  keywords = {workshop},
+  pubs = {clange,projects/ontoiop}}
+
 @inproceedings{LKMG:DistributedOntologyLanguage12,
   title = {The Distributed Ontology Language ({DOL}): Ontology Integration and Interoperability Applied to Mathematical Formalization},
   author = {Christoph Lange and Oliver Kutz and Till Mossakowski and Michael Gr{\"u}ninger},
@@ -487,9 +609,11 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
   author =       {Till Mossakowski and Christian Maeder and Mihai Codescu and Eugen Kuksa and Christoph Lange},
   version =      {0.99},
   institution =  {DFKI GmbH, Bremen},
-  date =         {2012-01-25},
-  year =         2012,
-  url =          {https://svn-agbkb.informatik.uni-bremen.de/Hets/trunk/doc/UserGuideCommonLogic.pdf}}
+  date =         {2013-01-10},
+  year =         2013,
+  url =          {https://svn-agbkb.informatik.uni-bremen.de/Hets/trunk/doc/UserGuideCommonLogic.pdf},
+  pubs = {clange}
+}
 
 @article{KohRab:som12,
   author = "Michael Kohlhase and Florian Rabe",
@@ -503,16 +627,33 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
   pubs={frabe,mkohlhase,projects/omdoc}
 }
 
-@online{NTCIR-Math,
+@online{NTCIR-Math,crossref={NTCIR10-Math:on}}
+@online{NTCIR10-Math:on,
   label={NTM},
-  title = {NTCIR Math Track -- Pilot Task},
+  title = {{NTCIR} Math Track -- Pilot Task},
   url = {http://ntcir-math.nii.ac.jp/},
   urldate =      {2012-05-18}}
+
+@online{NTCIR11-Math2:on,crossref={NTCIR-Math:on}}
+@online{NTCIR-Math:on,
+  label={NTM},
+  title = {{NTCIR}-11 Task: Math2},
+  url = {http://ntcir-math.nii.ac.jp/},
+  urldate =      {2014-02-18}}
+
 
 @online{CICM,
   title = {Conference on Intelligent Computer Mathematics ({CICM})},
   url = {http://cicm-conference.org},
   urldate =      {2012-03-18}}
+
+@unpublished{KohRab:qrtpflmk15,
+ title = {QED Reloaded: Towards a Pluralistic Formal Library of Mathematical Knowledge},
+ author = {Michael Kohlhase and Florian Rabe},
+ year = {2015},
+ url = {http://kwarc.info/kohlhase/submit/qed20.pdf},
+ note  = {submitted},
+ pubs = {mkohlhase,frabe,projects/oaf}}
 
 @inproceedings{KohIan:ssmk12,
   author = 	 {Michael Kohlhase and Mihnea Iancu},
@@ -627,7 +768,7 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
   note = 	 {Finalist at the Executable Paper Grand Challenge},
   year = 	 2011,
   volume = 4,
-  url = {https://svn.mathweb.org/repos/planetary/doc/epc11/paper.pdf},
+  url = {http://kwarc.info/kohlhase/papers/epc11.pdf},
   publisher = {Elsevier},
   doi = {10.1016/j.procs.2011.04.063},
   keywords = {conference},
@@ -665,33 +806,40 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
   url = {https://svn.kwarc.info/repos/lamapun/doc/blue/ndparse/note.pdf},
   year = 	 2013}
 
+@Unpublished{Kohlhase:sp14,
+  author = 	 {Michael Kohlhase},
+  title = 	 {SMGloM Primer},
+  note = 	 {SMGloM Blue Note},
+  url = {http://gl.kwarc.info/smglom/manuals/raw/master/primer/primer.pdf},
+  year = 	 2014}
+
 
 @Unpublished{Kohlhase:tsmgs13,
   author = 	 {Michael Kohlhase},
-  title = 	 {Towards a Maths Glossary System},
+  title = 	 {{SMGloM}: a Semantic Multilingual Glossary System for Mathematics},
   note = 	 {SMGloM Blue Note},
-  url = {http://gl.mathhub.info/smglom/smglom-doc/tree/master/source/blue/smglom/note.pdf},
+  url = {http://gl.kwarc.info/smglom/blue/raw/master/smglom/note.pdf},
   year = 	 2013}
 
 @Unpublished{KohJuc:edsmglom14,
   author = 	 {Michael Kohlhase and Constantin Jucovschi},
   title = 	 {Editing Workflows in SMGloM},
   note = 	 {SMGloM Blue Note},
-  url = {http://gl.mathhub.info/smglom/smglom-doc/tree/master/source/blue/editing/note.pdf},
+  url = {http://gl.kwarc.info/smglom/blue/raw/master/editing/note.pdf},
   year = 	 2014}
 
 @Unpublished{Kohlhase:cmsmglom14,
   author = 	 {Michael Kohlhase},
   title = 	 {Content Management in SMGloM},
   note = 	 {SMGloM Blue Note},
-  url = {http://gl.mathhub.info/smglom/smglom-doc/tree/master/source/blue/contmgt/note.pdf},
+  url = {http://gl.kwarc.info/smglom/blue/raw/master/contmgt/note.pdf},
   year = 	 2014}
 
 @Unpublished{Kohlhase:dmsmglom14,
   author = 	 {Michael Kohlhase},
   title = 	 {A Data Model and Encoding for SMGloM},
   note = 	 {SMGloM Blue Note},
-  url = {http://gl.mathhub.info/smglom/smglom-doc/tree/master/source/blue/datamdl/note.pdf},
+  url = {http://gl.kwarc.info/smglom/blue/raw/master/datamdl/note.pdf},
   year = 	 2014}
 
 @online{SMGloM:git,
@@ -705,7 +853,6 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
   note = 	 {KWARC Blue Note},
   url = {https://svn.omdoc.org/repos/omdoc/doc/blue/grounding/note.pdf},
   year = 	 2013}
-
 
 @Unpublished{Kohlhase:osslepsdl13,
   author = 	 {Michael Kohlhase},
@@ -887,6 +1034,7 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
 }
 
 @online{OntoIOp,
+  label = {OntoIOp},
   title = {{OntoIOp} (Ontology, Model and Specification Integration and Interoperability), an {OMG} Standard Development Initiative},
   url = {http://ontoiop.org},
   urldate =      {2013-10-09},
@@ -938,7 +1086,7 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
 @inproceedings{cdavid:ParEMNS,
   author = 		{David, Catalin and Brennan, Conor and Ormond, Olga and Mullen, Marie},
   title =		{Parallelised EM wave propagation modelling for accurate network simulation},
-  booktitle = 	{{9th. IT\&T Conference, Dublin Institute of Technology}},
+  booktitle = 	{{9\textsuperscript{th} IT\&T Conference, Dublin Institute of Technology}},
   year = 		2009,
   pubs= 		{cdavid}}
 
@@ -948,7 +1096,7 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
     title = {Towards User Assistance for Documents via Interactional Semantic Technology},
     pages = {107--115},
     keywords={conference},
-    pubs={akohlhase}}
+    pubs={akohlhase,projects/sissi}}
 
 @InProceedings{Lange:MathWebOfData10,
   author =       {Christoph Lange},
@@ -1049,7 +1197,7 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
  keywords={conference}}
 
 @inProceedings{KohJuc:pcmpm11,
-  title = {planMP:Collecting Mathematical Practices for MKM},
+  title = {{planMP}: Collecting Mathematical Practices for MKM},
   author = {Andrea Kohlhase and Constantin Jucovschi},
   crossref = {CICM11WIP},
   pubs = {akohlhase,cjucovschi}}
@@ -1062,14 +1210,6 @@ Digital Math Libraries want to be Semantic --- Position paper for WDML 2012},
   pages = {304--306},
   keywords = {conference},
   pubs = {projects/krextor,clange,projects/ikyda2012}}
-
-@inproceedings{CHKMR:latinabs:11,
-  author = {Mihai Codescu and Fulya Horozal and Michael Kohlhase and Till Mossakowski and Florian Rabe},
-  title = "{Project Abstract: Logic Atlas and Integrator ({LATIN})}",
-  pages = "287--289",
-  crossref = {CICM11},
-  keywords = {conference},
-  pubs={frabe}}
 
 @InProceedings{CodHorKoh:palai11,
   title = {Project Abstract: Logic Atlas and Integrator ({LATIN})},
@@ -1097,11 +1237,20 @@ Rudnicki and Josef Urban},
   keywords = {conference},
   pubs = {mkohlahse}}
 
-@unpublished{GinMil:latexmlCICM13,
+@InProceedings{GinMil:latexmlCICM13,
  title = {{\LaTeX}ML 2012 - A Year of {\LaTeX}ML},
  author = {Deyan Ginev and Bruce Miller},
+ pages = {335--338},
  crossref = {CICM13},
- url = {https://svn.kwarc.info/repos/dginev/papers/cicm13-latexml.pdf}, 
+ keywords = {conference},
+ pubs = {dginev}}
+
+@InProceedings{GinMilOpr:latexml:14,
+ title = {E-books and Graphics with {\LaTeX}ML},
+ author = {Deyan Ginev and Bruce Miller and Silviu Oprea},
+ crossref = {CICM14},
+ pages = {427--430},
+ url = {http://arxiv.org/abs/1404.6547},
  pubs = {dginev}}
 
 @InProceedings{GinStaKoh:latexmldaemon11,
@@ -1112,6 +1261,17 @@ Rudnicki and Josef Urban},
   crossref =     {CICM11},
   keywords = {conference},
   pubs = {dginev,stamer,mkohlhase,projects/lamapun}}
+
+@InProceedings{CKLR:SetThyHOLAuctIsa14,
+ title = {Set Theory or Higher Order Logic to Represent Auction Concepts in {Isabelle}?},
+ author = {Marco B. Caminati and Manfred Kerber and Christoph Lange and Colin Rowat},
+ NOTYETpages = {335--338},
+ eprint = {1406.0774},
+ eprinttype = {arxiv},
+ eprintclass = {cs.LO},
+ crossref = {CICM14},
+ keywords = {conference},
+ pubs = {clange}}
 
 @inproceedings{DC:BauDenkMalNetz11,
   title = {BauDenkMalNetz -- Creating a Semantically Annotated Web Resource of Historical Buildings},
@@ -1196,6 +1356,15 @@ Rudnicki and Josef Urban},
   keywords = {conference},
   pubs = {mkohlhase,frabe,vzholudev,projects/omdoc,projects/latin}}
 
+@inproceedings{BlackburnBosKohlhase1999Tbilisi,
+   title     = {Automated Reasoning for Computational Semantics},
+   author    = {Blackburn, Patrick and Bos, Johan and Kohlhase, Michael},
+   booktitle = {The Third International Tbilisi Symposium on Language, Logic and Computation},
+   address   = {Batumi, Georgia},
+   year      = {1999},
+   pubs = {mkohlhase}
+}
+
 @unpublished{ZhoLan:tntbaseXSYM10,
   author = {Vyacheslav Zholudev and Christoph Lange},
   title = {{TNTBase} -- a Versioned {XML} Database},
@@ -1277,7 +1446,7 @@ Rudnicki and Josef Urban},
   institution = {Jacobs University Bremen},
   year = {2010},
   url = {http://kwarc.info/vzholudev/pubs/XMLPrague_long.pdf},
-  pubs = {vzholudev,kohlhase,frabe}}
+  pubs = {vzholudev,mkohlhase,frabe}}
 
 @inproceedings{ZhoKohRab:tntbasef10,
   author = {Vyacheslav Zholudev and Michael Kohlhase and Florian Rabe},
@@ -1286,18 +1455,18 @@ Rudnicki and Josef Urban},
   url = {http://kwarc.info/vzholudev/pubs/XMLPrague.pdf},
   pubs = {vzholudev,kohlhase,frabe}}
 
-@online{MMTSVN:on,crossref={MMT:base}}
+@online{MMTSVN:on,crossref={MMT:base},label={MMT}}
 @misc{Rabe:MMTLanguageSystem09,crossref={MMT:base},
-  date = {2011-10-11}}
+  date = {2011-10-11},key={MMT}}
 @misc{MMT:base,
   author = {Florian Rabe},
-  title = {The MMT Language and System},
+  title = {The {MMT} Language and System},
   url = {https://svn.kwarc.info/repos/MMT},
   urldate = {2011-10-11},
   pubs = {frabe}}
 
 @inproceedings{Rabe:MAGMS13,
-  author = "Florian. Rabe",
+  author = "Florian Rabe",
   title = "{The MMT API: A Generic MKM System}",
   crossref = {CICM13},
   pages={339--343},
@@ -1953,9 +2122,9 @@ howpublished = {Available  at \url{http://kwarc.info/ako/pubs/AKo_Promo.pdf}},
 @online{Rabe:MMT,
   label = {MMT},
   author = {Florian Rabe},
-  title = {MMT -- A Module system for Mathematical Theories},
-  url = {http://trac.kwarc.info/MMT/},
-  urldate =      {2010-08-18},
+  title = {The {MMT} System},
+  url = {https://svn.kwarc.info/repos/MMT/doc/html/},
+  urldate =      {2014-07-16},
   pubs = {frabe,projects/latin,projects/omdoc}}
 
 @online{krextor:on,
@@ -2068,16 +2237,6 @@ pubs={akohlhase,mkohlhase,projects/sissi},
   url = {http://www.kwarc.info/nmueller/papers/lwa08-fst.pdf},
   howpublished = {\url{http://www.kwarc.info/nmueller/papers/lwa08-fst.pdf}},
   pubs = {nmueller,mkohlhase,projects/omoc}}
-
-@inproceedings{KohKoh:AssessmentInSACHS:plain,
-  author = {Andrea Kohlhase and Michael Kohlhase},
-  title = {What you get is what you understand: Assessment in {SACHS}},
-  crossref = {FGWM09},
-  pages = {22--29},
-  url = {http://www.kwarc.info/kohlhase/papers/lwa09-sachs.pdf},
-  Year = 2009,
-  keywords={workshop},
-}
 
 @inproceedings{KohKoh:AssessmentInSACHS,
   author = {Andrea Kohlhase and Michael Kohlhase},
@@ -2252,9 +2411,7 @@ pubs={mkohlhase,frabe,cmueller,projects/omdoc}}
     crossref = {SemNet2007},
   pubs={clange,projects/swim,projects/krextor}}
 
-@TECHREPORT{CarlisleEd:MathML10,crossref={CarlisleEd:MathML3:base}}
 @TECHREPORT{CarlisleEd:MathML3,crossref={CarlisleEd:MathML3:base},howpublished={\url{http://www.w3.org/TR/MathML3}}}
-@TECHREPORT{W3C:MathML3:biblatex,crossref={CarlisleEd:MathML3:base}}
 @TECHREPORT{CarlisleEd:MathML3:base,
   author = {Ron Ausbrooks and Stephen Buswell and David Carlisle and
       Giorgi Chavchanidze and St{\'e}phane Dalmas and Stan Devitt and Angel Diaz
@@ -2407,11 +2564,6 @@ pubs={mkohlhase,frabe,cmueller,projects/omdoc}}
   url = {http://kwarc.info/projects/swim/},
 }
 
-@MISC{URL:sTeX:head,
-  key = {sTeX},
-  howpublished = {\svnrepoat\url{https://svn.kwarc.info/repos/stex}},
-  url = {https://svn.kwarc.info/repos/stex}}
-
 @MISC{URL:sTeX:github,
   key = {sTeX},
   howpublished = {GitHub repository at \url{https://github.com/KWARC/sTeX}},
@@ -2421,6 +2573,15 @@ pubs={mkohlhase,frabe,cmueller,projects/omdoc}}
   label = {sTeX},
   note = {GitHub repository},
   url = {https://svn.kwarc.info/repos/stex}}
+
+@MISC{URL:LaTeX2Office:github,
+  key = {L2O},
+  howpublished = {GitHub repository at \url{https://github.com/KWARC/LaTeXML-Plugin-Doc}},
+  url = {https://svn.kwarc.info/repos/stex}}
+@online{LaTeX2Office:github:on,
+  label = {L2O},
+  note = {GitHub repository},
+  url = {https://github.com/KWARC/LaTeXML-Plugin-Doc}}
 
 @online{sTeX-mode:on,
   urldate = {2009-11-10},
@@ -2568,6 +2729,43 @@ pubs={mkohlhase,frabe,cmueller,projects/omdoc}}
   year = 	 2010,
   pubs = {projects/omdoc,projects/krextor}}
 
+@MastersThesis{Acevedo:OMMI,
+  author = {Carmela Acevedo},
+  school = 	 {Computer Science, Jacobs University, Bremen},
+  type = {Bachelor's Thesis},
+  year = {2014},
+  title = {{OpenMathMap}: Interaction},
+  url = {http://map.mathweb.org/media/openmathmap-interaction.pdf}}
+
+@MastersThesis{Hasegan:sum14,
+  author = {Daniel Hasegan},
+  school = {Computer Science, Jacobs University, Bremen},
+  type = {Bachelor's Thesis},
+  year = {2014},
+  title = {Sorted Unification in {MathWebSearch}},
+  SOONurl = {http://map.mathweb.org/media/openmathmap-interaction.pdf}}
+
+@inproceedings{AceKoh:OMMI14,
+  author = {Carmela Acevedo and Michael Kohlhase},
+  crossref = {CICM-WS-WiP2014},
+  title = {{OpenMathMap}: Interaction},
+  url = {http://ceur-ws.org/Vol-1186/paper-01.pdf},
+  pubs = {mkohlhase}}
+
+@inproceedings{Kohlhase:dsim14,
+  author = {Andrea Kohlhase},
+  crossref = {CICM-WS-WiP2014},
+  title = {Design of Search Interfaces for Mathematicians},
+  url = {http://ceur-ws.org/Vol-1186/paper-02.pdf},
+  pubs = {akohlhase}}
+
+@inproceedings{Kohlhase:fsfe14,
+  author = {Andrea Kohlhase and Alexandru Toader},
+  crossref = {CICM-WS-WiP2014},
+  title = {{FEncy}: Spreadsheet Formulae Exploration},
+  url = {http://ceur-ws.org/Vol-1186/paper-03.pdf},
+  pubs = {akohlhase,atoader,projects/sissi}}
+
 @unpublished{HR:tptp:12,
   author = "Fulya Horozal and Florian Rabe",
   title = {Representing Logics of Theorem Provers --- {TLTP}: Tens of Logics for Theorem Provers},
@@ -2646,7 +2844,7 @@ pubs={mkohlhase,frabe,cmueller,projects/omdoc}}
 }
 
 @mastersthesis{horozal:msc,
-  author = "Fulya Horozal",
+  author = "Figen F{\"u}sun Horozal",
   title = "{Management of Change in the Web Ontology Language}",
   year = "2012",
   school = "Jacobs University Bremen"
@@ -2684,6 +2882,14 @@ pubs={mkohlhase,frabe,cmueller,projects/omdoc}}
   pubs={frabe,mkohlhase,fhorozal,projects/latin,projects/omdoc}
 }
 
+@unpublished{AR:lamkrip_long:09,
+  author = "S. Awodey and F. Rabe",
+  title = "{Kripke Semantics for Martin-L{\"o}f's Extensional Type Theory}",
+  year = "2009",
+  note = "see \url{http://kwarc.info/frabe/Research/LamKrip.pdf}",
+  pubs={frabe}
+}
+
 @article{AR:lamkrip:11,
   author = "Stephen Awodey and Florian Rabe",
   title = "{Kripke Semantics for Martin-L{\"o}f's Extensional Type Theory}",
@@ -2691,6 +2897,20 @@ pubs={mkohlhase,frabe,cmueller,projects/omdoc}}
   journal = "Logical Methods in Computer Science",
   volume = "7",
   number = "3",
+  pubs={frabe}
+}
+
+@inproceedings{AR:lamkrip:09,
+  author = "S. Awodey and F. Rabe",
+  title = "{Kripke Semantics for Martin-L{\"o}f's Extensional Type Theory}",
+  year = "2009",
+  pages = "249--263",
+  booktitle = "Typed Lambda Calculi and Applications (TLCA)",
+  editor = "P. Curien",
+  series = "LNCS",
+  publisher = "Springer",
+  volume = "5608",
+  keywords = {conference},
   pubs={frabe}
 }
 
@@ -2916,27 +3136,6 @@ pubs={mkohlhase,frabe,cmueller,projects/omdoc}}
 }
 
 
-@inproceedings{AR:lamkrip:09,
-  author = "S. Awodey and F. Rabe",
-  title = "{Kripke Semantics for Martin-L{\"o}f's Extensional Type Theory}",
-  year = "2009",
-  pages = "249--263",
-  booktitle = "Typed Lambda Calculi and Applications (TLCA)",
-  editor = "P. Curien",
-  series = "LNCS",
-  publisher = "Springer",
-  volume = "5608",
-  keywords = {conference},
-  pubs={frabe}
-}
-
-@unpublished{AR:lamkrip_long:09,
-  author = "S. Awodey and F. Rabe",
-  title = "{Kripke Semantics for Martin-L{\"o}f's Extensional Type Theory}",
-  year = "2009",
-  note = "see \url{http://kwarc.info/frabe/Research/LamKrip.pdf}",
-  pubs={frabe}
-}
 
 @techreport{KLMMR:notations-tr:2009,
   author = "M. Kohlhase and C. Lange and C. M{\"u}ller and N. M{\"u}ller and F. Rabe",
@@ -3006,7 +3205,7 @@ pubs={mkohlhase,frabe,cmueller,projects/omdoc}}
   series = "CEUR Workshop Proceedings",
   publisher = "CEUR-WS.org",
   volume = "418",
-  pubs={frabe}
+  pubs={frabe,mkohlhase}
 }
 
 @inproceedings{SR:dfol_fol:08,
@@ -3114,7 +3313,7 @@ pubs={frabe}}
  pubs = {cmueller}}
  
 @INPROCEEDINGS{BenBroKoh:csil06,
-  author = {Christoph E. Benzmueller and Chad E. Brown and Michael Kohlhase},
+  author = {Christoph E. Benzm{\"u}ller and Chad E. Brown and Michael Kohlhase},
   title = {Cut-Simulation in Impredicative Logics},
   pages = {220--234},
   crossref = {IJCAR06},
@@ -3123,7 +3322,7 @@ pubs={frabe}}
   pubs = {mkohlhase}}
 
 @article{BenBroKoh:lmcs09,
-  author = {Christoph E. Benzmueller and Chad E. Brown and Michael Kohlhase},
+  author = {Christoph E. Benzm{\"u}ller and Chad E. Brown and Michael Kohlhase},
   title = {Cut-Simulation and Impredicativity},
   journal = {Logical Methods in Computer Science},
   volume = 5,
@@ -3935,11 +4134,25 @@ pubs = {mkohlhase}}
   key = {Caprotti}}
 
 @TECHREPORT{Kohlhase:NTCIR10-topics,
-  title = {Topics for the NTCIR-10 Math Task; Math Retrieval Subtask},
+  title = {Topics for the {NTCIR-10} Math Task; Math Retrieval Subtask},
   author = {Michael Kohlhase},
   year = {2012},
   institution = {NTCIR},
   url = {https://kwarc.info/kohlhase/papers/NTCIR10-topics.pdf},
+  editor = {Michael Kohlhase}}
+
+@TECHREPORT{Kohlhase:NTCIR11-topics,
+  title = {Formats for Topics and Submissions for the  Math2 Task at NTCIR-11},
+  year = {2014},
+  institution = {NTCIR},
+  url = {http://ntcir-math.nii.ac.jp/wp-content/blogs.dir/13/files/2014/05/NTCIR11-Math-topics.pdf},
+  editor = {Michael Kohlhase}}
+
+@TECHREPORT{Kohlhase:NTCIR12-topics,
+  title = {Formats for Topics and Submissions for the  Math-2 Task at NTCIR-12},
+  year = {2015},
+  institution = {NTCIR},
+  NOurl = {http://ntcir-math.nii.ac.jp/wp-content/blogs.dir/13/files/2014/05/NTCIR11-Math-topics.pdf},
   editor = {Michael Kohlhase}}
 
 @MISC{ek:dsxcc,
@@ -3992,35 +4205,50 @@ pubs = {mkohlhase}}
   title = 	 {Formal Development for Safe Robotics},
   year = 	 2007}
 
-@online{MWSProj:on,crossref={MWSProj:base}}
-@online{MWSProj:base,
-  label = {MWS},
-  title = {{MathWebSearch} Searching Mathematics on the Web},
+@online{MWSProj:on,crossref={MWSProj:base},label={MWS},urldate={2013-04-26}}
+@online{MWSProj:url,crossref={MWSProj:base},howpublished={Project page at \url{http://search.mathweb.org}}}
+@misc{MWSProj:base,
+  title = {{MathWebSearch} -- Searching Mathematics on the Web},
   url = {http://search.mathweb.org},
-  urldate  = {2013-04-26},
-  key = {MathWebSearchDemo}}
+  key = {MWS}}
 
 @online{MWSZBL:on,
   label = {MWSZBL},
   title = {{MathWeb Search}: Zentralblatt Math},
-  url = {http://earch.mathweb.org/zbl/},
+  url = {http://search.mathweb.org/zbl/},
   urldate  = {2013-04-21}}
 
 @INPROCEEDINGS{AizKohOun:nmpto13,
   author = {Aizawa, Akiko and Kohlhase, Michael and Ounis, Iadh},
-  title = {Ntcir-10 Math Pilot Task Overview},
+  title = {{NTCIR-10 Math} Pilot Task Overview},
   url = {http://research.nii.ac.jp/ntcir/workshop/OnlineProceedings10/pdf/NTCIR/OVERVIEW/01-NTCIR10-OV-MATH-AizawaA.pdf},
   crossref={NTCIR10},
   pages = {1--8},
-  pubs = {mkohlhase}}
+  pubs = {mkohlhase,projects/mws}}
+
+@INPROCEEDINGS{AizKohOunSch:nmto14,
+  author = {Aizawa, Akiko and Kohlhase, Michael and Ounis, Iadh and Moritz Schubotz},
+  title = {{NTCIR-11} {Math-2} Task Overview},
+  url = {http://research.nii.ac.jp/ntcir/workshop/OnlineProceedings11/pdf/NTCIR/OVERVIEW/01-NTCIR11-OV-MATH-AizawaA.pdf},
+  crossref={NTCIR11},
+  pages = {88--98},
+  pubs = {mkohlhase,projects/mws}}
 
 @INPROCEEDINGS{KohPro:man13,
   author = {Kohlhase, Michael and Prodescu, Corneliu},
-  title = {MathWebSearch at NTCIR-10},
+  title = {{MathWebSearch} at {NTCIR-10}},
   url = {http://research.nii.ac.jp/ntcir/workshop/OnlineProceedings10/pdf/NTCIR/MATH/04-NTCIR10-MATH-KohlhaseM.pdf},
   crossref={NTCIR10},
   pages = {675--679},
   pubs = {mkohlhase,cprodescu,projects/mws}}
+
+@INPROCEEDINGS{HamKohPro:man14,
+  author = {Radu Hambasan and Kohlhase, Michael and Prodescu, Corneliu},
+  title = {{MathWebSearch} at {NTCIR-11}},
+  url = {http://research.nii.ac.jp/ntcir/workshop/OnlineProceedings11/pdf/NTCIR/Math-2/05-NTCIR11-MATH-HambasanR.pdf},
+  crossref={NTCIR11},
+  pages = {114--119},
+  pubs = {mkohlhase,cprodescu,rhambasan,projects/mws}}
 
 @INPROCEEDINGS{SieHes:adgui98,
   author = {J{\"o}rg Siekmann and Stephan Hess and Christoph Benzm{\"u}ller and
@@ -4089,7 +4317,6 @@ pubs = {mkohlhase,projects/omdoc}}
   number = {D5.a},
 pubs = {mkohlhase}}
 
-@ARTICLE{BenBroKoh:hose05,crossref={BenBroKoh:hose04}}
 @ARTICLE{BenBroKoh:hose04,
   author = {Christoph Benzm{\"u}ller and Chad Brown and Michael Kohlhase},
   title = {Higher Order Semantics and Extensionality},
@@ -4143,7 +4370,6 @@ pubs = {mkohlhase}}
   number = {SR-97-10},
 pubs = {mkohlhase}}
 
-@TECHREPORT{ags-2003-d-10,crossref={BenKohBro:hose03}}
 @TECHREPORT{BenKohBro:hose03,
   author = {Christoph Benzm{\"u}ller and Michael Kohlhase and Chad E. Brown},
   title = {Higher Order Semantics and Extensionality.},
@@ -4208,7 +4434,7 @@ pubs = {mkohlhase}}
 
 @ARTICLE{EggGarKoh:sid98,
   author = {Markus Egg and Claire Gardent and Michael Kohlhase},
-  title = {Steuerung der Inferenz in der Diskursverarbeitung},
+  title = {{Steuerung der Inferenz in der Diskursverarbeitung}},
   journal = {Kognitionswissenschaft},
   year = {1998},
   volume = {7},
@@ -4625,6 +4851,15 @@ pubs = {mkohlhase,projects/omdoc}}
  keywords={conference},
 pubs = {akohlhase}}
 
+@article{JesKohSei:DMV04,
+  title = {{eLearning}-, {eTeaching}- \& {eResearch}-Technologien -- Chancen und Potentiale f{\"u}r die Mathematik},
+  author = {Sabina Jeschke and Michael Kohlhase and Ruedi Seiler},
+  journal = {Mitteilungen der DMV},
+  volume = {12},
+  number = {2},
+  url = {http://kwarc.info/kohlhase/papers/DMV_Nachrichten_04-2004.pdf},
+  pubs = {mkohlhase}}
+
 @InProceedings{Kohlhase:MediaOrMedeaSociety,
   author = {Andrea Kohlhase},
   title = {{Media or Medea Society? Learner and Learning Technology as Full Partners}},
@@ -4860,7 +5095,7 @@ pubs = {mkohlhase,projects/omdoc}}
   publisher = {Scientec Publishing},
   pubs = {mkohlhase}}
 
-@TECHREPORT{Kohlhase:hotwc96,
+@techreport{Kohlhase:hotwc96,
   author = {Michael Kohlhase},
   title = {Higher-Order Tableaux with Combinators},
   institution = {Dept. of Computer Science, Universit{\"a}t des Saarlandes, Germany},
@@ -4880,14 +5115,6 @@ pubs = {mkohlhase}}
   keywords = {conference},
 pubs = {mkohlhase}}
 
-@TECHREPORT{Kohlhase94a,
-  author = {Michael Kohlhase},
-  title = {Higher-Order Order-Sorted Resolution},
-  institution = {Fachbereich Informatik, Universit{\"a}t des Saarlandes},
-  year = {1994},
-  type = {Seki Report},
-  number = {SR-94-1},
-pubs = {mkohlhase}}
 
 @PHDTHESIS{Kohlhase:amosho94,
   author = {Michael Kohlhase},
@@ -4940,9 +5167,9 @@ pubs = {mkohlhase}}
   journal = {Mathematics in Computer Science},
   publisher = {Birkh{\"a}user},
   url = {https://svn.kwarc.info/repos/stex/doc/mcs08/stex.pdf},
-  year = 2008,
-  volume = 2,
-  number = 2,
+  year = {2008},
+  volume = {2},
+  number = {2},
   pages = {279--304},
   keywords  = {lamapunbibs},
   pubs = {mkohlhase}}
@@ -5277,10 +5504,22 @@ pubs = {mkohlhase}}
   url = {http://www.ctan.org/get/macros/latex/contrib/stex/modules/modules.pdf}, 
   pubs = {mkohlhase,projects/stex}}
 @techreport{KohAmb:smmssl:svn,crossref={KohAmb:smmssl:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/modules/modules.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/modules/modules.pdf}}
 @techreport{KohAmb:smmssl:base,
   author = {Michael Kohlhase and Deyan Ginev and Rares Ambrus},
   title = {{\texttt{modules.sty}}: Semantic Macros and Module Scoping in {sTeX}},
+  type =     {Self-documenting {\LaTeX} package},
+  year = stexyear}
+
+@techreport{KohGin:smss:ctan,crossref={KohGin:smss:base},
+  institution = {Comprehensive {\TeX} Archive Network (CTAN)},
+  url = {http://www.ctan.org/get/macros/latex/contrib/stex/smultiling/smultiling.pdf}, 
+  pubs = {mkohlhase,projects/stex}}
+@techreport{KohGin:smss:svn,crossref={KohGin:smss:base},
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/smultiling/smultiling.pdf}}
+@techreport{KohGin:smss:base,
+  author = {Michael Kohlhase and Deyan Ginev},
+  title = {{\texttt{smultiling.sty}}: Multilinguality Support for {sTeX}},
   type =     {Self-documenting {\LaTeX} package},
   year = stexyear}
 
@@ -5290,7 +5529,7 @@ pubs = {mkohlhase}}
   pubs = {mkohlhase,dginev,projects/stex},
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/presentation/presentation.pdf}}
 @techreport{Kohlhase:ipsmsl:svn,crossref={Kohlhase:ipsmsl:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/presentation/presentation.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/presentation/presentation.pdf}}
 @techreport{Kohlhase:ipsmsl:base,
   author =   {Michael Kohlhase and Deyan Ginev},
   title =    {\texttt{presentation.sty}: An Infrastructure for Presenting Semantic Macros in {sTeX}},
@@ -5302,20 +5541,20 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/sproof/sproof.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:smp:svn,crossref={Kohlhase:smp:base},
-  url =   {https://svn.kwarc.info/repos/stex/trunk/sty/sproof/sproof.pdf}}
+  url =   {https://github.com/KWARC/sTeX/raw/master/sty/sproof/sproof.pdf}}
 @techreport{Kohlhase:smp:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{sproof.sty}: Structural Markup for Proofs},
   type =     {Self-documenting {\LaTeX} package},
   year = stexyear,
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/sproof/sproof.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/sproof/sproof.pdf}}
 
 @techreport{Kohlhase:reqdoc:ctan,crossref={Kohlhase:reqdoc:base},
   institution = {Comprehensive {\TeX} Archive Network (CTAN)},
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/reqdoc/reqdoc.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:reqdoc:svn,
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/reqdoc/reqdoc.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/reqdoc/reqdoc.pdf}}
 @techreport{Kohlhase:reqdoc:base,
   author =   {Michael Kohlhase},
   title =    {{\texttt{reqdoc.sty}}: Semantic Markup for Requirements Specification Documents},
@@ -5327,7 +5566,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/physml/physml.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:physml:svn,crossref={Kohlhase:physml:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/physml/physml.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/physml/physml.pdf}}
 @techreport{Kohlhase:physml:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{physml.sty}: An Infrastructure for Marking Up {PhysML} in {\TeX/\LaTeX}},
@@ -5339,7 +5578,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/dcm/dcm.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:dcm:svn,crossref={Kohlhase:dcm:base},
-  url =   {https://svn.kwarc.info/repos/stex/trunk/sty/stex/dcm/dcm.pdf}}
+  url =   {https://github.com/KWARC/sTeX/raw/master/sty/stex/dcm/dcm.pdf}}
 @techreport{Kohlhase:dcm:base,
   author =   {Michael Kohlhase},
   title =    {{\texttt{dcm.sty}}: An Infrastructure for marking up {Dublin Core} Metadata in {\LaTeX}  documents},
@@ -5351,7 +5590,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/workaddress/workaddress.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:workaddress:svn,crossref={Kohlhase:workaddress:base},
-  url =   {https://svn.kwarc.info/repos/stex/trunk/sty/stex/workaddress/workaddress.pdf}}
+  url =   {https://github.com/KWARC/sTeX/raw/master/sty/stex/workaddress/workaddress.pdf}}
 @techreport{Kohlhase:workaddress:base,
   author =   {Michael Kohlhase},
   title =    {{\texttt{workaddress.sty}}: An Infrastructure for marking up {Dublin Core} Metadata in {\LaTeX}  documents},
@@ -5364,7 +5603,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/assignment/assignment.pdf},
   pubs = {mkohlhase,projects/stex}}
 @misc{Kohlhase:assignment*,crossref={Kohlhase:assignment:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/assignment/assignment.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/assignment/assignment.pdf}}
 @techreport{Kohlhase:assignment:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{assignment.sty/cls}: An Infrastructure for formatting Assignments
@@ -5378,7 +5617,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/problem/problem.pdf},
   pubs = {mkohlhase,projects/stex}}
 @misc{Kohlhase:problem*,crossref={Kohlhase:problem:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/problem/problem.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/problem/problem.pdf}}
 @techreport{Kohlhase:problem:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{problem.sty}: An Infrastructure for formatting Problems},
@@ -5391,7 +5630,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/sref/sref.pdf},
   pubs = {mkohlhase,projects/stex}}
 @misc{Kohlhase:sref*,crossref={Kohlhase:sref:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/sref/sref.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/sref/sref.pdf}}
 @techreport{Kohlhase:sref:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{sref.sty}: Semantic Crossreferencing in {\LaTeX}},
@@ -5404,7 +5643,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/metakeys/metakeys.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:metakeys:svn,crossref={Kohlhase:metakeys:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/metakeys/metakeys.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/metakeys/metakeys.pdf}}
 @techreport{Kohlhase:metakeys:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{metakeys.sty}: A generic framework for extensible Metadata in {\LaTeX}},
@@ -5417,7 +5656,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/rdfmeta/rdfmeta.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:rdfmeta:svn,crossref = {Kohlhase:rdfmeta:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/rdfmeta/rdfmeta.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/rdfmeta/rdfmeta.pdf}}
 @techreport{Kohlhase:rdfmeta:base,
   author =   {Michael Kohlhase},
   title =    {{RDFa} Metadata in {\LaTeX}},
@@ -5429,7 +5668,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/owl2onto/owl2onto.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:owl2onto:svn,crossref = {Kohlhase:owl2onto:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/owl2onto/owl2onto.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/owl2onto/owl2onto.pdf}}
 @techreport{Kohlhase:owl2onto:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{owl2onto.cls}: Marking up {OWL2} Ontologies in {sTeX}},
@@ -5442,20 +5681,19 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/statements/statements.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:smms:svn,crossref={Kohlhase:smms:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/statements/statements.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/statements/statements.pdf}}
 @techreport{Kohlhase:smms:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{statements.sty}: Structural Markup for Mathematical Statements},
   type =     {Self-documenting {\LaTeX} package},
   year = stexyear}
 
-
 @techreport{Kohlhase:tbscml:ctan,crossref={Kohlhase:tbscml:base},
   institution = {Comprehensive {\TeX} Archive Network (CTAN)},
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/cmathml/cmathml.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:tbscml:svn,crossref={Kohlhase:tbscml:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/cmathml/cmathml.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/cmathml/cmathml.pdf}}
 @misc{Kohlhase:tbscml:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{cmathml.sty}: A {\TeX/\LaTeX}-based Syntax for Content MathML},
@@ -5468,7 +5706,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/cnx/cnx.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:clbscm:svn,crossref={Kohlhase:clbscm:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/cnx/cnx.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/cnx/cnx.pdf}}
 @techreport{Kohlhase:clbscm:base,
   author =   {Michael Kohlhase},
   title =    {{CNX{\LaTeX}}: A {\LaTeX}-based Syntax for {Connexions} Modules},
@@ -5480,7 +5718,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/omdoc/omdoc.pdf},
   pubs = {mkohlhase,projects/stex,projects/omdoc}}
 @techreport{Kohlhase:smomdl*:svn,crossref={Kohlhase:smomdl:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/omdoc/omdoc.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/omdoc/omdoc.pdf}}
 @techreport{Kohlhase:smomdl:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{omdoc.sty/cls}: Semantic Markup for Open Mathematical Documents in {\LaTeX}},
@@ -5492,7 +5730,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/tex-archive/macros/latex/contrib/stex/omtext/omtext.pdf},
   pubs = {mkohlhase,projects/stex,projects/omdoc}}
 @techreport{Kohlhase:smmtf*:svn,crossref={Kohlhase:smmtf:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/omtext/omtext.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/omtext/omtext.pdf}}
 @techreport{Kohlhase:smmtf:base,
   author =   {Michael Kohlhase},
   title =    {\texttt{omtext}: Semantic Markup for Mathematical Text Fragments in {\LaTeX}},
@@ -5504,7 +5742,7 @@ pubs = {mkohlhase}}
   url =   {http://www.ctan.org/get/macros/latex/contrib/stex/sty/stex.pdf},
   pubs = {mkohlhase,projects/stex}}
 @techreport{Kohlhase:ssmtl:svn,crossref={Kohlhase:ssmtl:base},
-  url = {https://svn.kwarc.info/repos/stex/trunk/sty/stex.pdf}}
+  url = {https://github.com/KWARC/sTeX/raw/master/sty/stex.pdf}}
 @techreport{Kohlhase:ssmtl:base,
   key = {sTeX},
   author =   {Michael Kohlhase},
@@ -6155,7 +6393,7 @@ pubs = {mkohlhase}}
   crossref = {CICM12},
   pages = {96--110},
   url = {http://arxiv.org/pdf/1203.3316v2.pdf},
-  pubs = {cjucovschi}}
+  pubs = {cjucovschi,projects/sissi}}
 
 @BOOK{lange05:wiki,
   title = {Wiki -- {Planen}, {Einrichten}, {Verwalten}},
@@ -6194,11 +6432,12 @@ url = {http://ceur-ws.org/Vol-921/wip-02.pdf},
 crossref = {OpenMathUIWiP2012},
 }
 
-@unpublished{GinCor:nnexusCICM13,
+@inproceedings{GinCor:nnexus:14,
  title = {NNexus Reloaded},
  author = {Deyan Ginev and Joseph Corneli},
- crossref = {CICM13},
- url = {https://svn.kwarc.info/repos/dginev/papers/cicm13-nnexus-reloaded.pdf}, 
+ crossref = {CICM14},
+ pages = {423--426},
+ url = {http://arxiv.org/abs/1404.6548}, 
  pubs = {dginev}}
 
 
@@ -6265,13 +6504,14 @@ Sandro Wartzack},
 
 @Unpublished{BreiCodJuc:ssedp13,crossref={BreiCodJuc:ssedp13:biblatex},
   note = 	 {see \url{http://kwarc.info/kohlhase/papers/fm13.pdf}}}
-@Unpublished{BreiCodJuc:ssedp13:biblatex,
+@inproceedings{BreiCodJuc:ssedp13:biblatex,
   author = 	 {Thilo Breitsprecher and Mihai Codescu and Constantin Jucovschi and Michael Kohlhase and Lutz Schr{\"o}der and
 Sandro Wartzack},
+  booktitle = {Proc. 13th International Design Conference, DESIGN 2014},
   title = 	 {Semantic Support for Engineering Design Processes},
   url = 	 {http://kwarc.info/kohlhase/papers/design14.pdf},
   year = 	 2013,
-  pubs =         {mkohlhase,cjucovschi}}
+  pubs =         {mkohlhase,cjucovschi,projects/sissi,projects/formalcad}}
 
 @online{MathHub:authoring:on,
    label={MHA},
@@ -6294,28 +6534,283 @@ Sandro Wartzack},
   note = {GitHub repository},
   url = {https://github.com/dginev/CorTeX/}}
 
-@online{CorTeX:on,
-  label = {CT},
-  title = {Cor\TeX Framework},
-  url = {http://cortex.mathweb.org},
-  urldate = {2014-02-15}}
+@online{SMGloM:on,
+  label = {SMG},
+  title = {SMGloM Glossary},
+  urldate = {2014-04-21},
+  url = {http://mathhub.info/mh/glossary}}
+
+@inproceedings{KohKoh:sdsaloc14,
+  title = {System Description: A Semantics-Aware {\LaTeX}-to-Office Converter},
+  author = {Lukas Kohlhase and Michael Kohlhase},
+  crossref = {CICM14},
+  pages = {440--443},
+  url = {http://kwarc.info/kohlhase/submit/cicm14-l2o.pdf},
+  pubs = {mkohlhase}}
+
+@unpublished{IanJucKoh:sps14,
+ title = {The {SMGLoM} Project and System},
+ author = {Deyan Ginev and Mihnea Iancu and Constantin Jucovschi and Andrea Kohlhase and
+                  Michael Kohlhase and Heinz Kr{\"o}ger and J{\"u}rgen Schefter and
+                  Wolfram Sperber},
+ year = {2014},
+ url = {http://gl.kwarc.info/smglom/internal/raw/master/cicm14-system/paper.pdf},
+ pubs = {miancu,mkohlhase,akohlhase,cjucovschi,projects/llamapun,projects/mathsearch}}
+
+@inproceedings{Kohlhase:dmesmgm14,
+ title = {A Data Model and Encoding for a Semantic, Multilingual Terminology of Mathematics},
+ author = {Michael Kohlhase},
+ crossref = {CICM14},
+ pages = {169--183},
+ url = {http://kwarc.info/kohlhase/papers/cicm14-smglom.pdf},
+ pubs = {mkohlhase,projects/llamapun,projects/mathsearch}}
 
 @unpublished{DumGinKoh:katsd14,
-  title = {KAT: An Annotation Tool for STEM Documents},
+ title = {System Description: KAT an Annotation Tool for STEM Documents},
+ author = {Mircea Alex Dumitru and Deyan Ginev and Michael Kohlhase and Vlad Merticariu
+                  and Stefan Mirea and Tom Wiesing},
+ year = "2014",
+ url = {http://kwarc.info/kohlhase/submit/cicm14-kat.pdf},
+ pubs = {mkohlhase,dginev,twiesing,projects/llamapun}}
+
+@inproceedings{IanJucKoh:sdm14,
+  title = {System Description: MathHub.info},
+  author = {Mihnea Iancu and Constantin Jucovschi and Michael Kohlhase and Tom Wiesing},
+  crossref = {CICM14},
+  pages = {431--434},
+  url = {http://kwarc.info/kohlhase/submit/cicm14-mathhub.pdf},
+  pubs = {mkohlhase,cjucovschi,miancu,twiesing,projects/oaf}}
+
+@online{DumGinKoh:katsdm14,
+  title = {KAT: An Annotation Tool for STEM Documents; Manual},
   author = {Alex Dumitru and Deyan Ginev and Michael Kohlhase
        and Vlad Merticariu and  Stefan Mirea and Tom Wiesing},
-  url = {https://github.com/KWARC/KAT/blob/master/doc/manual/kat.pdf},
+  url = {https://github.com/KWARC/KAT/blob/master/doc/manual/katmanual.pdf},
   year = {2014},
   pubs = {mkohlhase,dginev,twiesing,projects/llamapun}}
+
+@inproceedings{CarFarKoh:rsckmt14,
+  author = 	 {Jacques Carette and William Farmer and Michael Kohlhase},
+  title = 	 {Realms: A Structure for Consolidating Knowledge about Mathematical Theories},
+  crossref = {CICM14},
+  url = {http://kwarc.info/kohlhase/submit/cicm14-realms.pdf},
+  pages = {252--266},
+  pubs = {mkohlhase},
+  note = {MKM Best-Paper-Award}}
+
+@inproceedings{Koh:SearchInterfacesMath:2014,
+  title = {Search Interfaces for Mathematicians},
+  author = {Andrea Kohlhase},
+  crossref = {CICM14},
+  pages = {153--168},
+  url = {http://arxiv.org/abs/1405.3758},
+  pubs = {akohlhase}}
+
+@unpublished{Rabe:literal:14,
+  author = {Florian Rabe},
+  title = "{Generic Literals}",
+  url = {http://kwarc.info/frabe/Research/rabe_literals_14.pdf},
+  pubs = {frabe}}
+
+@inproceedings{KalRab:hollight:14,
+   author = {Cezary Kaliszyk and Florian Rabe},
+   title = {Towards Knowledge Management for {HOL Light}},
+   crossref = {CICM14},
+   pages = {357--372},
+   url = {http://kwarc.info/frabe/Research/KR_hollight_14.pdf},
+   pubs = {frabe}}
+
+
+@inproceedings{cjucovschi:interaction_integration:14,
+  author = {Constantin Jucovschi},
+  title = {Towards an Interaction-based Integration of MKM Services into End-User Applications},
+  crossref = {CICM14},
+  pages = {344--356},
+  url = {http://arxiv.org/abs/1403.5058}, 
+  pubs = {cjucovschi,projects/sissi}}
+
+@inproceedings{HKR:flexary:14,
+  author = {Fulya Horozal and Michael Kohlhase and Florian Rabe},
+  title = {Flexary Operators for Formalized Mathematics},
+  crossref = {CICM14},
+  pages = {312--327},
+  url = {https://svn.kwarc.info/repos/fhorozal/papers/submitted/cicm14_flex-op.pdf},
+  pubs = {fhorozal,mkohlhase,frabe}}
+
+@online{SPL:on,
+  label = {SPL},
+  title = {The SMGloM Public License (SPL) Version 0.1},
+  author = {Michael Kohlhase},
+  url  = {http://mathhub.info/help/smglom/spl0.1}}
+
+@unpublished{KohKoh:InvasivesDesign:2014,
+  author = 	 {Andrea Kohlhase and Michael Kohlhase},
+  title = 	 {Invasives Design: Mashups f{\"u}r Desktop-Applikationen},
+  SOONcrossref =     {MuC2014},
+  pubs =         {akohlhase},
+  note = {submitted to Mensch und Computer 2014}}
+
+@unpublished{Kohlhase:MathGenerationGap:2014,
+  author = 	 {Andrea Kohlhase},
+  title = 	 {Math Web Interfaces and the Generation Gap of Mathematicians},
+  SOONcrossref =     {WMMI 2014},
+  pubs =         {akohlhase},
+  note = {submitted to Web and Mobile Math Interfaces 2014}}
+
+@INPROCEEDINGS{KohToa:Fency:2013,
+  author = {Andrea Kohlhase and Alexandru Toader},
+  title = {Exploration of Spreadsheet Formulae with Fency},
+  url = {http://www.minf.uni-bamberg.de/lwa2013/FinalPapers/lwa2013_submission_18.pdf},
+  crossref = {FGWM13},
+  pubs = {akohlhase,atoader, projects/sissi}}
+
+% Officially: url = {http://jpubs.jacobs-university.de/handle/579/2453}
+@TECHREPORT{Koh:FramingsOfInformation:2013,
+  author = {Andrea Kohlhase},
+  title = {Framings of Information: Readers' Perception of Information Sources in Spreadsheets},
+  number = 30,
+  institution = {Jacobs University},
+  month = mar,
+  year = {2013},
+  url = {kwarc.info/ako/pubs/tr_hsi_2013.pdf},
+    pubs={akohlhase,projects/sissi}}
+
+@misc{aguseva:bsc,
+  author = "Ana Guseva",
+  title = "Towards Understanding Context Dimensions of Spreadsheet Knowledge",
+  year = "2013",
+  note = "Bachelor's Thesis",
+  school = "Jacobs University",
+  pubs = "projects/sissi"
+}
+
+@misc{agiurgiu:bsc,
+  author = "Andrei-George Giurgiu",
+  title = "Semantically Enhanced Text Documents",
+  year = "2014",
+  note = "Bachelor's Thesis",
+  school = "Jacobs University",
+  pubs = "projects/sissi"
+}
+
+@misc{alezza:bsc,
+  author = "Andra Lidia Lezza",
+  title = "Creating Semantic Interactions in Airbus Spreadsheet Reports",
+  year = "2014",
+  note = "Bachelor's Thesis",
+  school = "Jacobs University",
+  pubs = "projects/sissi"
+}
+
+@misc{atoader:bsc,
+  author = "Alexandru Valentin Toader",
+  title = "Assessment Service for Spreadsheet Documents",
+  year = "2014",
+  note = "Bachelor's Thesis",
+  school = "Jacobs University",
+  pubs = "projects/sissi"
+}
+
+@misc{smirea:bsc,
+  author = "Stefan Mirea",
+  title = "An Evaluation of Responsive User Interface Options for Multi-modal and Mathematical Search Engines",
+  year = "2013",
+  note = "Bachelor's Thesis",
+  school = "Jacobs University",
+  pubs = "projects/mathsearch, projects/sissi"
+}
+
 
 @STRING{epmessage = "READ the README please!!!!!!!!!!!!!!"}
 
 @STRING{JWS = {Web Semantics: Science, Services and Agents on the World Wide Web}}
 
+@incollection{Gonthier+:mcpoot13,
+doi = {10.1007/978-3-642-39634-2_14},
+title = {A Machine-Checked Proof of the Odd Order Theorem},
+url = {http://dx.doi.org/10.1007/978-3-642-39634-2_14},
+author = {Gonthier, Georges and Asperti, Andrea and Avigad, Jeremy and Bertot, Yves and
+          Cohen, Cyril and Garillot, Fran{\c{c}}ois and Le Roux, St{\`e}phane and
+          Mahboubi, Assia and O'Connor, Russell and Ould Biha, Sidi and Pasca,
+          Ioana and Rideau, Laurence and Solovyev, Alexey and Tassi, Enrico and
+          Th{\'e}ry, Laurent},
+pages={163--179},
+crossref= {ITP13}
+}
+
+@online{Flyspeck-complete:on,urldate={2014-12-4},crossref={Flyspeck-complete:base}}
+@misc{Flyspeck-complete:url,crossref={Flyspeck-complete:base},
+  howpublished = {Wiki page at \url{url = {https://code.google.com/p/flyspeck/wiki/AnnouncingCompletion}}}}
+@misc{Flyspeck-complete:base,
+  title = {flyspeck: Announcement of Completion},
+  author = {Tom Callister Hales},
+  url = {https://code.google.com/p/flyspeck/wiki/AnnouncingCompletion}}
+
+@online{pyton3doc:on,crossref={python3doc:base},urldate = {2014-09-02},label={P3D}}
+@misc{python3doc:url,crossref={python3doc:base},note = {seen 2014-09-02},
+  howpublished = {\url{https://docs.python.org/3/}},
+  key = {P3D}}
+@misc{python3doc:base,
+title = {Python 3 Documentation},
+url = {https://docs.python.org/3/}}
+
+@online{es:online,
+  title = {Elastic Search},
+  date = {2014-02-20},
+  url = {http://www.elasticsearch.org/},
+  urldate =      {2014-02-20}}
+
+@article{Matijasevic:esd70,
+author = {Ju. V. Matijasevi{\v{c}}},
+title = {Enumerable sets are diophantine},
+journal = {Soviet Math. Doklady},
+volume = {11},
+year = {1970},
+pages = {354-358}}
+
+@online{sthurlow:abpt:on,crossref={sthurlow:abpt:base},urldate = {2014-09-02},label={BPT}}
+@misc{sthurlow:abpt:url,crossref={sthurlow:abpt:base},note = {seen 2014-09-02},
+  howpublished = {\url{http://www.sthurlow.com/python/}},
+  key = {BPT}}
+@misc{sthurlow:abpt:base,
+title = {A Beginner's Python Tutorial},
+url = {http://www.sthurlow.com/python/}}
+
+@online{Ryabitsev:pwot14:on,crossref={Ryabitsev:pwot14:base},urldate = {2014-09-20},label={WoT}}
+@misc{Ryabitsev:pwot14:url,crossref={Ryabitsev:pwot14:base},note = {seen 2014-09-20},
+  howpublished = {\url{http://www.linux.com/learn/tutorials/760909-pgp-web-of-trust-core-concepts}},
+  key = {WoT}}
+@misc{Ryabitsev:pwot14:base,
+url = {http://www.linux.com/learn/tutorials/760909-pgp-web-of-trust-core-concepts},
+title = {{PGP Web of Trust}: Core Concepts Behind Trusted Communication},
+author = {Konstantin Ryabitsev}}
+@book{Sweigart:iwp14,
+  year = {2013},
+  edition = {2},
+  author = {Al Sweigart},
+  title = {Invent with Python: Learn to program by making computer games},
+  url = {http://inventwithpython.com},
+  isbn = {978-0-9821060-1-3},
+  note = {online at \url{http://inventwithpython.com}}}
+
 @InProceedings{Libbrecht:CDNotations07,
   author = {Paul Libbrecht},
   title = {Content Dictionary Notations},
   crossref = {OpenJEM07},}
+
+@inproceedings{SalXam:tgml12,
+  author    = {Jordi Saludes and Sebastian Xamb{\'o}},
+  title     = {The {GF} Mathematics Library},
+  booktitle = {THedu},
+  year      = {2011},
+  pages     = {102--110},
+  doi        = {10.4204/EPTCS.79.6},
+  crossref  = {THEDU11}}
+
+@online{sphinxfonts:on,
+label={FNT},
+title={File:Typography Line Terms.svg},
+url = {en.wikipedia.org/wiki/File:Typography_Line_Terms.svg}}
 
 @online{MathCom:glo:on,
 label = {MCG},
@@ -6407,27 +6902,33 @@ urldate = {2014-02-01}}
   crossref = {CICM12},
 }
 
-@online{FrameNet:on,
-label={FN},
+@misc{FrameNet:url,crossref={FrameNet:base},
+  key={FN},
+  howpublished={\url{https://framenet.icsi.berkeley.edu}}}
+@online{FrameNet:on,crossref={FrameNet:base},label={FN},urldate = {2014-02-06}}
+@misc{FrameNet:base,
 title={Frame Net},
-url = {https://framenet.icsi.berkeley.edu},
-urldate = {2014-02-06}}
+url = {https://framenet.icsi.berkeley.edu}}
 
-@online{RupEllPet:fetp10,
-label={FN},
+@misc{RupEllPet:fetp10:url,crossref={RupEllPet:fetp10:base},key={FN},
+howpublished = {\url{https://framenet2.icsi.berkeley.edu/docs/r1.5/book.pdf}}}
+@online{RupEllPet:fetp10,crossref={RupEllPet:fetp10:base},label={FN}}
+@misc{RupEllPet:fetp10:base,
 title = {{FrameNet II}: Extended Theory and Practice},
 author = {Josef Ruppenhofer and Michael Ellsworth and Miriam R. L. Petruck and Christopher and R. Johnson and Jan Scheffczyk},
 year = {2010},
 url = {https://framenet2.icsi.berkeley.edu/docs/r1.5/book.pdf}}
 
-@online{PropBank:on,label={PB},
+@misc{PropBank:url,key={PB},crossref={PropBank:base},
+  howpublished = {\url{http://verbs.colorado.edu/~mpalmer/projects/ace.html}}}
+@online{PropBank:on,label={PB},crossref={PropBank:base},urldate = {2014-02-06}}
+@misc{PropBank:base,label={PB},
   title = {Proposition Bank},
-  url = {http://verbs.colorado.edu/~mpalmer/projects/ace.html},
-  urldate = {2014-02-06}}
+  url = {http://verbs.colorado.edu/~mpalmer/projects/ace.html}}
 
 @InCollection{CarFar:mm14,
  title = {Mechanising mathematics},
- author = {Jacques Carette and William Farmer},
+ author = {Jacques Carette and William M. Farmer},
  booktitle = {International Innovation North America},
  month = may,
  year = 2013,
@@ -7121,7 +7622,23 @@ year = {1879}}
   note =	 {Accessed on 2011-05-11}
 }
 
+@online{GitLab:on,
+  label = {GL},
+  url = {http://gitlab.org},
+  title = {GitLab},
+  urldate = {2014-02-24}}
 
+@online{GitHub:on,
+  label = {GH},
+  url = {http://gitlab.org},
+  title = {GitHub: Build software better, together},
+  urldate = {2014-02-24}}
+
+@online{GitHub:upr,
+  author = {GitHub},
+  title = {Using Pull Requests},
+  url = {https://help.github.com/articles/using-pull-requests},
+  urldate = {2014-04-27}}
 
 @inproceedings{Slattery:EditThisPage,
  author = {Shaun P. Slattery},
@@ -7385,7 +7902,7 @@ title = {Classic Parsing with Flex and Bison},
 url = {http://www.codeguru.com/csharp/.net/net_general/patterns/article.php/c12805__2/Classic-Parsing-with-Flex-and-Bison.htm}}
 
 @inproceedings{CarFar:hlt08,
-   author = {Carette, Jacques and Farmer, William},
+   author = {Carette, Jacques and Farmer, William M.},
    title = {High-Level Theories},
    crossref={CICM08},
    pages = {232--245},
@@ -7399,16 +7916,6 @@ url = {http://www.codeguru.com/csharp/.net/net_general/patterns/article.php/c128
   url = 	 {http://www.risc.uni-linz.ac.at/publications/download/risc_2945/06-04.pdf},
   pubs = 	 {projects/omdocbiblio}}
 
-
-@TechReport{Farmer:casttuqe10,
-  author = 	 {William M. Farmer},
-  title = 	 {Chiron: A set theory with types, undefinedness, quotation, and evaluation},
-  institution =  {McMaster University},
-  year = 	 2010,
-  type = 	 {SQRL Report},
-  number = 	 38,
-  url = {http://imps.mcmaster.ca/doc/chiron-tr.pdf},
-  note = 	 {originally published 2007, revised}}
 
 @inproceedings{Farmer:btc07,
  author = {Farmer, William M.},
@@ -7546,21 +8053,23 @@ pages = {1--14}}
   title = {{jQuery main website}},
   url = {http://jquery.com/},
   urldate = {2010-06-05}}
-@Online{URL:XPath:online,crossref={URL:XPath:base},urldate = {2010-06-05}}
-@Misc{URL:XPath,crossref={URL:XPath:base},
+
+@Online{URL:XPath:online,crossref={URL:XPath:base},urldate = {2010-06-05},label={XPa}}
+@Misc{URL:XPath,crossref={URL:XPath:base},key={XPa},
   howpublished={\url{http://www.w3.org/TR/xpath/}}}
 @techreport{URL:XPath:base,
-  key = {XPath},
   title = {{XPath Reference}},
   url = {http://www.w3.org/TR/xpath/},
   institution = {W3C},
   type = {Recommendation},
   year = 2010}
+
 @Misc{URL:JavaServlet,
   title = {{Sun Java Servlet documentation}},
   url = {http://java.sun.com/products/servlet/},
   urldate = {2010-06-05}}
 @Misc{URL:Tomcat,
+  key = {ATC},
   title = {{Apache Tomcat website}},
   url = {http://tomcat.apache.org/},
   urldate = {2010-06-05}}
@@ -7659,10 +8168,42 @@ pages = {1--14}}
   crossref =     {CICM10},
   note =         {Invited Talk}}
 
-@Online{EuDML,
+@Online{EuDML:on,
+  label = {EUD},
   title = 	 {{EuDML} -- The {European} Digital Mathematics Library},
   url = 	 {http://eudml.eu},
-  urldate =	 {2011-08-02},
+  urldate =	 {2011-08-02}}
+
+@Online{EuDML:UsabilityStudy:2010,
+label={EUU},
+author={Tim Kitchen},
+title = {The European Digital Mathematics Library: Usability Study},
+url = {https://wiki.eudml.eu/eudml-w/images/D6.1.pdf},
+urldate = {2014-03-14}}
+
+@inproceedings{Zhao:MIR:2008,
+ author = {Zhao, Jin and Kan, Min-Yen and Theng, Yin Leng},
+ title = {Math Information Retrieval: User Requirements and Prototype Implementation},
+ booktitle = {Proceedings of the 8th ACM/IEEE-CS Joint Conference on Digital Libraries},
+ series = {JCDL '08},
+ year = {2008},
+ isbn = {978-1-59593-998-2},
+ location = {Pittsburgh PA, PA, USA},
+ pages = {187--196},
+ numpages = {10},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+} 
+
+@article{Brown:InformationSeekingScientists:1999,
+  author = {Brown, Cecelia M.},
+  journal = {JASIS},
+  keywords = {dblp},
+  number = 10,
+  pages = {929-943},
+  title = {Information Seeking Behavior of Scientists in the Electronic Information Age: Astronomers, Chemists, Mathematicians, and Physicists.},
+  volume = 50,
+  year = 1999
 }
 
 @InProceedings{BBNS:EuDMLProject11,
@@ -7837,14 +8378,18 @@ booktitle = {Proceedings of the 4\textsuperscript{th} Asian Semantic Web Confere
 year      = {2009},
 pages = {168--183}}
 
-
-
-
 @Misc{URL:WolframAlphaAPI,
   title = {{Wolfram|Alpha API}},
   url = {http://www.wolframalpha.com/developers.html},
   urldate = {2011-05-05}}
 
+@online{gitinfo2:on,
+  title = {gitinfo2.sty},
+  subtitle = {A package for accessing metadata from the git dvcs},
+  author = {Brent Longborough},
+  urldate = {2014-10-26},
+  url = {http://mirrors.ctan.org/macros/latex/contrib/gitinfo2/gitinfo2.pdf}}
+  
 @online{WolframAlphaWidgets:on,
   title = {{Wolfram|Alpha} Widgets},
   url = {http://developer.wolframalpha.com/widgets/},
@@ -8371,7 +8916,7 @@ for {DAISY} 3, officially, the {ANSI}/{NISO} {Z39.86} Specifications for the {Di
 
 @inproceedings{CF:ReviewMKM09,
   title    = {A Review of Mathematical Knowledge Management},
-  author   = {Jacques Carette and William Farmer},
+  author   = {Jacques Carette and William M. Farmer},
   pages    = {233--246},
   crossref = {MKM09}}
 
@@ -8493,6 +9038,15 @@ url = "http://www.sciencedirect.com/science/article/pii/S1071581907000468",
   booktitle =	 {Poster and Demo Proceedings of the 9\textsuperscript{th} International Semantic Web Conference (ISWC)},
   url = {http://iswc2010.semanticweb.org/pdf/518.pdf},
   year =	 2010}
+
+@online{postgis:on,crossref={postgis:base},urldate = {2014-05-09}}
+@misc{postgis:url,crossref={postgis:base},howpublished={\url{http://postgis.net/}}}
+@misc{postgis:base,
+   author = "PostGIS",
+   title = "{Spatial and Geographic objects for PostgreSQL}",
+   year = {2014},
+   url = "http://postgis.net/"
+ }
 
 @online{5stardata,
   title = {5 star Open Data},
@@ -9021,7 +9575,12 @@ howpublished  = {\url{http://www.oasis-open.org/committees/download.php/37938/di
   crossref = {owldoc:base},
   urldate =      {2010-12-20}}
 
-@webpage{owldoc:webpage,
+@online{es-aggregations:online,
+ label={ESA},
+ url = {http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/search-aggregations.html},
+ title={Aggregations}}
+ 
+@webpage{owldoc:wehbpage,
   crossref = {owldoc:base},
   key = {OWLDoc},
   lastchecked = jun,
@@ -9038,15 +9597,9 @@ howpublished  = {\url{http://www.oasis-open.org/committees/download.php/37938/di
   lastchecked = jun,
   year = 2009}
 
-@online{protege:on,
-  crossref = {protege:base},
-  urldate = 	 {2010-01-06}}
-
-@online{protege:webpage,
-  crossref = {protege:base},
-  lastchecked = jun,
-  year = 2009}
-
+@online{protege:on,crossref = {protege:base},urldate={2010-01-06}}
+@misc{protege:url,crossref = {protege:base},
+  howpublished = {Project Home page at \url{http://protege.stanford.edu}}}
 @misc{protege:base,
   key = {Protege},
   title = {Prot{\'e}g{\'e}},
@@ -9204,7 +9757,7 @@ pages = "103--116",
 year = "2005",
 note = "Selected Papers from the Workshops on Disproving and the Second International Workshop on Pragmatics of Decision Procedures (PDPAR 2004)",
 issn = "1571-0661",
-doi = "DOI: 10.1016/j.entcs.2004.10.027",
+doi = "10.1016/j.entcs.2004.10.027",
 url = "http://www.sciencedirect.com/science/article/B75H1-4GJTTP7-9/2/7dda698caa44a154b4fda5961d8dc453",
 author = "Tjark Weber"}
 
@@ -12404,6 +12957,14 @@ Decker},
   annote =       {semantic technology encodes meanings separately from data and content files, and separately from application code.},
   url = {http://en.wikipedia.org/w/index.php?title=Semantic_technology&oldid=364383790} }
 
+@online{wikipedia:relevance,
+  key = {Wikipedia: Relevance (Information Retrieval)},
+  title = {{Wiki}},
+  subtitle = {From {Wikipedia}, the free encyclopedia},
+  date =      {2014-03-08},
+  crossref = {wikipedia:biblatex},
+  url = {http://en.wikipedia.org/w/index.php?title=Relevance_%28information_retrieval%29&oldid=551721467} }
+
 @online{wikipedia:wiki,
   key = {Wikipedia: Wiki},
   title = {{Wiki}},
@@ -12411,6 +12972,7 @@ Decker},
   date =      {2010-10-03},
   crossref = {wikipedia:biblatex},
   url = {http://en.wikipedia.org/w/index.php?title=Wiki&oldid=388369282} }
+
 
 @online{wikipedia:knowledge-management,
   key = {Wikipedia: Knowledge management},
@@ -12664,7 +13226,7 @@ Decker},
 @INPROCEEDINGS{tbl:tabulator,
 AUTHOR = "Tim Berners-Lee and Yuhsin Chen and Lydia Chilton and Dan Connolly and Ruth Dhanaraj and James Hollenbach and Adam Lerer and David Sheets",
 TITLE = {Tabulator: Exploring and Analyzing linked data on the Semantic Web},
-BOOKTITLE = "Proceedings of the The 3\textsuperscript{rd} International Semantic Web User Interaction Workshop (SWUI06)",
+BOOKTITLE = "Proceedings of the 3\textsuperscript{rd} International Semantic Web User Interaction Workshop (SWUI06)",
 MONTH = nov,
 YEAR = 2006,
 LANGUAGE = {English}}
@@ -13132,7 +13694,7 @@ LANGUAGE = {English}}
   volume =   2,
   number = 4,
   pages = {419--427},
-  notes = {DOI: 10.1177/105960117700200404},
+  doi = {10.1177/105960117700200404},
   publisher = {SAGE Publications}}
 
 @InCollection{BWT:DSiSG,
@@ -13660,17 +14222,6 @@ Semantics of the Units},
   pages     = {518--532},
   crossref  = {eswc2007}}
 
-@Article{ActivemathAima03,
- author =      {E. Melis and J. Buedenbender E. Andres and  A. Frischauf and G. Goguadze and
-  P. Libbrecht and M. Pollet and C. Ullrich},
- title =      {Knowledge Representation and Management in {\scshape{ActiveMath}}},
- journal =      {International Journal on Artificial Intelligence and
-Mathematics, Special Issue on Management of Mathematical Knowledge},
-volume = 38,
-number = {1--3},
-pages = {47--64},
- year =      2003}
-
 @inbook{faia05,
  author = {Giorgi Goguadze and Gonz{\'a}lez Palomo, Alberto and Erice Melis},
  title = {Interactivity of Exercises in ActiveMath},
@@ -14051,19 +14602,17 @@ Applications of Semantic Web Technologies for {E-Learning} ({SW-EL})},
   year = 2004,
   url = {http://www.win.tue.nl/SW-EL/2004/AH-SWEL-Camera-ready/SWEL04-AH-PDF/231-Munos-Palazzo-Oliveira-SWEL-AH.pdf}}
 
-
 @InCollection{Farmer:mkm05,
   author =   {William M. Farmer},
   title =    {{Mathematical Knowledge Management}},
   crossref =     {EKM05},
   pages =    {599--604}}
 
-@Book{EKM05,
-  editor =   {David G. Schwartz},
-  title =    {Encyclopedia of Knowledge Management},
-  booktitle =    {Encyclopedia of Knowledge Management},
-  publisher =    {Idea Group Reference},
-  year =     2005}
+@InCollection{Farmer:mkm11,
+  author =   {William M. Farmer},
+  title =    {{Mathematical Knowledge Management}},
+  crossref =     {EKM11},
+  pages =    {1082--1089}}
 
 @misc{CO-ODE:OntologyDesignPatterns05,
   key = {CO-ODE Ontology Design Patterns},
@@ -14490,7 +15039,7 @@ lastchecked =  {May, 2008}}
   url = {http://foxit-pdf-reader.softonic.de/},
   note = {seen April  2008}}
 
-@online{CTAN:on,crossref={CTAN:base},urldate={2012-12-11}}
+@online{CTAN:on,crossref={CTAN:base},urldate={2012-12-11},label={CTAN}}
 @MISC{URL:CTAN,crossref={CTAN:base},
   howpublished = {\webpageat\url{http://www.ctan.org}}}
 @MISC{CTAN:base,
@@ -15001,7 +15550,7 @@ lastchecked =  {May, 2008}}
   year =     2003,
   address =      {Rome}}
 
-@online{Miller:latexml:online,crossref={Miller:latexml:base},urldate={2013-03-12}}
+@online{Miller:latexml:online,crossref={Miller:latexml:base},urldate={2013-03-12},label={LTX}}
 @Misc{Miller:latexml,crossref={Miller:latexml:base},
   howpublished = {Web Manual at \url{http://dlmf.nist.gov/LaTeXML/}},
   note = {\seen{\September 2011}}}
@@ -15911,19 +16460,27 @@ crossref = {wikipedia}}
   url = {http://www.webreference.com/xml/column59/index.html},
   note = {seen May  2009}}
 
-@MISC{Jing:web,
+@MISC{Jing:web,crossref={Jing:base},
   key = {Jing},
+  howpublished = {available at \url{http://www.thaiopensource.com/relaxng/jing.html}},
+  note = {seen January  2015}}
+@online{Jing:on,crossref={Jing:base},
+  label = {Jing},
+  urldate = {2015/01/15}}
+@MISC{Jing:base,
   title = {{Jing} --- {Relax} {NG} {Validator} in {Java}},
-  note = {available at \url{http://www.thaiopensource.com/relaxng/jing.html}},
-  url = {http://www.thaiopensource.com/relaxng/jing.html},
-  note = {seen May  2009}}
+  url = {http://www.thaiopensource.com/relaxng/jing.html}}
 
-@MISC{Trang:web,
+@MISC{Trang:web,crossref={Trang:base},
   key = {Trang},
+  howpublished = {available at \url{http://www.thaiopensource.com/relaxng/jing.html}},
+  note = {seen January  2015}}
+@online{Trang:on,crossref={Trang:base},
+  label = {Trang},
+  urldate = {2015/01/15}}
+@MISC{Trang:base,
   title = {{Trang} --- {Multi}-format schema converter based on {RELAX} {NG}},
-  note = {available at \url{http://www.thaiopensource.com/relaxng/trang.html}},
-  url = {http://www.thaiopensource.com/relaxng/trang.html},
-  note = {seen May  2009}}
+  url = {http://www.thaiopensource.com/relaxng/jing.html}}
 
 @MISC{MSV:web,
   key = {MSV},
@@ -16291,11 +16848,14 @@ crossref = {wikipedia}}
   url = {http://svnkit.com/},
   note = {seen September  2007}}
 
-@MISC{GIT:web,
+@online{GIT:on,crossref={GIT:base},label={GIT},urldate={2014-07-14}}
+@MISC{GIT:web,crossref={GIT:base},
   key = {GIT},
+  howpublished = {available at \url{http://git-scm.com}},
+  note = {seen September  2007}}
+@MISC{GIT:base,
   title = {{Git -- Fast Version Control System}},
-  note = {available at \url{http://git.or.cz/}},
-  url = {http://git.or.cz/},
+  url = {http://git-scm.com/},
   note = {seen September  2007}}
 
 @MISC{SVNX:web,
@@ -16319,10 +16879,11 @@ crossref = {wikipedia}}
   title = {{JSR 311: JAX-RS: The Java API for RESTful Web Services}},
   url = {https://jsr311.dev.java.net/nonav/releases/1.0/index.html}}
 
+
 @MISC{Jersey:web,
   key = {Jersey},
   title = {{Reference Implementation for building RESTful Web services}},
-  note = {available at \url{https://jersey.dev.java.net/}},
+  howpublished = {\url{https://jersey.dev.java.net/}},
   url = {https://jersey.dev.java.net/},
   note = {seen April  2009}}
 
@@ -16928,6 +17489,14 @@ url = {http://www.mpi-inf.mpg.de/yago-naga/yago/publications/aij.pdf}}
   url = {http://www.numdam.org},
   note = {\seen{\June} 2010}}
 
+@online{NTCIR-aims:on,
+  label={NTC},
+  title = {Workshop Aims | NTCIR-11 | NTCIR},
+  url = {http://research.nii.ac.jp/ntcir/ntcir-11/aims.html},
+  urldate = {2014-05-14}}
+
+
+@online{arxiv:online,crossref={arxiv:base},urldate = {2012-06-12},label={ArX}}
 @Misc{URL:arxiv,crossref={arxiv:base},
   howpublished = {\webpageat\url{http://www.arxiv.org}},
   note = {\seen{\November} 2012}}
@@ -16969,11 +17538,11 @@ url = {http://www.mpi-inf.mpg.de/yago-naga/yago/publications/aij.pdf}}
    title = "{Nonclassical multidimensional scaling}",
    year = {2013}}
 
-@online{zblmath:online,crossref={URL:zblmath:base},urldate = {2014-12-06},label={ZBM}}
+@online{zblmath:online,crossref={URL:zblmath:base},urldate = {2012-06-12},label={ZBM}}
 @Misc{URL:zblmath,crossref={URL:zblmath:base},
   key = {ZBM},
   howpublished = {\webpageat\url{http://www.zentralblatt-math.org/zbmath}},
-  note = {\seen{\December} 2014}}
+  note = {\seen{\November} 2012}}
 @Misc{URL:zblmath:base,
   title = {Zentralblatt {MATH}},
   url = {http://www.zentralblatt-math.org/zbmath/}}
@@ -17068,12 +17637,29 @@ url = {http://www.mpi-inf.mpg.de/yago-naga/yago/publications/aij.pdf}}
   note = {Part of the {\TeX} distribution},
   year =     1999}
 
-@online{tex4ht:online,crossref={URL:tex4ht},urldate = {2010-01-08}}
-@Misc{URL:tex4ht,
-  key = {TeX4HT},
+@misc{URL:tex4ht,crossref={URL:tex4ht:base},key={T4H},
+  howpublished = {\webpageat\url{http://www.tug.org/applications/tex4ht/mn.html}}}
+@online{tex4ht:online,crossref={URL:tex4ht:base},urldate={2010-01-08},label={T4H}}
+@Misc{URL:tex4ht:base,
   title = {{TeX4ht}: {LaTeX} and {TeX} for Hypertext},
-  howpublished = {\webpageat\url{http://www.tug.org/applications/tex4ht/mn.html}},
   url = {http://www.tug.org/applications/tex4ht/mn.html}}
+
+@misc{URL:latex2rtf,crossref={URL:latex2rtf:base},key={L2R},
+  howpublished = {\webpageat\url{http://www.tug.org/applications/latex2rtf/mn.html}}}
+@online{latex2rtf:on,crossref={URL:latex2rtf:base},urldate = {2010-01-08},label={L2R}}
+@Misc{URL:latex2rtf:base,
+  title = {{\LaTeX} to {RTF} converter},
+  url = {http://sourceforge.net/projects/latex2rtf/}}
+
+
+@article{Asher:srtc14,
+  author = {Asher, Nicholas},
+  title = {Selectional Restrictions, Types, and Categories},
+  journal = {Journal of Applied Logic},
+  volume = {12},
+  number = {2},
+  pages = {75--87},
+  year = {2014}}
 
 @Misc{URL:cofi,
 key = {CoFi},
@@ -17104,7 +17690,7 @@ key = {CoFi},
   key = {HETS},
   author = {Till Mossakowski},
   title = {{Hets}: the {Heterogeneous} {Tool} {Set}},
-  url = {http://hets.dfki.de}}
+  url = {http://hets.eu}}
 
 @Misc{URL:IFIPWG1.3,
   key = {IFIP},
@@ -17548,7 +18134,8 @@ year      = {1993}}
 @Article{APSGS:MKM-HELM03,
   author = 	 {Andrea Asperti and Luca Padovani and Sacerdoti Coen, Claudio and Ferruccio Guidi and Irene Schena},
   title = 	 {Mathematical Knowledge Management in {HELM}},
-  journal = 	 {Annals of Mathematics and Artificial Intelligence, Special Issue on Mathematical Knowledge Management, Kluwer Academic Publishers},
+  journal = 	 {Annals of Mathematics and Artificial Intelligence, Special Issue on Mathematical Knowledge Management},
+  publisher = {Kluwer Academic Publishers},
   year = 	 {2003},
   volume =	 {38},
   number =	 {1--3},
@@ -18380,13 +18967,13 @@ year      = {1993}}
   crossref = {PTP97}}
 
 @INPROCEEDINGS{Farmer:aifir00,
-  author = {William Farmer},
+  author = {William M. Farmer},
   title = {An Infrastructure for Intertheory Reasoning},
   pages = {115--131},
   crossref = {CADE00}}
 
 @INPROCEEDINGS{FaGu:lt92,
-  author = {William Farmer and Josuah Guttman and Xavier Thayer},
+  author = {William M. Farmer and Josuah Guttman and Xavier Thayer},
   firstkey = {Farmer, Guttman, \& Thayer},
   title = {Little Theories},
   pages = {467--581},
@@ -18820,6 +19407,12 @@ year      = {1993}}
   title = {A Reconstructive approach towards proof presentation},
   pages = {12},
   crossref = {DEDTREFF93}}
+
+@online{TReC:online,
+  title={Text Retrieval Conference Homepage},
+  url={http://trec.nist.gov/},
+  date={2014-08-22},
+  urldate={2014-08-22}}
 
 @INPROCEEDINGS{Huang94b,
   author = {Xiaorong Huang},
@@ -20128,7 +20721,7 @@ year      = {1993}}
   firstkey = {Kr{\"o}tzsch \& Vrande{\v c}i{\'c}},
   title = {Reusing Ontological Background Knowledge in Semantic Wikis},
   crossref = {semwiki06},
-  url = {http://www.aifb.uni-karlsruhe.de/WBS/dvr/publications/ontowiki.pdf}}
+  url = {http://www.aifb.kit.edu/images/c/c7/2006_1211_Vrandecic_Reusing_Ontolog_1.pdf}}
 
 @MISC{voelkel06:semanticwikistateoftheart,
   author = {Max V{\"o}lkel and Malte Kiesel and Sebastian Schaffert and Bj{\"o}rn
@@ -21489,6 +22082,13 @@ YEAR = 1989}
   series = {LNCS},
   number= {1827}}
 
+@online{Harrison:hltp11,
+ year = {2011},
+ author = {John Harrison},
+ title = {The HOL Light theorem prover},
+ url = {http://www.cl.cam.ac.uk/~jrh13/hol-light/},
+ urldate = {2014-12-17}} 
+ 
 @INPROCEEDINGS{AuMo-02-a,
   author = {Autexier, Serge and Mossakowski, Till},
   title = {Integrating {HOL-CASL} into the Development Graph Manager {MAYA}},
@@ -21960,7 +22560,7 @@ YEAR = 1989}
 
 @MASTERSTHESIS{Baur:susmt99,
   author = {Judith Baur},
-  title = {{Syntax und Semantik mathematischer Texte --- ein Prototyp}},
+  title = {Syntax und Semantik mathematischer Texte -- ein Prototyp},
   school = {Fachrichtung Computerlinguistik, Universit{\"a}t des Saarlandes},
   year = {1999},
   address = {Saarbr{\"u}cken\GERMANY}}
@@ -23295,7 +23895,6 @@ YEAR = 1989}
   year = {1982},
   volume = {18},
   pages = {47--64},
-  note = {beschaffen},
   keyowrds = {PartialFuncs}}
 
 @ARTICLE{BrLo90,
@@ -28409,15 +29008,6 @@ YEAR = 1989}
   year = {1997},
   address = {Nagoya, Japan}}
 
-
-
-
-
-
-
-
-
-
 @TECHREPORT{HuKe94d,
   author = {Xiaorong Huang and Manfred Kerber and J{\"o}rn Richts and Arthur Sehn},
   title = {Planning Mathematical Proofs with Methods},
@@ -28435,7 +29025,7 @@ YEAR = 1989}
   year = {1995}}
 
 @PHDTHESIS{Huet:reddlo76,
-  author = {G{\'e}rard P. Huet },
+  author = {G{\'e}rard P. Huet},
   title = {R{\'e}solution d'{\'E}quations dans des Langages d'ordre 1,2,...,w.},
   school = {Universit{\'e} de Paris VII },
   year = {1976},
@@ -28444,7 +29034,7 @@ YEAR = 1989}
 
 @ARTICLE{Huet:auaftlc75,
   author = {G{\'e}rard P. Huet},
-  title = {An Unification Algorithm for Typed $\lambda $-Calculus},
+  title = {An Unification Algorithm for Typed $\lambda$-Calculus},
   journal = {Theoretical Computer Science},
   year = {1975},
   volume = {1},
@@ -29138,7 +29728,7 @@ YEAR = 1989}
   pages = {167--238}}
 
 @INCOLLECTION{kamp81,
-  author = {Kamp, H.},
+  author = {Kamp, Hans},
   title = {A {Theory} of {Truth} and {Semantic} {Representation}},
   booktitle = {Formal Methods in the Study of Language},
   publisher = {Mathematisch Centrum},
@@ -29158,7 +29748,7 @@ YEAR = 1989}
   address = {Amsterdam, \NETHERLANDS}}
 
 @MISC{kamp:scen83,
-  author = {Kamp, H.},
+  author = {Kamp, Hans},
   title = {A {Scenic} {Tour} through the {Land} of {Naked} {Infinitives}},
   year = {1983},
   note = {Unpublished manuscript}}
@@ -29171,13 +29761,6 @@ YEAR = 1989}
   volume = {5},
   pages = {297--348},
   number = {3-4}}
-
-@BOOK{kampreyle93,
-  title = {From {Discourse} to {Logic}},
-  publisher = {Kluwer},
-  year = {1993},
-  author = {Kamp, H. and Reyle, U.},
-  address = {Dordrecht}}
 
 @BOOK{KamRey:fdtl93,
   title = {From Discourse to Logic: Introduction to Model-Theoretic Semantics of Natural
@@ -30814,6 +31397,23 @@ YEAR = 1989}
   month = feb,
   url = {http://www.w3.org/TR/2004/REC-rdf-primer-20040210/}}
 
+@TECHREPORT{RDF1.1primer,
+  author = {Guus Schreiber and Yves Raimond},
+  title = {{RDF} 1.1 Primer},
+  institution = {World Wide Web Consortium ({W3C})},
+  year = 2014,
+  type = {{W3C} Working Group Note},
+  url = {http://www.w3.org/TR/rdf-primer}}
+
+@TECHREPORT{RDFa1.1primer,
+  author = {Ivan Herman and Ben Adida and Manu Sporny and Mark Birbeck},
+  title = {{RDF} 1.1 Primer (Second Edition)},
+  subtitle = {Rich Structured Data Markup for Web Documents},
+  institution = {World Wide Web Consortium ({W3C})},
+  year = 2013,
+  type = {{W3C} Working Group Note},
+  url = {http://www.w3.org/TR/rdfa-primer}}
+
 @BOOK{Manovich:NewMedia,
   title = {{The Language of New Media}},
   publisher = {The MIT Press},
@@ -31466,28 +32066,8 @@ YEAR = 1989}
   journal = {Annals of Mathematics and Artificial Intelligence},
   year = {2003},
   volume = {38},
-  pages = {47--64},
-  note = {see \url{http://www.activemath.org}}}
-
-@ARTICLE{ags-2002-e-7,
-  author = {Erica Melis and Jochen B{\"u}denbender and Erik Andres and Adrian
-    Frischauf and George Goguadze and Paul Libbrecht and Martin Pollet
-    and Carsten Ullrich},
-  title = {Knowledge Representation and Management in ActiveMath},
-  journal = {International Journal on Artificial Intelligence and Mathematics,
-    Special Issue on Management of Mathematical Knowledge},
-  year = {2002},
-  note = {to appear}}
-
-
-@UNPUBLISHED{ags-2002-e-1,
-  author = {Erica Melis and Jochen B{\"u}denbender and George Goguadze and Paul
-    Libbrecht and C. Ullrich},
-  title = {Knowledge Representation and Management in ActiveMath},
-  note = {To appear in the Proceedings of MKM'01 in Annals of Mathematics and
-    Artificial Intelligence},
-  year = {2002},
-  institution = {DFKI GmbH Saarbr{\"u}cken}}
+   number = {1--3},
+  pages = {47--64}}
 
 @INPROCEEDINGS{ags-2001-e-7,
   author = {Erica Melis and Jochen B{\"u}denbender and George Goguadze and Paul
@@ -33729,6 +34309,12 @@ and Adaptable Educational Hypermedia},
   school = {Universit{\"a}t des Saarlandes},
   year = {1992}}
 
+@book{Harary:gt69,
+  title = {Graph Theory},
+  publisher = {Addison Wesley},
+  year = {1969},
+  author = {Frank Harary}}
+
 @TECHREPORT{Praecklein90,
   author = {Axel Pr{\"a}cklein},
   title = {Soving equality reasoning problems with a connection graph theorem
@@ -35424,6 +36010,21 @@ pages= {325--329}}
   year = 2006,
   url = {http://www.mindswap.org/papers/PelletJWS.pdf}}
 
+
+@InCollection{Skolem23,
+  title = {The foundations of elementary arithmetic established
+by means of the recursive mode of thought, without the use of apparent vari-
+ables ranging over infinite domains},
+crossref={Heijenoort67},
+  author = 	 {Thoralf Skolem},
+  pages = 	 {302--333}}
+
+@online{Andrews:ad94:on,
+ author = {Peter B. Andrews},
+ title = {Accept Diversity},
+ url = {http://mizar.org/qed/mail-archive/volume-2/0199.html},
+ year = {1994}}
+ 
 @ARTICLE{Skolem19,
   author = {Albert Thoralf Skolem},
   title = {{Logisch}-kombinatorische {Untersuchungen} {\"u}ber die {Erf{\"u}llbarkeit}
@@ -36246,24 +36847,6 @@ pages= {325--329}}
   note = {Seen March 2006},
   organization = {Rice {University}},
   url = {http://cnx.org/help/EditingModules}}
-
-@MISC{w3c:web:mathml3,
-  author = {{W3C}},
-  title = {{Mathematical Markup Language (MathML) Version 3.0 (Third Edition)}},
-  howpublished = {\url{http://www.w3.org/TR/MathML3/}},
-  year = {2007},
-  note = {Seen November 2007},
-  institution = {World Wide Web Consortium ({W3C})},
-  url = {http://www.w3.org/TR/MathML3/}}
-
-@online{MathML3:webpage,
-  author = {{W3C}},
-  title = {{Mathematical Markup Language (MathML) Version 3.0 (Third Edition)}},
-  lastchecked = {December 2008},
-  institution = {World Wide Web Consortium ({W3C})},
-  type = {Working Draft},
-  url = {http://www.w3.org/TR/MathML3/}}
-
 
 @online{CNXML:on,
   crossref = {connexions05:cnxml:base},
@@ -38489,6 +39072,14 @@ title = {Web Map}}
   year = {1991},
   editor = {G{\'e}rard Huet and Gordon Plotkin}}
 
+@article{Huet:crapatrs80,
+  author =  {G{\'e}rard Huet},
+  title = {Confluent Reductions: Abstract Properties and Applications to Term Rewriting Systems},
+  journal = {Journal of the ACM (JACM)}, 
+  year = {1980},
+  volume  = {27}, 
+  number  = {4},
+  pages = {797--821}}
 
 @BOOK{Jennings:atfam98,
   title = {Agent Technology : Foundations, Applications, and Markets},
@@ -39157,13 +39748,15 @@ Reference},
   url =  {http://www.seas.upenn.edu/~harmony/},
   key = {Harmony}}
 
-@MISC{ImpsKB,
+@MISC{ImpsKB,crossref={ImpsKB:base},
+  howpublished = {Internet interface at \url{http://imps.mcmaster.ca/theories/theory-library.html}},
+  note = {\seen May  2008},
+  key = {IKB}}
+@online{ImpsKB:on,crossref={ImpsKB:base},urldate={2014-12-17}}
+@MISC{ImpsKB:base,
   title = {The IMPS online theory library},
   url = {http://imps.mcmaster.ca/theories/theory-library.html},
-  howpublished = {Internet interface at \url{http://imps.mcmaster.ca/theories/theory-library.html}},
-  author = {William Farmer and Joshua Guttman and Javier Thayer},
-  note = {\seen May  2008},
-  key = {ImpsKB}}
+  author = {William M. Farmer and Joshua Guttman and Javier Thayer}}
 
 @online{Richter:nb:on,
 author={\'Emilie Richter},
@@ -39250,11 +39843,23 @@ url={http://planetmath.org/NicolasBourbaki.html}}
   key = {PlanetMath.org},
   url = {http://planetmath.org}}
 
-@MISC{PVSlibraries,
-  title = {PVS Libraries},
-  howpublished = {\url{http://pvs.csl.sri.com/libraries.html}},
-  url = {http://pvs.csl.sri.com/libraries.html},
-  key = {PVS}}
+@MISC{PVSlibraries:url,crossref={PVSlibraries:base},key = {PVS},
+  howpublished = {\url{http://shemesh.larc.nasa.gov/fm/ftp/larc/PVS-library/}}}
+@online{PVSlibraries:on,crossref={PVSlibraries:base},
+  urldate = {2014-12-17},
+  label = {PVS}}
+@MISC{PVSlibraries:base,
+  title = {{NASA} {PVS} Library},
+  url = {http://shemesh.larc.nasa.gov/fm/ftp/larc/PVS-library/}}
+
+@MISC{MathComponents:url,crossref={MathComponents:base},key = {MC},
+  howpublished = {\url{http://www.msr-inria.fr/projects/mathematical-components-2/}}}
+@online{MathComponents:on,crossref={MathComponents:base},
+  urldate = {2014-12-17},
+  label = {MC}}
+@MISC{MathComponents:base,
+  title = {Mathematical Components},
+  url = {http://www.msr-inria.fr/projects/mathematical-components-2/}}
 
 @TECHREPORT{CM:RELAXNG01,
   author = {James Clark and Makoto Murata},
@@ -39357,6 +39962,22 @@ howpublished = {available at \url{http://www.relaxng.org/}}}
   key = {FormalSafe}}
 
 
+@online{HOL4:on,crossref={HOL4:base},label={HOL4},urldate={2014-12-17}}
+@misc{HOL4:url,crossref={HOL4:base},
+ howpublished = {\url{http://hol.sourceforge.net/}},
+ key = {HOL4}}
+@misc{HOL4:base,
+ title = {HOL4},
+ author = "{The HOL4 development team}",
+ url = {http://hol.sourceforge.net/}}
+
+@INPROCEEDINGS{LarReyGey:afkms13,
+  author = {Ray R. Larson and Chloe J. Reynolds and Fredric C. Gey},
+  title = {The Abject Failure of Keyword {IR} for Mathematics Search: {Berkeley} at {NTCIR-10
+                  Math}},
+  url = {http://research.nii.ac.jp/ntcir/workshop/OnlineProceedings10/pdf/NTCIR/MATH/02-NTCIR10-MATH-LarsonRR.pdf},
+  crossref={NTCIR10},
+  pages = {662--666}}
 
 
 @Misc{Webpage:Schmidt:ptge,
@@ -39424,6 +40045,14 @@ howpublished = {available at \url{http://www.relaxng.org/}}}
   publisher = {Infix},
   year = {1996},
   address = {Sankt Augustin}}
+
+@inProceedings{QEDManifesto94,
+  title = {The {QED} Manifesto},
+  crossref = {CADE94},
+  pages = {238--251},
+  url = {http://www.cs.chalmers.se/Cs/Research/Logic/TypesSS05/Extra/wiedijk_2.pdf},
+  year = {1995},
+  key = {QED95}}
 
 @MISC{QEDManifesto95,
   title = {The {QED} Manifesto},
@@ -39743,6 +40372,14 @@ address = {Chiang Mai},
   institution = {World Wide Web Consortium (W3C)},
   url = {http://w3.org/TR/owl-features}}
 
+@techreport{OW2-primer,
+  title = {{OWL} 2 Web Ontology Language Primer (Second Edition)},
+  type  = {{W3C} Recommendation},
+  institution = {World Wide Web Consortium ({W3C})},
+  year = {2012},
+  url  = {http://www.w3.org/TR/owl-primer},
+  author = {Pascal Hitzler and Markus Kr{\"o}tzsch and Bijan Parsia and Peter F. Patel-Schneider and Sebastian Rudolph}}
+  
 @Misc{tb:rdf,
   author =   {Tim Bray},
   title =    {{What is RDF?}},
@@ -39989,6 +40626,15 @@ address = {Chiang Mai},
   number = 	 3,
   pages = 	 {219--238}}
 
+@Article{Shneiderman:ClarifyingSearch:1997,
+ author = {Shneiderman, Ben and Byrd, Don and Croft, W. B},
+ title = {Clarifying Search: A User-Interface Framework for Text Searches},
+ year = {1997},
+ source = {http://www.dlib.org/dlib/january97/retrieval/01shneiderman.html#framework},
+ publisher = {D-Lib Magazine},
+ issn={1082-9873}
+} 
+
 @inproceedings{HMKA:CulSamp,
   author = {Eero Hyv{\"o}nen and E. M{\"a}kel{\"a} and T. Kauppinen and O. Alm and Jussi Kurki and T. Ruotsalo and K. Sepp{\"a}l{\"a} and J. Takala and K. Puputti and H. Kuittinen and Kim Viljanen and Jouni Tuominen and T. Palonen and M. Frosterus R. Sikkil{\"a} and P. Paakkarinen and J. Laitio and K. Nyberg},
   title = {{CULTURE SAMPO} -- A National Publication System of Cultural Heritage on the Semantic Web 2.0},
@@ -40010,6 +40656,27 @@ address = {Chiang Mai},
   title = 	 {Ontology Evolution with {Evolva}},
   crossref =	 {eswc2009},
   pages =	 {908--912}}
+
+@InProceedings{MarPea:wmtapm13,
+  author    = {Ursula Martin and Alison Pease},
+  title     = {What does mathoverflow tell us about the production of mathematics?},
+  year      = {2013},
+  booktitle = {SOHUMAN, 2nd International Workshop on Social Media for Crowdsourcing and
+                  Human Computation},
+  ee        = {http://arxiv.org/abs/1305.0904}}
+
+@InProceedings{PeaMar:sfmm12,
+  author = {Pease, Alison and Ursula Martin},
+  pages = {19--29},
+  crossref = {AISBIACAP12},
+  title = {Seventy four minutes of mathematics: An analysis of the third Mini-Polymath project},
+  url = {http://homepages.inf.ed.ac.uk/apease/papers/seventy-four.pdf}}
+
+@InProceedings{Aberdein:tpsmr12,
+  author = {Andrew Aberdein},
+  pages = {7--14},
+  crossref = {AISBIACAP12},
+  title = {The Parallel Structure of Mathematical Reasoning}}
 
 @InProceedings{HHMT:SemWikiSearch09,
   author =       {Peter Haase and Daniel Herzig and Mark Musen and Thanh Tran},
@@ -40301,6 +40968,16 @@ publisher={FLM Publishing Association}}
   edition =      {2},
   url = {http://www.id-book.com},
   isbn      = {978-0-470-01866-8},
+  }
+
+@Book{SRP:InteractionDesign:2011,
+  author =       {Helen Sharp and Yvonne Rogers and Jenny Preece},
+  title =        {Interaction design: beyond human-computer interaction},
+  publisher = {John Wiley \& Sons},
+  year =         {2011},
+  edition =      {3},
+  url = {http://www.id-book.com},
+  isbn      = {978-0-470-66576-3},
   }
 
 @MastersThesis{VanRens:UsabilityProblemClassifier97,
@@ -40797,8 +41474,8 @@ bilingual publication on nonchalant research},
   title = {About the {Linking Open Data} dataset cloud},
   author = {Richard Cyganiak and Anja Jentzsch},
   url = {http://lod-cloud.net},
-  urldate =      {2010-09-23},
-  date = {2009-09-22}}
+  urldate =      {2014-08-06},
+  date = {2011-09-19}}
 
 @online{DLMF,crossref={DLMF:base}}
 @misc{DLMF:web,crossref={DLMF:base}}
@@ -43673,10 +44350,13 @@ crossref = {OpenMathUIWiP2012},
   urldate =      {2012-09-16},}
 
 @online{afp,
-  title = {Archive of Formal Proofs},
-  year = 2012,
-  url = {http://afp.sourceforge.net/},
-  urldate =      {2012-09-16}}
+  editor = {Gerwin Klein and Tobias Nipkow and Larry Paulson},
+  title =  {Archive of Formal Proofs},
+  year =     2014,
+  url =     {http://afp.sf.net/},
+  ISSN =     {2150-914x},
+  urldate =      {2014-03-14}
+}
 
 @online{SystemOnTPTP,
   title = {System on TPTP},
@@ -44113,7 +44793,6 @@ address = {Los Alamitos, CA, USA},
   booktitle = {Proc. 20th CIRP Design Conference 2010},
   publisher = "Springer",
   editor = "Alain Bernard",
-  note = {To appear},
   url = {http://www.informatik.uni-bremen.de/~lschrode/papers/CAD-Onto.pdf}
 }
 
@@ -44161,7 +44840,7 @@ year = "2007",
 annote = "Ontology of Systems and Software Engineering; Techniques to
 Support Collaborative Engineering Environments",
 issn = "1474-0346",
-doi = "DOI: 10.1016/j.aei.2006.11.003",
+doi = "10.1016/j.aei.2006.11.003",
 url = "http://www.sciencedirect.com/science/article/B6X1X-4NT7X97-5/2/e6cf3e070624b621dfd08dfac4bf058e",
 author = "Gianluca Colombo and Alessandro Mosca and Fabio Sartori"}
 
@@ -44315,10 +44994,6 @@ volume = "37",
 nonumber = "1-3",
 pages = "61--93",
 year = "1988",
-nonote = "",
-noissn = "0004-3702",
-nodoi = "DOI: 10.1016/0004-3702(88)90050-1",
-nourl = "http://www.sciencedirect.com/science/article/B6TYF-47X2B9N-8F/2/d74c99ab504332868c6cc8d5b817fa18",
 author = "Deepak Kapur"
 }
 
@@ -44779,6 +45454,13 @@ author = {James W. Grice},
   publisher = {McGraw-Hill},
   title = {Understanding media: The extensions of man},
   year = 1964
+}
+
+@book{McLuhan:ExtensionsOfMan:2003,
+  title={Understanding Media: The Extensions of Man (Critical Edition), edited by W. Terrence Gordon. Corte Madera},
+  author={McLuhan, Marshall},
+  year={[1964] 2003},
+  publisher={CA: Gingko Press}
 }
 
 @article{HermansEtAl:MeasuringSpshtFormulaUnderstandability:2012,
@@ -45534,6 +46216,440 @@ crossref = {CICM-WS-WiP2013},
   timestamp = {2014.02.05}
 } 
 
+@book{Morville:SearchPatterns:2010,
+  title={Search Patterns: Design for Discovery},
+  author={Morville, P. and Callender, J.},
+  isbn={9781449383060},
+  year={2010},
+  publisher={O'Reilly Media}
+}
+
+@inproceedings{Libbrecht:TooPreciseTopicQueries:2013,
+  author    = {Paul Libbrecht},
+  title     = {Escaping the Trap of Too Precise Topic Queries},
+  booktitle = {MKM/Calculemus/DML},
+  year      = {2013},
+  pages     = {296-309},
+   crossref = {CICM-WS-WiP2013}
+}
+
+@article{WiseEtAl:SearchingVsSurfing:2009,
+ author = {Kevin Wise and Hyo Jung Kim and Jeesum Kim},
+ title = {The effect of searching versus surfing on cognitive and emotional responses to online news},
+ journal = {Journal of Media Psychology: Theories, Methods, and Applications},
+ volume = {21},
+ number = {2},
+ year = {2009},
+ pages = {49--59},
+ doi = {10.1027/1864-1105.21.2.49},
+ publisher = {APA PsycNet},
+} 
+
+@inproceedings{NavarroEtAl:CognStrategiesSearching:1999,
+  author = {Navarro-Prieto, R. and Scaife, M. and Rogers, Y.},
+  booktitle = {Proceedings of the 5th Conference on Human Factors \& the Web},
+  title = {{Cognitive strategies in web searching}},
+  year = 1999
+}
+
+@article{Taylor:ProcessOfAskingQuestions:1962,
+ author = {Robert S. Taylor},
+ title = {The process of Asking Questions},
+ journal = {American Documentation},
+ volume = {13},
+ number = {4},
+ year = {1962},
+ pages = {391-396},
+doi={10.1002/asi.5090130405},
+ publisher = {Wiley Periodicals},
+} 
+
+@article{Chang:InfluenceOfTaylorsQuestions:2013,
+ author = {Chang, Yu-Wei},
+ title = {The Influence of Taylor's Paper, Question-Negotiation and Information-Seeking in Libraries},
+ journal = {Inf. Process. Manage.},
+ issue_date = {September, 2013},
+ volume = {49},
+ number = {5},
+ month = sep,
+ year = {2013},
+ issn = {0306-4573},
+ pages = {983--994},
+ numpages = {12},
+ doi = {10.1016/j.ipm.2013.03.003},
+ publisher = {Pergamon Press, Inc.},
+ address = {Tarrytown, NY, USA},
+} 
+
+@article{Kellar:InformationSeekingTasks:2007,
+  author    = {Melanie Kellar and Carolyn R. Watters and Michael A. Shepherd},
+  title     = {A field study characterizing Web-based information-seeking tasks},
+  journal   = {JASIST},
+  volume    = {58},
+  number    = {7},
+  year      = {2007},
+  pages     = {999-1018},
+}
+
+@book{Kuhltau:SeekingMeaning:2004,
+  author = {Kuhlthau, Carol Collier},
+  title = {Seeking meaning. A process approach to library and information services},
+  edition = {2.},
+  pages = {XVII, 247},
+  publisher = {Libraries Unlimited},
+  year = {2004}}
+
+@article{KuhltauEtAl:InformationSeekingRevisited:2008,
+ author={Carol C. Kuhlthau and Jannica Heinstr{\"o}m and Ross J. Todd},
+ title={The information search process revisited: is the model still useful?},
+journal={ir information research},
+volume={13},
+number={4},
+year={2008},
+publisher={informationr.net}}
+
+@online{OpenRepGrid,
+label = {ORep},
+title = {openrepgrid.org},
+url = {http://www.openrepgrid.org},
+urldate = {2014-03-14}}
+
+@inproceedings{YuWoodard:MashupEcosystem:2008,
+   author              = {Shuli Yu and C. Jason Woodard},
+   title               = {Innovation in the Programmable Web: Characterizing the Mashup Ecosystem.},
+   booktitle           = {ICSOC Workshops},
+   year                = {2008},
+   pages               = {136-147},
+   ee                  = {http://dx.doi.org/10.1007/978-3-642-01247-1_13},
+   crossref            = {2008},
+}
+
+@incollection{PietschmannEtAl:RichCommPatternsMashUps:2012,
+year={2012},
+isbn={978-3-642-31752-1},
+booktitle={Web Engineering},
+volume={7387},
+series={Lecture Notes in Computer Science},
+editor={Brambilla, Marco and Tokuda, Takehiro and Tolksdorf, Robert},
+doi={10.1007/978-3-642-31753-8_25},
+title={Rich Communication Patterns for Mashups},
+publisher={Springer Berlin Heidelberg},
+author={Pietschmann, Stefan and Voigt, Martin and Mei{\ss}ner, Klaus},
+pages={315-322}}
+
+@INPROCEEDINGS{Pietschmann:MetaModelMashups:2010,
+author = {Stefan Pietschmann and Vincent Tietz and Jan Reimann and Christian Liebing and Mich{\'{e}}l Pohle and Klaus Mei{\ss}ner},
+title = {A Metamodel for Context-Aware Component-Based Mashup Applications},
+booktitle = {Proceedings of the 12th International Conference on Information Integration and Web-based Applications {\&} Services (iiWAS 2010)},
+isbn = {978-1-4503-0421-4},
+year = {2010},
+month = {nov},
+publisher = {ACM}} 
+
+@Inproceedings{KoschmiderEtAl:MashupHype:2009,
+	address = {Madrid},
+	booktitle = {2nd Workshop on Mashups, Enterprise Mashups and Lightweight Composition on the Web in conjunction with the 18th International World Wide Web Conference},
+	month = {April},
+	title = {Elucidating the Mashup Hype: Definition, Challenges, Methodical Guide and Tools for Mashups},
+	year = {2009},
+	type = {Inproceedings},
+	author = {Agnes Koschmider and Victoria Torres and Vicente Pelechano}}
+
+@inproceedings{SalminenMikkonen:MashupEcosystems:2012,
+  author    = {Arto Salminen and Tommi Mikkonen},
+  title     = {Mashups - Software Ecosystems for the Web Era},
+  booktitle = {IWSECO@ICSOB},
+  year      = {2012},
+  pages     = {18-32},
+  ee        = {http://ceur-ws.org/Vol-879/paper2.pdf},
+  crossref  = {IWSECO12}}
+
+@inproceedings{CappielloEtAl:QualityModelMashups:2009,
+ author = {Cappiello, Cinzia and Daniel, Florian and Matera, Maristella},
+ title = {A Quality Model for Mashup Components},
+ booktitle = {Proceedings of the 9th International Conference on Web Engineering},
+ series = {ICWE'09},
+ year = {2009},
+ isbn = {978-3-642-02817-5},
+ location = {San Sebastian, Spain},
+ pages = {236--250},
+ numpages = {15},
+ doi = {10.1007/978-3-642-02818-2_19},
+ publisher = {Springer-Verlag},
+ address = {Berlin, Heidelberg}}
+
+@article{ShethEtAl:SA-REST:2007,
+  author = {Sheth, Amit P. and Gomadam, Karthik and Lathem, Jon},
+  date = {2007-11-08},
+  description = {dblp},
+  ee = {http://doi.ieeecomputersociety.org/10.1109/MIC.2007.133},
+  journal = {IEEE Internet Computing},
+  number = 6,
+  pages = {91-94},
+  title = {SA-REST: Semantically Interoperable and Easier-to-Use Services and Mashups.},
+  volume = 11,
+  year = 2007
+}
+
+@article{DanielEtAl:UnderstandingUIIntegration:2007,
+  author    = {Florian Daniel and Jin Yu and Boualem Benatallah and Fabio Casati and Maristella Matera and R{\'e}gis Saint-Paul},
+  title     = {Understanding UI Integration: A Survey of Problems, Technologies, and Opportunities},
+  journal   = {IEEE Internet Computing},
+  volume    = {11},
+  number    = {3},
+  year      = {2007},
+  pages     = {59-66},
+  ee        = {http://doi.ieeecomputersociety.org/10.1109/MIC.2007.74}}
+
+@inproceedings{DanielEtAl:MashArt:2009,
+  author = {Daniel, Florian and Casati, Fabio and Soi, Stefano and Fox, Jonny and Zancarli, David and Shan, Ming-Chien},
+  booktitle = {ICSOC/ServiceWave},
+  date = {2009-11-26},
+  description = {dblp},
+  editor = {Baresi, Luciano and Chi, Chi-Hung and Suzuki, Jun},
+  isbn = {978-3-642-10382-7},
+  pages = {647--648},
+  series = {Lecture Notes in Computer Science},
+  title = {Hosted Universal Integration on the Web: The mashArt Platform.},
+  volume = {5900},
+  year = {2009}}
+
+@INPROCEEDINGS{PietschmannEtAl:ContextAwarenessInMashups:2011,
+author = {Stefan Pietschmann and Carsten Radeck and Klaus Mei\ss{}ner},
+title = {Facilitating Context-Awareness in Composite Mashup Applications},
+booktitle = {Proceedings of the 3rd International Conference on Adaptive and Self-Adaptive Systems and Applications (ADAPTIVE)},
+isbn = {978-1-61208-011-6},
+publisher = {XPS},
+month = sep,
+year = {2011}
+}
+
+@INPROCEEDINGS{Pietschmann:SemBasedPresMashups:2011,
+author = {Stefan Pietschmann and Carsten Radeck and Klaus Mei\ss{}ner},
+title = {Semantics-Based Discovery, Selection and Mediation for Presentation-Oriented Mashups},
+booktitle = {Proceedings of the 5th International Workshop on Web APIs and Service Mashups},
+publisher = {ACM},
+isbn = {978-1-4503-0823-6},
+doi = {10.1145/2076006.2076014},
+series = {ACM ICPS},
+month = sep,
+year = {2011}
+}
+
+@misc{Guo:TheFourElementsOfUX:2012,
+author={Frank Guo},
+title={More Than Usability: The Four Elements of User Experience},
+year = {2012},
+howpublished = {Available at {\url{http://www.uxmatters.com}}},
+  note =	 {Accessed on 2014-04-01}}
+
+@inproceedings{HeideckerHassenzahl_RGTFuerAttraktivitaet_2007,
+  author    = {Stephanie Heidecker and  Marc Hassenzahl},
+  title     = {Eine gruppenspezifische Repertory Grid Analyse der wahrgenommenen
+               Attraktivit{\"a}t von Uni\-ver\-si\-t{\"a}ts\-web\-sites},
+  booktitle = {Mensch {\&} Computer},
+  year      = {2007},
+  pages     = {129-138},
+  crossref  = {DBLP:conf/mc/2007},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+
+
+@BOOK{Jankowicz:2003,
+title = {The Easy Guide to Repertory Grids},
+publisher = {Wiley},
+year = {2003},
+author = {Devi Jankowicz},
+isbn = {0470854049}
+}
+
+
+
+@article{TanHunter:RGTinIT2002,
+     title = {The Repertory Grid Technique: A Method for the Study of Cognition in Information Systems},
+     author = {Tan, Felix B. and M. Gordon Hunter},
+     journal = {MIS Quarterly},
+     volume = {26},
+     number = {1},
+     pages = {pp. 39-57},
+     ISSN = {02767783},
+     abstract = {Recent studies have confirmed the importance of understanding the cognition of users and information systems (IS) professionals. These works agree that organizational cognition is far too critical to be ignored as it can impact on IS outcomes. While cognition has been considered in a variety of IS contexts, no specific methodology has dominated. A theory and method suitable to the study of cognition-defined as personal constructs that individuals use to understand IT in organizations-is Kelly's (1955) personal construct theory and its cognitive mapping tool known as the repertory grid (RepGrid). This article expounds on the potential of this technique to IS researchers by considering the variety of ways the RepGrid may be employed. The flexibility of the RepGrid is illustrated by examining published studies in IS. The diagnostic qualities of the RepGrid and its mapping outcomes can be used for practical intervention at the individual and organizational levels.},
+     language = {English},
+     year = {2002},
+     publisher = {Management Information Systems Research Center, University of Minnesota},
+    }
+
+@article{HertzumEtAl:PersonalUsabilityConstructs2012,
+  author    = {Morten Hertzum and
+               Torkil Clemmensen},
+  title     = {How do usability professionals construe usability?},
+  journal   = {Int. J. Hum.-Comput. Stud.},
+  volume    = {70},
+  number    = {1},
+  year      = {2012},
+  pages     = {26-42}
+}
+
+@InBook{Kelly:BriefIntroductionToPCT,
+  author =	 {George Kelly},
+  title = 	 {International Handbook of Personal Construct Technology},
+  chapter = 	 {A Brief Introduction to Personal Construct Theory},
+  publisher = 	 {John Wiley \& Sons},
+  year = 	 2003,
+  pages =	 {3--20}
+}
+
+@article {Gower:GeneralizedProcrustesAnalysis_1975,
+   author = {Gower, J.},
+   affiliation = {Rothamsted Experimental Station Harpenden Herts Harpenden Herts},
+   title = {Generalized procrustes analysis},
+   journal = {Psychometrika},
+   publisher = {Springer New York},
+   issn = {0033-3123},
+   keyword = {Psychologie und Verhalten},
+   pages = {33-51},
+   volume = {40},
+   issue = {1},
+   year = {1975}
+}
+
+@article{AvigadHarrison:FormallyVerifiedMath:2014,
+ author = {Avigad, Jeremy and Harrison, John},
+ title = {Formally Verified Mathematics},
+ journal = {Commun. ACM},
+ issue_date = {April 2014},
+ volume = {57},
+ number = {4},
+ month = apr,
+ year = {2014},
+ issn = {0001-0782},
+ pages = {66--75},
+ numpages = {10},
+ doi = {10.1145/2591012},
+ acmid = {2591012},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+} 
+
+@article{AtiyahEtAl:MathBeauty:2014,
+author={Zeki, Semir and Romaya, John Paul and Benincasa, Dionigi M.T. and Atiyah, Michael F},
+title={The Experience of Mathematical Beauty and its Neural Correlates},
+journal={Frontiers in Human Neuroscience},
+volume={8},
+year={2014},
+number={68},
+issn={1662--5161}}
+
+@book{Jarvis:WhatWouldGoogleDo:2009,
+  title={What Would Google Do?},
+  author={Jarvis, Jeff},
+  isbn={9780007312108},
+  year={2009},
+  publisher={HarperCollins Publishers Limited}
+}
+
+
+@book{Russell:Mysticism:2004,
+  title={Mysticism and Logic},
+  author={Russell, Bertrand},
+  isbn={9780486434407},
+  series={Dover Books on Western Philosophy},
+  year={2004},
+  publisher={Dover Publications}
+}
+
+@TECHREPORT{w3c:REC-vocab-dcat-20140116,
+  title = {Data Catalog Vocabulary ({DCAT})},
+  institution = {World Wide Web Consortium ({W3C})},
+  date = {2014-01-16},
+  type = {{W3C} {Recommendation}},
+  author = {Fadi Maali and John Erickson and Phil Archer},
+  url = {http://www.w3.org/TR/2014/REC-vocab-dcat-20140116/}}
+
+@TECHREPORT{w3c:REC-vocab-data-cube-20140116,
+  title = {The {RDF} Data Cube Vocabulary},
+  institution = {World Wide Web Consortium ({W3C})},
+  date = {2014-01-16},
+  type = {{W3C} {Recommendation}},
+  author = {Richard Cyganiak and Dave Reynolds and Jeni Tennison},
+  url = {http://www.w3.org/TR/2014/REC-vocab-data-cube-20140116/}}
+
+@book{Hearst:SearchUserInterfaces:2009,
+ author = {Hearst, Marti A.},
+ title = {Search User Interfaces},
+ year = {2009},
+ isbn = {0521113792, 9780521113793},
+ edition = {1st},
+ publisher = {Cambridge University Press},
+ address = {New York, NY, USA},
+}
+
+@online{morphit,
+label = {mph},
+title = {Spreadsheet technology used to handle multi-dimensional data},
+url = {http://www.edge-ka.com/products/morphit},
+urldate = {2014-07-23}}
+
+@inproceedings{BrylEtAl:SePublica2014,
+title = {What's in the proceedings? Combining publisher's and researcher's perspectives},
+author = {Volha Bryl and Aliaksandr Birukou and Kai Eckert and Mirjam Kessler},
+url = {http://ceur-ws.org/Vol-1155#paper-01},
+crossref = {SEPUBLICA14},
+}
+
+@TechReport{Farmer:casttuqe10,
+  author = 	 {William M. Farmer},
+  title = 	 {Chiron: A set theory with types, undefinedness, quotation, and evaluation},
+  institution =  {McMaster University},
+  year = 	 2010,
+  type = 	 {SQRL Report},
+  number = 	 38,
+  url = {http://imps.mcmaster.ca/doc/chiron-tr.pdf},
+  note = 	 {originally published 2007, revised}}
+
+@techreport{OntoIOp-RFP,
+institution = {Object Management Group},
+title = {Ontology, Model and Specification Integration and Interoperability (OntoIOp)},
+type= {Request For Proposal},
+number = {ad/2013-12-02},
+url = {http://www.omg.org/cgi-bin/doc?ad/2013-12-02},
+year = 2013,
+date = {2013-12-02},
+}
+
+@online{OMG-Process-RFP,
+organization = {Object Management Group},
+title = {{OMG} Technology Adoption Process.  Part II: {TF} Issues {RFP} and Evaluates Submissions},
+url = {http://www.omg.org/gettingstarted/process2-RFP.htm},
+date = {2014-02-27},
+year = 2014,
+}
+  
+@unpublished{DOL,
+  author = {Till Mossakowski and Oliver Kutz and Fabian Neuhaus and Mihai Codescu and Christoph Lange and Michael Gruninger and Maria Keet},
+  title = {The Distributed Ontology, Modeling and Specification Language},
+  note =         {Draft answer to the OMG RFP ``OntoIOp''},
+  url =          {https://github.com/tillmo/DOL},
+  year =         {2014},
+}
+
+@online{5StarVocabUse,
+  author = {Krzysztof Janowicz and Pascal Hitzler and Benjamin Adams and Dave Kolas and Vardeman II, Charles},
+  title = {Five Stars of Linked Data Vocabulary Use},
+  url = {http://www.semantic-web-journal.net/content/five-stars-linked-data-vocabulary-use},
+  year = 2014,
+}
+
+@inproceedings{ontohub2014,
+        eventtitle = {Satellite workshop of ICTAC-2014},
+        venue = {University of Bucharest},
+        eventdate = {2014-09-15/2014-09-16},
+        Author = {Till Mossakowski and Oliver Kutz and Mihai Codescu},
+        Booktitle = {Theory Day in Computer Science (DACS-2014)},
+        Title = {{Ontohub: A semantic repository for heterogeneous ontologies}},
+        Year = {2014}}
+
 @STRING{krcmessage = "READ the README please!!!!!!!!!!!!!!"}
 
 @proceedings{CICM13,
@@ -45704,10 +46820,7 @@ pubs = {mkohlhase}}
   booktitle = {Proceedings of the 29.th Annual German Conference on Artificial Intelligence
     KI'06},
   keywords = {conference},
-pubs = {mkohlhase}}
-
-
-
+  pubs = {mkohlhase}}
 
 @PROCEEDINGS{CADE15-WS-AI,
   title = {CADE-15 Workshop ``Using AI Methods in Deduction''},
@@ -45808,11 +46921,9 @@ pubs = {mkohlhase}}
   title = {Proceedings of the 3\textsuperscript{rd} Workshop on Semantic Wikis, {European} {Semantic} {Web} {Conference}},
   pubs = {clange}}
 
-@proceedings{MathUI13,
-  crossref = {CICM-WS-WiP2013}}
 @proceedings{CICM-WS-WiP2013,
-  booktitle    = {{MathUI}, {OpenMath}, {PLMMS} and {ThEdu} Workshops and Work in Progress at the Conference on Intelligent Computer Mathematics},
-  title    = {Joint Proceedings of the {MathUI}, {OpenMath}, {PLMMS} and {ThEdu} Workshops and Work in Progress at the Conference on Intelligent Computer Mathematics 2013},
+  booktitle    = {{MathUI}, {OpenMath}, {PLMMS}, and {ThEdu} Workshops and Work in Progress at the Conference on Intelligent Computer Mathematics},
+  title    = {Joint Proceedings of the {MathUI}, {OpenMath}, {PLMMS}, and {ThEdu} Workshops and Work in Progress at the Conference on Intelligent Computer Mathematics 2013},
 year = 2013,
 editor = {Christoph Lange and David Aspinall and Jacques Carette and James Davenport and Andrea Kohlhase and Michael Kohlhase and Paul Libbrecht and Pedro Quaresma and Florian Rabe and Petr Sojka and Iain Whiteside and Wolfgang Windsteiger},
 number = 1010,
@@ -45822,6 +46933,23 @@ issn = {1613-0073},
 url = {http://ceur-ws.org/Vol-1010},
 venue = {Bath, UK},
 eventdate    = {2013-07-08/2013-07-12}
+}
+
+@proceedings{CICM-WS-WiP2014,
+  booktitle    = {{MathUI}, {OpenMath}, {PLMMS}, and {ThEdu} Workshops and Work in Progress at the Conference on Intelligent Computer Mathematics},
+  title    = {Joint Proceedings of the {MathUI}, {OpenMath}, {PLMMS}, and {ThEdu} Workshops and Work in Progress at the Conference on Intelligent Computer Mathematics 2014},
+year = 2014,
+editor = {Matthew England and James H. Davenport and 
+Andrea Kohlhase and Michael Kohlhase and Paul Libbrecht and 
+Walther Neuper and Pedro Quaresma and Alan P. Sexton and
+Petr Sojka and Josef Urban and Stephen M. Watt},
+number = 1180,
+series = {CEUR Workshop Proceedings},
+address = {Aachen},
+issn = {1613-0073},
+url = {http://ceur-ws.org/Vol-1180},
+venue = {Coimbra, PT},
+eventdate    = {2013-07-07/2013-07-12}
 }
 
 @proceedings{OpenMathUIWiP2012,
@@ -45875,6 +47003,15 @@ pubs = {mkohlhase}}
   month = sep,
   pubs = {clange}}
 
+@Proceedings{FGWM13,
+  editor = {Andrea Kohlhase and Bodo Rieger},
+  title =    {Wissens- und Erfahrungsmanagement (Knowledge and Experience Management), FGWM},
+  booktitle =    {Wissens- und Erfahrungsmanagement (Knowledge and Experience Management), FGWM},
+  note = {Workshop at LWA 2013, published as part of~\cite{LWA13}},
+  year = {2013},
+  month = oct,
+  pubs = {akohlhase}}
+
 @Proceedings{JEM08,
   title = 	 {3\textsuperscript{rd} JEM Workshop -- Joining Educational Mathematics},
   year = 	 {2008},
@@ -45896,6 +47033,20 @@ pubs = {mkohlhase}}
   eventdate = {2011-08-27},
   title = {Proceedings of the ITP 2011 Workshop on Mathematical Wikis (MathWikis)},
   pubs = {clange}}
+
+@proceedings{SEPUBLICA14,
+booktitle = {4\textsuperscript{th} Workshop on Semantic Publishing (SePublica)},
+title = {Proceedings of the 4\textsuperscript{th} Workshop on Semantic Publishing (SePublica)},
+year = 2014,
+editor = {Garc{\'i}a Castro, Alexander and Christoph Lange and Phillip Lord and Robert Stevens},
+number = 1155,
+series = {CEUR Workshop Proceedings},
+address = {Aachen},
+issn = {1613-0073},
+url = {http://ceur-ws.org/Vol-1155},
+venue = {Anissaras, Greece},
+eventdate = {2014-05-25},
+}
 
 @proceedings{SEPUBLICA13,
   booktitle = {3\textsuperscript{rd} Workshop on Semantic Publishing (SePublica)},
@@ -45965,6 +47116,40 @@ pubs = {mkohlhase,projects/omdocbiblio}}
 
 @STRING{ecmessage = "READ the README please!!!!!!!!!!!!!!"}
 
+@proceedings{ICMS14,
+  editor    = {Hoon Hong and Chee Yap},
+  title     = {Mathematical Software - {ICMS} 2014 - 4th International Congress},
+  booktitle = {Mathematical Software - {ICMS} 2014 - 4th International Congress},
+  series    = {Lecture Notes in Computer Science},
+  year      = {2014},
+  volume    = {8592},
+  publisher = {Springer},
+  url       = {http://dx.doi.org/10.1007/978-3-662-44199-2},
+  doi       = {10.1007/978-3-662-44199-2},
+  isbn      = {978-3-662-44198-5}}
+
+@proceedings{ITP13,
+  year = {2013},
+  isbn = {978-3-642-39633-5},
+  title = {Interactive Theorem Proving},
+  booktitle = {Interactive Theorem Proving},
+  volume = {7998},
+  series = {LNCS},
+  editor = {Blazy, Sandrine and Paulin-Mohring, Christine and Pichardie, David},
+  publisher={Springer}}
+
+@proceedings{FOIS14,
+  editor    = {Pawel Garbacz and Oliver Kutz},
+  booktitle = {Formal Ontology in Information Systems - Proceedings of the Eighth
+               International Conference, {FOIS} 2014},
+  title     = {Formal Ontology in Information Systems - Proceedings of the Eighth
+               International Conference, {FOIS} 2014},
+  series    = {Frontiers in Artificial Intelligence and Applications},
+  year      = {2014},
+  volume    = {267},
+  publisher = {{IOS} Press},
+  isbn      = {978-1-61499-437-4}}
+
 @proceedings{FEOSW2012,
   booktitle = {1\textsuperscript{st} Workshop on Finance and Economics on the Semantic Web (FEOSW)},
   year = 2012,
@@ -45975,9 +47160,21 @@ pubs = {mkohlhase,projects/omdocbiblio}}
   title = {Proceedings of the 1\textsuperscript{st} Workshop on Finance and Economics on the Semantic Web (FEOSW)},
 }
 
+@Proceedings{AISBIACAP12,
+  year = {2012}, 
+  editor = {Alison Pease and Brendan Larvor},
+  booktitle= {Proceedings of AISB/IACAP 2012, Symposium on Mathematical Practice and Cognition II}, 
+  title= {Proceedings of AISB/IACAP 2012, Symposium on Mathematical Practice and Cognition II},
+  publisher = {AISB},
+  isbn = {978-1-908187-10-9},
+  url = {http://homepages.inf.ed.ac.uk/apease/aisb12/1.pdf}}
+ 
+
 @Book{EndresNiggemeyer:SemanticMashups13,
   booktitle = {Semantic Mashups},
   booksubtitle = {Intelligent Reuse of Web Resources},
+  title = {Semantic Mashups},
+  subtitle = {Intelligent Reuse of Web Resources},
   editor = {Brigitte Endres-Niggemeyer},
   url = {https://sites.google.com/site/mashupbookchapters/},
   isbn = {978-3-642-36402-0},
@@ -45987,11 +47184,30 @@ pubs = {mkohlhase,projects/omdocbiblio}}
 
 @proceedings{NTCIR10,
   title = {NTCIR Workshop 10 Meeting},
+  editor = {Noriko Kando and Kazuaki Kishida},
   booktitle = {NTCIR Workshop 10 Meeting},
-  note = {to appear},
   address = {Tokyo, Japan},
+  publisher = {NII, Tokyo},
   year = {2013}}
 
+@proceedings{NTCIR11,
+  title = {NTCIR Workshop 11 Meeting},
+  editor = {Noriko Kando and Hideo Joho andKazuaki Kishida},
+  booktitle = {NTCIR 11 Conference},
+  address = {Tokyo, Japan},
+  publisher = {NII, Tokyo},
+  year = {2014}}
+
+
+@proceedings{THEDU11,
+  editor    = {Pedro Quaresma and Ralph-Johan Back},
+  title     = {Proceedings First Workshop on CTP Components for Educational
+               Software, THedu'11, Wroclaw, Poland, 31th July 2011},
+  booktitle = {THedu},
+  series    = {EPTCS},
+  volume    = {79},
+  year      = {2011},
+  doi       = {10.4204/EPTCS.79}}
 
 @proceedings{ProWM13,
   editor    = {Franz Lehner and Nadine Amende and Nora Fteimi},
@@ -46188,6 +47404,21 @@ and Linking of Structured Knowledge ({CK})},
   issn = {1613-0073},
   url = {http://CEUR-WS.org/Vol-628}}
 
+@Proceedings{LDOW2014,
+  editor =	 {Christian Bizer and Tom Heath and S{\"o}ren Auer and Tim Berners-Lee},
+  booktitle =	 {Linked Data on the Web (LDOW)},
+  title =	 {Linked Data on the Web (LDOW)},
+  year =	 2014,
+  NOTYETmonth = apr,
+  NOTYETnumber = 628,
+  NOTYETseries = {CEUR Workshop Proceedings},
+  NOTYETaddress = {Aachen},
+  NOTYETissn = {1613-0073},
+  NOTYETurl = {http://CEUR-WS.org/Vol-628},
+  url = {http://events.linkeddata.org/ldow2014/},
+  eventdate = {2014-04-08},
+  venue = {Seoul}}
+
 @proceedings{DBLP:conf/its/2006,
   editor    = {Mitsuru Ikeda and
                Kevin D. Ashley and
@@ -46373,7 +47604,7 @@ and Linking of Structured Knowledge ({CK})},
     and Helen Pain and Felisa Verdejo and Kalina Yacef},
   volume = {V: Learner Modelling for Reflection},
   series = {Frontiers in Artificial Intelligence and Applications},
-  address = {Sidney, \AUSTRALIA},
+  address = {Sidney, Australia},
   publisher = {School of Information Technologies, University of Sydney}}
 
 @PROCEEDINGS{AIED03-viii,
@@ -46384,7 +47615,7 @@ and Linking of Structured Knowledge ({CK})},
     and Helen Pain and Felisa Verdejo and Kalina Yacef},
   volume = {VIII: Advanced Technologies for Mathematics Education},
   series = {Frontiers in Artificial Intelligence and Applications},
-  address = {Sidney, \AUSTRALIA},
+  address = {Sidney, Australia},
   publisher = {School of Information Technologies, University of Sydney}}
 
 @PROCEEDINGS{ICCS01,
@@ -46434,13 +47665,13 @@ and Linking of Structured Knowledge ({CK})},
   volume = 38}
 
 @PROCEEDINGS{MKM03,
-  title = {Mathematical Knowledge Management, MKM'03},
+  title = {Mathematical Knowledge Management, {MKM'03}},
   year = {2003},
   editor = {Andrea Asperti and Bruno Buchberger and James Harold Davenport},
   number = {2594},
   series = {LNCS},
   publisher = {Springer Verlag},
-  booktitle = {Mathematical Knowledge Management, MKM'03}}
+  booktitle = {Mathematical Knowledge Management, {MKM'03}}}
 
 @PROCEEDINGS{DEDTREFF93,
   title = {Proceedings of the Annual Meeting of ``GI-Fachgruppe Deduktionssysteme''},
@@ -46656,7 +47887,8 @@ and Linking of Structured Knowledge ({CK})},
 
 @PROCEEDINGS{CICM10,
   title = {Intelligent Computer Mathematics},
-  key = {CICM10},
+  NOlabel = {CICM10},
+  NOkey = {CICM10},
   year = {2010},
   editor =       {Serge Autexier and Jacques Calmet and David Delahaye and Patrick D. F. Ion and Laurence Rideau and Renaud Rioboo and Alan P. Sexton},
   number = {6167},
@@ -46669,7 +47901,8 @@ and Linking of Structured Knowledge ({CK})},
 @PROCEEDINGS{CICM12,
   title = {Intelligent Computer Mathematics},
   booktitle = {{Intelligent Computer Mathematics}},
-  key = {CICM12},
+  NOlabel = {CICM12},
+  NOkey = {CICM12},
   year = {2012},
   venue = {Bremen, Germany},
   eventdate = {2012-07-09/2012-07-14},
@@ -46683,6 +47916,24 @@ and Linking of Structured Knowledge ({CK})},
   acceptancerate = {73},
   acceptancerateCOMMENT = {MKM: 13/19, Calculemus: 6/9, AISC: 6/8, DML: 2/3, S&P: 11/12},
   keywords = {conference}}
+
+@proceedings{CICM14,
+  editor = {Stephan Watt and James Davenport and Alan Sexton and Petr Sojka and Josef Urban},
+  venue = {Coimbra, Portugal},
+  eventdate = {2014-07-07/2014-07-11},
+  eventtitle = {Conferences on Intelligent Computer Mathematics},
+  title = {Intelligent Computer Mathematics},
+  booktitle = {{Intelligent Computer Mathematics} 2014},
+  NOkey = {CICM14},
+  NOlabel = {CICM14},
+  keywords = {conference},
+  publisher = {Springer},
+  series    = {Lecture Notes in Computer Science},
+  NOTYETnumber    = {7961},
+  year = 2014,
+  NOTYETacceptancerate = {54},
+  NOTYETacceptancerateCOMMENT = {MKM: 7/18, Calculemus: 5/12, DML: 6/8, S&P: 12/16},
+}
 
 @PROCEEDINGS{CALCULEMUS10,
   key = {CALCULEMUS 2010},
@@ -47420,7 +48671,7 @@ and Linking of Structured Knowledge ({CK})},
   editor = {William McCune},
   number = {1249},
   series = {LNAI},
-  address = {Townsville, \AUSTRALIA},
+  address = {Townsville, Australia},
   publisher = {Springer Verlag},
   booktitle = {Proceedings of the 14\textsuperscript{th} {Conference} on {Automated} {Deduction}},
   key = {CADE1997}}
@@ -47634,7 +48885,7 @@ and Linking of Structured Knowledge ({CK})},
 @PROCEEDINGS{IJCAI97,
   year = {1997},
   editor = {Martha E. Pollack},
-  address = {Nagoya, \JAPAN},
+  address = {Nagoya, Japan},
   publisher = {Morgan Kaufmann},
   booktitle = {Proceedings of the 15\textsuperscript{th} {International} {Joint} {Conference} on {Artificial}
     {Intelligence} ({IJCAI})},
@@ -47661,6 +48912,21 @@ and Linking of Structured Knowledge ({CK})},
   year = {2002},
   editor = {Carolyn Penstein Rose and Vincent Aleven},
   address = {San Sebasti{\'a}n, \SPAIN}}
+
+@Book{EKM05,
+  editor =   {David G. Schwartz},
+  title =    {Encyclopedia of Knowledge Management},
+  booktitle =    {Encyclopedia of Knowledge Management},
+  publisher =    {Idea Group Reference},
+  year =     2005}
+
+@Book{EKM11,
+  editor =   {David Schwartz and  Dov Te'eni},
+  title =    {Encyclopedia of Knowledge Management},
+  booktitle =    {Encyclopedia of Knowledge Management},
+  publisher =    {Idea Group Reference},
+  edition =  {2}, 
+  year =     2011}
 
 @PROCEEDINGS{CADE84,
   title = {Proceedings of the 7\textsuperscript{th} International Conference on Automated Deduction},
@@ -48520,12 +49786,12 @@ and Linking of Structured Knowledge ({CK})},
 
 @PROCEEDINGS{MKM01,
   title = {Electronic Proceedings of the First International Workshop on Mathematical
-    Knowledge Management: MKM'2001},
+    Knowledge Management: {MKM'2001}},
   year = {2001},
   editor = {Bruno Buchberger and Olga Caprotti},
   url = {http://www.risc.uni-linz.ac.at/institute/conferences/MKM2001/Proceedings/},
   booktitle = {Electronic Proceedings of the First International Workshop on Mathematical
-    Knowledge Management: MKM'2001}}
+    Knowledge Management: {MKM'2001}}}
 
 @proceedings{ekaw2002,
   editor    = {Asunci{\'o}n G{\'o}mez-P{\'e}rez and
@@ -48856,6 +50122,15 @@ and Linking of Structured Knowledge ({CK})},
   year = 2009,
   month = sep,}
 
+@PROCEEDINGS{LWA13,
+  title = {Wissens- und Er\-fah\-rungs\-ma\-nage\-ment LWA (Lernen, Wissensentdeckung und Adaptivit{\"a}t) Conference Proceedings},
+booktitle = {LWA 2013 - Lernen, Wissen & Adaptivit{\"a}t, Workshop Proceedings, Bamberg, 7.-9. October 2013},
+  editor = {Henrich, Andreas and Sperker, Hans-Christian},
+  institution = {Universit{\"a}t Bamberg},
+  year = 2013,
+  month = oct,
+}
+
 @PROCEEDINGS{LWA11,
   title = {Wissens- und Er\-fah\-rungs\-ma\-nage\-ment LWA (Lernen, Wissensentdeckung und Adaptivit{\"a}t) Conference Proceedings},
   booktitle = {Wissens- und Er\-fah\-rungs\-ma\-nage\-ment LWA (Lernen, Wissensentdeckung und Adaptivit{\"a}t) Conference Proceedings},
@@ -48929,13 +50204,13 @@ and Linking of Structured Knowledge ({CK})},
   isbn      = {0-521-78176-0}}
 
 @PROCEEDINGS{MKM04,
-  title = {Mathematical Knowledge Management, MKM'04},
+  title = {Mathematical Knowledge Management, {MKM'04}},
   year = {2004},
   editor = {Andrea Asperti and Grzegorz Bancerek and Andrej Trybulec},
   number = {3119},
   series = {LNAI},
   publisher = {Springer Verlag},
-  booktitle = {Mathematical Knowledge Management, {MKM}'04}}
+  booktitle = {Mathematical Knowledge Management, {MKM'04}}}
 
 @PROCEEDINGS{IJCAI99,
   year = {1999},
@@ -49788,7 +51063,7 @@ Lutz Schr{\"o}der and Shi Hui and Mattias Werner},
     Scientific Computing (SYNASC 03)},
   year = {2003},
   editor = {D. Petcu and D. Zaharie and V. Negru and T. Jebelean},
-  address = {Timisoara, \ROMANIA},
+  address = {Timisoara, Romania},
   publisher = {Mirton Publishing Company}}
 
 @PROCEEDINGS{SYNASC13,
@@ -49802,12 +51077,12 @@ Viorel Negru and
 Tetsuo Ida and 
 Tudor Jebelean and
 Dana Petcu and
-Stephen M. Watt ane
+Stephen M. Watt and
 Daniela Zaharie},
   publisher = {IEEE Press},
   isbn      = {978-1-4673-5026-6},
   ee        = {http://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=6480928},
-  address = {Timisoara, \ROMANIA}}
+  address = {Timisoara, Romania}}
 
 
 @PROCEEDINGS{OSEMA2011,
@@ -49915,7 +51190,7 @@ Daniela Zaharie},
    publisher = {Springer},
    location  = {Heidelberg},
    series    = {LNCS},
-   volume    = {8119},
+   number    = {8119},
    year      = {2013},
    isbn      = {978-3-642-40476-4}
 }
@@ -49927,8 +51202,29 @@ Daniela Zaharie},
    publisher = {Springer},
    location  = {Heidelberg},
    series    = {LNCS},
-   volume    = {8120},
+   number    = {8120},
    year      = {2013},
    isbn      = {978-3-642-40497-9}
 }
 
+@proceedings{IWSECO12,
+  editor    = {Slinger Jansen and Jan Bosch and Carina Frota Alves},
+  title     = {Proceedings of the Forth International Workshop on Software Ecosystems, Cambridge, MA, USA, June 18th, 2012},
+  booktitle = {IWSECO@ICSOB},
+  publisher = {CEUR-WS.org},
+  series    = {CEUR Workshop Proceedings},
+  number    = {879},
+  year      = {2012},
+  ee        = {http://ceur-ws.org/Vol-879},
+}
+
+@proceedings{DBLP:conf/mc/2007,
+  editor    = {Tom Gross},
+  title     = {Mensch {\&} Computer 2007: Konferenz f{\"u}r interaktive
+               und kooperative Medien, Bauhaus-Universit{\"a}t Weimar,
+               Weimar, Germany, 2-5 September 2007},
+  booktitle = {Mensch {\&} Computer},
+  publisher = {Oldenbourg Verlag},
+  year      = {2007},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}

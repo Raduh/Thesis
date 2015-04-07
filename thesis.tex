@@ -925,14 +925,17 @@ is too low.
 
 As soon as the relevance of schemata is improved, we can use the faceted search
 engine to provide mathematical definitions with the help of
-\textsf{NNexus}~\cite{GinCor:nnexusCICM13}. NNexus is an auto-linker for
+\textsf{NNexus}~\cite{GinCor:nnexus:14}. NNexus is an auto-linker for
 mathematical concepts from several encyclopedias, e.g. PlanetMath, Wikipedia.
 Assuming we are able to generate relevant schemata in response to keyword
 queries, we can target the faceted search engine with all the concepts stored
 by NNexus and store a schema for each such concept. Afterwards, for a given
 query, we can obtain the schema and check it against our stored set of
 schemata. If we find it, we can link the given expression to its mathematical
-definition.
+definition. Given a large number of stored concepts and a high schemata
+relevance, the user should be able to see the definition of any encountered
+formulae on the web. For example, hovering over $a^2 + b^2 = c^2$ will show the
+definition of the Pythagorean theorem.
 
 \printbibliography
 
