@@ -1,1 +1,1 @@
-BSc proposal for schema-search
+BSc thesis for schema-search
