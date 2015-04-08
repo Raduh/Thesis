@@ -574,9 +574,10 @@ the system in detail and describe the challenges faced during
 implementation.
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/SchemaArchitecture.png}
+    \includegraphics[scale=0.3]{img/SchemaArchitecture.png}
     \caption{Faceted search engine architecture}\label{fig:sys_architecture}
 \end{figure}
+\FloatBarrier
 
 \subsection{The Formula Schematizer}\label{subsec:fschematizer}
 The Schematizer is the central part of our system. It receives a set of
@@ -593,13 +594,16 @@ details, e.g. the index is read-only (therefore we cannot store extra data into
 the index nodes). Therefore, the overall idea/theory is the same, but now we take the
 following shortcut: instead of unifying every formula with the index, we just
 pretend we do and instead generate a ``signature'' for each formula. This
-signature is the path shown in Section~\ref{subsec:fsgAlgorithm}.
+signature is the path shown in Section~\ref{subsec:fsgAlgorithm}. We use the
+\mws encoding for \mathml nodes, where each node is assigned an integer ID
+based on its tag and text content. If the node is not a leaf, then only the tag
+is considered. The signature will be a vector of integer IDs, corresponding to
+the pre-order traversal of the \cmml tree.
 
 Naturally, the signature depends on the depth chosen for the cutoff heuristic.
 At depth 0, the signature consists only of the root token of the \cmml
 expression. At full depth (the maximum depth of the expression), the signature
 is the same as the depth-first traversal of the \cmml tree.
-\ednote{Explain encoding of tokens}
 \ednote{Add signature examples}
 
 Based on these computed signatures, we divide the input set of formulae into
@@ -654,6 +658,7 @@ size is not accessible to the user, to prevent abuses and reduce server load.
     \includegraphics[width=12.8cm]{img/frontend.png}
     \caption{Faceted search front-end}\label{fig:frontend}
 \end{figure}
+\FloatBarrier
 
 \subsection{ES aggregations}\label{subsec:esagg}
 Initially, the ``aggregations'' feature of Elasticsearch seemed to be a
@@ -695,6 +700,7 @@ Figure~\ref{fig:cmml_display} shows the initial results of the conversion.
     \includegraphics[width=12.8cm]{img/firstAttempt.jpg}
     \caption{Displaying Content MathML}\label{fig:cmml_display}
 \end{figure}
+\FloatBarrier
 
 It is clear that the conversion leads to somewhat disappointing results.
 Firstly, they are not recognizable and secondly, they contain left-over text
@@ -751,7 +757,7 @@ following rules:
         will use lowercase alphabetical letters from \textsf{a} to \textsf{z}
         preceded by a question mark (according to the \MWS tradition).
     \item If there are more than 26 qvars (thus exceeding the alphabet), we
-        name them $x_{1}, x_{2}, \ldots, x_{max_count}$, also preceded by a
+        name them $x_{1}, x_{2}, \ldots, x_{max\_count}$, also preceded by a
         question mark. This case should be extremely rare.
 \end{itemize}
 
@@ -777,6 +783,7 @@ are query variables (qvars).
     \includegraphics[width=12.8cm]{img/schemataGroup.png}
     \caption{Faceted results at depth 3}\label{fig:schemata_group}
 \end{figure}
+\FloatBarrier
 
 Figure~\ref{fig:schema_instantiation} shows the expansion of a formula class.
 There are three formulae in the class given by this particular math schema, as
@@ -820,6 +827,7 @@ in receiving relevant schemata as titles for the classes.
     \includegraphics[width=12.8cm]{img/schemaInstantiation.png}
     \caption{Expansion of a formula class}\label{fig:schema_instantiation}
 \end{figure}
+\FloatBarrier
 
 \subsection{Performance of the Schematizer}\label{subsec:sch_performance}
 We designed the Schematizer to be a very lightweight daemon, both as memory
@@ -860,6 +868,7 @@ substitution IDs.
     \includegraphics[width=12.8cm]{img/heapUsage.png}
     \caption{Schematizer heap usage for a query}\label{fig:heap_usage}
 \end{figure}
+\FloatBarrier
 
 All things considered, it is somewhat remarkable that the peak memory usage
 is at only 20 MB and only 15\% of one processor is in use for 1123 formulae.
