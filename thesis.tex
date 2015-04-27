@@ -30,6 +30,7 @@
 
 \def\red#1{\textcolor{red}{#1}}
 \def\MWS{\textsf{MWS}\xspace}
+\def\schemasearch{\textsf{SchemaSearch}\xspace}
 
 \usepackage{wrapfig}
 \usepackage{amsfonts}
@@ -241,7 +242,7 @@ added as a component to the structured search facility. However, there is still
 no possibility of faceted search on the math content of the documents.
 
 \begin{figure}[ht]\centering
-\includegraphics[width=12.7cm]{img/faceted-search.pdf}
+\includegraphics[width=12.1cm]{img/faceted-search.pdf}
 \caption{Faceted Search in ZBMath}\label{fig:zbFaceted}
 \end{figure}
 
@@ -668,9 +669,9 @@ user a choice on whether the operands cutoff should be absolute or relative.
 
 
 \subsection{Design Overview}\label{subsec:design_overview}
-\begin{wrapfigure}r{7.6cm}\vspace*{-1em}
-    \includegraphics[scale=0.3]{img/SchemaArchitecture.png}
-    \caption{Faceted search engine architecture}\label{fig:sys_architecture}
+\begin{wrapfigure}r{5.6cm}\vspace*{-1em}
+    \includegraphics[scale=0.15]{img/SchemaArchitecture.png}
+    \caption{FS engine architecture}\label{fig:sys_architecture}
 \end{wrapfigure}
 
 The full faceted search system comprises of the following components: the
@@ -779,8 +780,8 @@ depth should be absolute or relative. If relative, the depth should be given in
 percentages.
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/frontend_schema.png}
-    \caption{Faceted search front-end}\label{fig:frontend_schema}
+    \includegraphics[width=12.1cm]{img/frontend_schema.png}
+    \caption{SchemaSearch front-end}\label{fig:frontend_schema}
 \end{figure}
 \FloatBarrier
 
@@ -796,8 +797,8 @@ presented to the user. We discuss this in
 Section~\ref{subsec:fe_results_display2}.
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/frontend_temaV2.png}
-    \caption{Faceted search front-end}\label{fig:frontend_temaV2}
+    \includegraphics[width=12.1cm]{img/frontend_temaV2.png}
+    \caption{TemaV2 front-end}\label{fig:frontend_temaV2}
 \end{figure}
 \FloatBarrier
 
@@ -858,7 +859,7 @@ system provided by \latexml, we are able to find the corresponding PMML
 elements and substitute them with \verb|<mi>| tokens.
 
 \begin{figure}[ht]\centering
-    \includegraphics[scale=0.5]{img/replacement_pres.png}
+    \includegraphics[scale=0.3]{img/replacement_pres.png}
     \caption{Presentation by replacement}\label{fig:replacement_pres}
 \end{figure}
 \FloatBarrier
@@ -903,7 +904,7 @@ represents a formula class containing 10 formulae. The entities marked in red
 are query variables (qvars).
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/schemataGroup.png}
+    \includegraphics[width=12.1cm]{img/schemataGroup.png}
     \caption{Faceted results at depth 3}\label{fig:schemata_group}
 \end{figure}
 \FloatBarrier
@@ -918,7 +919,7 @@ the listing of concrete formulae appears. If the user clicks on one of them, he
 is redirected to the source document from which that expression was extracted.
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/schemaInstGood.png}
+    \includegraphics[width=12.1cm]{img/schemaInstGood.png}
     \caption{Expansion of a formula class 1}\label{fig:schema_instantiation}
 \end{figure}
 \FloatBarrier
@@ -929,7 +930,7 @@ abstract away the complexity of the formulae and obtain a ``summary'' of the
 meaning behind it. Also, by expanding the class he can explore several related
 formulae easily, because they are grouped together.
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/schemaInstGood3.png}
+    \includegraphics[width=12.1cm]{img/schemaInstGood3.png}
     \caption{Expansion of a formula class 2}\label{fig:schema_instantiation3}
 \end{figure}
 \FloatBarrier
@@ -941,7 +942,7 @@ the regular \tms results, the user is also presented with a ``Math Facets''
 section.
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/temaV2_results.png}
+    \includegraphics[width=12.1cm]{img/temaV2_results.png}
     \caption{Expansion of a formula class 1}\label{fig:temaV2_results}
 \end{figure}
 \FloatBarrier
@@ -954,7 +955,7 @@ schema and the initial keyword, which effectively filters the current
 results.
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/temaV2_facets.png}
+    \includegraphics[width=12.1cm]{img/temaV2_facets.png}
     \caption{Expansion of a formula class}\label{fig:temaV2_facets}
 \end{figure}
 \FloatBarrier
@@ -996,7 +997,7 @@ constant because we are only processing the signatures and finding the PMML
 substitution IDs.
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/heapUsage.png}
+    \includegraphics[width=12.1cm]{img/heapUsage.png}
     \caption{Schematizer heap usage for a query}\label{fig:heap_usage}
 \end{figure}
 \FloatBarrier
@@ -1068,15 +1069,14 @@ which can generate recognizable formula schemata and divide expressions into
 formula classes according to said schemata. Consequently, we have successfully
 addressed all challenges outlined in Section~\ref{subsec:prelim:goals}.
 
-Although the Schematizer provides easily recognizable formulae, some
-\textsf{SchemaSearch} queries (e.g. using an author as keyword) provide hits
-with a very low relevance. This is because we cannot distinguish between the
-work of the author and work where the author is cited at the textual level. As
-a consequence, searching for ``Fermat'' would also show formulae from papers
-where Fermat was cited and if these papers are numerous, as it happens with
-known authors, would provide the user with misleading results. This suggests
-that a better source of mathematical expressions might be required for the
-SchemaSearch demo.
+Although the Schematizer provides easily recognizable formulae, some queries on
+\schemasearch (e.g. using an author as keyword) provide hits with a very low
+relevance. This is because we cannot distinguish between the work of the author
+and work where the author is cited at the textual level. As a consequence,
+searching for ``Fermat'' would also show formulae from papers where Fermat was
+cited and if these papers are numerous, as it happens with known authors, would
+provide the user with misleading results. This suggests that a better source of
+mathematical expressions might be required for the SchemaSearch demo.
 
 \printbibliography
 
