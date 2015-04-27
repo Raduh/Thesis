@@ -536,8 +536,8 @@ expressions), we can find the set $\cF$ in the following way:
     \item Parse the given CMML expressions similarly to \MWS queries,
         to obtain their encoded DFS representations.
     \item Choose a reasonable cutoff heuristic, see~\ref{subsec:cutoffheur}.
-    \item Unify each expression with the index, up to a given threshold (given by
-        the above heuristic).
+    \item Unify each expression with the index, up to a given threshold (given
+        by the above heuristic).
     \item Keep a counter for every index path associated with the unifications.
         Since we only match up to a threshold, some formulae will be associated
         with the same path (excluding the leaves).
@@ -704,11 +704,11 @@ and can be integrated seamlessly with other applications.
 Although the algorithm described in Section~\ref{subsec:fsgAlgorithm} works
 well in theory, we needed to adapt it considering various \mws implementation
 details, e.g. the index is read-only (therefore we cannot store extra data into
-the index nodes). Therefore, the overall idea/theory is the same, but now we take the
-following shortcut: instead of unifying every formula with the index, we just
-pretend we do and instead generate a ``signature'' for each formula. This
-signature is the path shown in Section~\ref{subsec:fsgAlgorithm}. We use the
-\mws encoding for \mathml nodes, where each node is assigned an integer ID
+the index nodes). Therefore, the overall idea/theory is the same, but now we
+take the following shortcut: instead of unifying every formula with the index,
+we just pretend we do and instead generate a ``signature'' for each formula.
+This signature is the path shown in Section~\ref{subsec:fsgAlgorithm}. We use
+the \mws encoding for \mathml nodes, where each node is assigned an integer ID
 based on its tag and text content. If the node is not a leaf, then only the tag
 is considered. The signature will be a vector of integer IDs, corresponding to
 the pre-order traversal of the \cmml tree.
@@ -726,8 +726,8 @@ signature key. After filling the hash table, we sort it according to the number
 of formulae in a given class, since the signatures which cover the most
 formulae should come at the beginning of the reported result.
 
-The Schematizer caller can place a limit on the maximum number of schemata to be
-returned. If such a limit was specified, we apply it to our sorted list of
+The Schematizer caller can place a limit on the maximum number of schemata to
+be returned. If such a limit was specified, we apply it to our sorted list of
 signatures and take only the top ones.
 
 As a last step, we need to construct \cmml trees from the signatures,
@@ -771,11 +771,12 @@ mathematical faceted search.
 The \textsf{SchemaSearch} front-end provides just a textual search input field.
 It is intended for users who want an overview of the formulae contained in a
 corpus.
-As shown in figure~\ref{fig:frontend_schema}, the user can enter a set of keywords for
-the query, as well as a schema depth, which defaults to 3. The maximum result
-size is not accessible to the user, to prevent abuses and reduce server load.
-There is also an ``R'' checkbox which specifies if the cutoff depth should be
-absolute or relative. If relative, the depth should be given in percentages.
+As shown in figure~\ref{fig:frontend_schema}, the user can enter a set of
+keywords for the query, as well as a schema depth, which defaults to 3. The
+maximum result size is not accessible to the user, to prevent abuses and reduce
+server load.  There is also an ``R'' checkbox which specifies if the cutoff
+depth should be absolute or relative. If relative, the depth should be given in
+percentages.
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.8cm]{img/frontend_schema.png}
@@ -817,8 +818,8 @@ expressions and infrequently used important expressions since both of them
 ranked the same.
 
 As an added disadvantage of using aggregations, we must mention the time
-overhead. For obtaining accurate results over the entire index, several
-minutes were needed. In order to reach our target time of $\approx 10s$, we had to
+overhead. For obtaining accurate results over the entire index, several minutes
+were needed. In order to reach our target time of $\approx 10s$, we had to
 drastically shrink down the number of considered aggregations (down to 100).
 As mentioned before, all these 100 expressions were trivial.
 
