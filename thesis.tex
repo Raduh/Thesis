@@ -358,7 +358,22 @@ For fast retrieval, in the leaves of the substitution tree, \MWS stores
 and they are also used to store context and occurrences about the respective
 formula. They are stored in a separate LevelDB~\cite{leveldb:online} database.
 
-\ednote{Diagram for index and database}
+Figure~\ref{fig:simple_index} shows the core components of \MWS and the
+relationship between them. The most important component is the index which
+stores the encoded DFS traversal of the formulae from the corpus. This encoding
+(from \cmml elements to \textsf{TokenID}s) is handled by the Meaning
+Dictionary. As mentioned, each leaf of the index-trie has an associated
+\textsf{FormulaID}, which points to the \textsf{FormulaDB}. \textsf{FormulaDB}
+includes information about the \xpath and the source documents of every
+\textsf{FormulaID}. Finally, there is a \textsf{CrawlDB} database which stores
+crawled opaque data, which usually represents the textual part of the source
+documents.
+
+\begin{figure}[ht]\centering
+    \includegraphics[scale=0.3]{img/simple_index.png}
+    \caption{MWS core components}\label{fig:simple_index}
+\end{figure}
+\FloatBarrier
 
 \mws exposes a RESTful HTTP API which accepts \xml queries.
 A valid query must obey the \cmml format, potentially augmented with
@@ -477,7 +492,17 @@ later referenced from the corresponding \cmml element. In this manner, we can
 modify the \cmml tree and reflect the changes in the \pmml tree which can be
 displayed to the user.
 
-\ednote{Diagram of parallel markup}
+Figure~\ref{fig:crossreference_diag} illustrates the parallel markup for
+$\frac{2}{x+3}$. On the left side we have \pmml and on the right side, \cmml.
+As we can see, every Presentation element has a Content correspondent, except
+the \textsf{divide} operator.
+
+\begin{figure}[ht]\centering
+    \includegraphics[scale=0.3]{img/crossreference_diag.png}
+    \caption{The CMML/PMML parallel markup}\label{fig:crossreference_diag}
+\end{figure}
+\FloatBarrier
+
 
 \section{Implementation}\label{sec:implementation}
 
@@ -551,20 +576,109 @@ If there is no heuristic, two formulae would belong to the same class,
 only if they were identical. However, we want formulae that have something in
 common to be grouped together, even if they are not perfectly identical.
 
-One reasonable cutoff heuristic would be a certain expression depth, given as a
-parameter to the schema-engine.  In this way, a depth of 0 would always return
-$?x$ which corresponds to the 0-unification. The algorithm above is based on
-this heuristic.  Another possible choice for the cutoff would be expression
-length.  This would output formulae which begin the same way.
+\subsubsection{Absolute cutoff}\label{subsubsec:absolute_cutoff}
+One reasonable cutoff heuristic would be a fixed expression depth, given as a
+parameter to the Schematizer. In this way, a depth of 0 would always return
+$?x$ which corresponds to the 0-unification.
+Figure~\ref{fig:cutoff_naive} illustrates the absolute cutoff heuristic.
+On the left side, we have the initial \cmml representation for the formula
+$\frac{2}{x+3}$. Using an absolute cutoff depth of 1, we get the CMML
+representation of the schema shown on the right side.
 
-\ednote{Describe all heuristics (absolute, relative, dynamic, combined)}
+\begin{figure}[ht]\centering
+    \includegraphics[scale=0.3]{img/cutoff_naive.png}
+    \caption{Cutoff at a fixed depth}\label{fig:cutoff_naive}
+\end{figure}
+\FloatBarrier
+
+Using this heuristic, we are able to group together formulae which share a
+certain portion of their \cmml representation and return this shared portion as
+the group's schema. However, in practice this approach poses several
+disadvantages. By using a uniform cutoff for a given CMML tree, we might also
+remove the operator of an expression (first child of the \textsf{apply} node).
+This leads to unintuitive instantiations from the user point of view. For
+example, the schema $\red{?x} + \red{?y}$ will also include $a - b$ in its
+class, which is not desired since we only want to abstract out the operands of
+an expression.
+
+\subsubsection{Relative cutoff}\label{subsubsec:relative_cutoff}
+A slight improvement over the absolute cutoff heuristic would be to choose the
+cutoff depth depending on the depth of the CMML tree. For this, the user would
+specify a relative cutoff, e.g. $50\%$, and each tree would be truncated at
+that relative depth.
+
+On an individual basis, we are still using a uniform cutoff, so this approach
+also poses all disadvantages outlined in the previous section. The main
+advantage of this method stems from the ability to differentiate between
+complex and trivial formulae. If the cutoff were absolute, for low depths,
+complex formulae would be truncated into simple schema. This would mean that
+the user has the choice to either see only the simple schemata, or only the
+complex ones. By using the relative heuristic, both complex and simple schemata
+would share the result set.
+
+\subsubsection{Dynamic cutoff}\label{subsubsec:dynamic_cutoff}
+As we have already seen, a uniform cutoff heuristic is generally not the
+optimal choice as it also removes operators. We would like to ``schematize''an
+expression by abstracting out only the operands, while leaving the operators
+untouched. To do this, we can completely expand the first child of an
+\textsf{apply} tag and apply the cutoff depth (either absolute or relative)
+only to the other nodes. Figure~\ref{fig:cutoff_dynamic} illustrates this
+heuristic at depth 1. The \textsf{divide} element was kept, because it was the
+first child of \textsf{apply}, while the other children were removed.
+If we were to use a depth of 2, the \textsf{plus} element would also be
+included in the schema.
+
+\begin{figure}[ht]\centering
+    \includegraphics[scale=0.3]{img/cutoff_dynamic.png}
+    \caption{Dynamic cutoff}\label{fig:cutoff_dynamic}
+\end{figure}
+\FloatBarrier
+
+Although this method seems to yield recognizable schemata and classes with
+intuitive instantiations, it is relatively difficult to implement because the
+operator might occupy several levels (not just one, as shown in the figure) and
+we must do the expansion directly using the DFS traversal of the CMML tree.
+
+\subsubsection{Coverage-aware cutoff}\label{subsubsec:coverage_aware_cutoff}
+To report optimal results to the user, we could try a ``brute-force'' approach,
+in which we compute the schematization for a large range of fixed depths, and
+then select schemata with the \textit{best} coverage from all the results. The
+best coverage should not be too large (because this could mean it is a trivial
+schema) and also not too small (because this could mean the schema is not
+important). Consequently, we will choose several cutoffs for a given query.
+However, this method is very computationally expensive and defeats
+the \textsf{R3} goal of this project.
+
+\subsubsection{Length based cutoff}\label{subsubsec:length_based_cutoff}
+Another possibility is to place the cutoff on length, instead of depth. This
+method would group together formulae which begin the same way. To implement
+a length based cutoff, we generate the DFS encoding of a formula and then take
+the first $n$ tokens, where $n$ is a given cutoff. Despite being relatively
+easy to implement and fast to compute, this heuristic would generate results
+which are not as interesting as those generated by a depth based heuristic
+(because the former will only show the first few elements in a formula, whereas
+the latter will also show the last tokens).
+
+\subsubsection{Combining heuristics}\label{subsubsec:combining_cutoffs}
+As we have seen, there are several advantages and drawbacks associated with
+each heuristic. Since the coverage-aware cutoff is too expensive to compute and
+the length-based cutoff does not generate interesting enough results, we
+will ignore them when proposing the following combined heuristic. In our
+project we use the dynamic cutoff (thus preserving operators) and offer the
+user a choice on whether the operands cutoff should be absolute or relative.
+
 
 \subsection{Design Overview}\label{subsec:design_overview}
+\begin{wrapfigure}r{7.6cm}\vspace*{-1em}
+    \includegraphics[scale=0.3]{img/SchemaArchitecture.png}
+    \caption{Faceted search engine architecture}\label{fig:sys_architecture}
+\end{wrapfigure}
+
 The full faceted search system comprises of the following components: the
 Formula Schematizer~\ref{subsec:fschematizer}, Elasticsearch, a proxy to
 mediate communication between the Schematizer and Elasticsearch and a Web
 front-end. The architecture of the system is shown in
-Figure~\ref{fig:sys_architecture}. \ednote{replace Classifier with Schematizer}
+Figure~\ref{fig:sys_architecture}. 
 
 Once the user enters a query (which consists of keywords and a depth), the
 front-end forwards the request to a back-end proxy. The proxy sends the
@@ -577,13 +691,7 @@ result to the front-end which displays it to the user.
 
 In the following sections, I will explain the core components of
 the system in detail and describe the challenges faced during
-implementation. \ednote{make figure a wrap figure}
-
-\begin{figure}[ht]\centering
-    \includegraphics[scale=0.3]{img/SchemaArchitecture.png}
-    \caption{Faceted search engine architecture}\label{fig:sys_architecture}
-\end{figure}
-\FloatBarrier
+implementation.
 
 \subsection{The Formula Schematizer}\label{subsec:fschematizer}
 The Schematizer is the central part of our system. It receives a set of
@@ -610,7 +718,6 @@ Naturally, the signature depends on the depth chosen for the cutoff heuristic.
 At depth 0, the signature consists only of the root token of the \cmml
 expression. At full depth (the maximum depth of the expression), the signature
 is the same as the depth-first traversal of the \cmml tree.
-\ednote{Add signature examples}
 
 Based on these computed signatures, we divide the input set of formulae into
 formula classes, i.e. all formulae with the same signature belong to the same
@@ -696,57 +803,37 @@ process more than ten thousand formulae in less than five seconds, which is a
 drastic improvement from the approach using aggregations.
 
 \subsection{Presentation by replacement}\label{subsec:make_sch_recog}
-\ednote{Avoid making it sound like a failed attempt}
-As explained in Section~\ref{subsec:fschematizer}, the initial Schematizer
-returned formula schemata as \cmml. Naturally, we would need to transform it to
-\pmml in order to be able to display it to the user. For this purpose we used
-and XSL stylesheet written by David Carlisle~\cite{carlisle:online}. 
-Figure~\ref{fig:cmml_display} shows the initial results of the conversion.
+After obtaining the schemata and formula classes, we need to be able to display
+the result to the user. One possibility would be to have the Schematizer return
+\cmml expressions for the schemata and use an XSL
+stylesheet~\cite{carlisle:online} to convert them to \pmml. This approach
+would unfortunately generate unrecognizable schemata due to the inherent
+ambiguity of CMML. For instance, a \textsf{csymbol} element can be
+represented in several different ways depending on the notation being used.
+Additionally, we cannot reliably foresee all possible rules that should be
+implemented in the stylesheet and as a consequence some formulae will be
+wrongly converted.
+
+Since the XSL conversion is unreliable, we will make use of the cross-reference
+system provided by \latexml, as discussed in Section~\ref{subsec:latexml}.
+Instead of returning \cmml expressions, the Schematizer will use the first
+formula in each class as a template and ``punch holes into it'', effectively
+returning the ID of the nodes that are to be substituted with query variables.
+We will use this IDs to replace the referenced PMML nodes with \verb|<mi>|
+nodes representing the qvars.
+
+Figure~\ref{fig:replacement_pres} shows the presentation by replacement
+technique for a given schema. The Schematizer returned a schema which was
+checked against the first formula in its class ($\frac{2}{x+3}$) to generate
+two substitutions, marked with red on the left side. Due to the cross-reference
+system provided by \latexml, we are able to find the corresponding PMML
+elements and substitute them with \verb|<mi>| tokens.
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/firstAttempt.jpg}
-    \caption{Displaying Content MathML}\label{fig:cmml_display}
+    \includegraphics[scale=0.5]{img/replacement_pres.png}
+    \caption{Presentation by replacement}\label{fig:replacement_pres}
 \end{figure}
 \FloatBarrier
-
-It is clear that the conversion leads to somewhat disappointing results.
-Firstly, they are not recognizable and secondly, they contain left-over text
-such as ``subscript'', ``superscript'', ``normal'', etc.
-On a deeper analysis, we can point out two causes for this strange behaviour.
-
-The reason why schemata are hard to recognize is the inherent ambiguity of
-CMML. For instance, a \textsf{csymbol} element can be represented in at least
-three different ways depending on the notation being used.
-Also, the two applications \verb|apply(f, a, b)| and \verb|apply(+, a, b)| are
-described similarly by CMML, but represented in a different manner by PMML. If
-the Schematizer replaces the tokens \verb|f|, \verb|a| and
-\verb|b| with query variables, both the of applications will be displayed as
-\verb|?x1(?x2, ?x3)|, even though we would expect \verb|?x1| to be infix
-when it represents the plus operator.
-
-The reason for the left-over text is even simpler: the stylesheet does not
-implement enough conversion rules, so it is not able to convert
-\verb|subscript|, \verb|superscript| and other elements to PMML.
-
-Although this was a significant hindrance for the faceted search engine, we
-managed to overcome it by making use of the cross-reference system
-provided by \latexml, as discussed in Section~\ref{subsec:latexml}. 
-Instead of returning \cmml expressions, the Schematizer will use the first
-formula in each class as a template and ``punch holes into
-it'', effectively returning the ID of the nodes
-that are to be substituted with query variables. We will use this IDs to
-replace the referenced PMML nodes with \verb|<mi>| nodes representing the
-qvars.
-
-The procedure above will solve the left-over text issues, using the template's
-initial layout which is valid \pmml. However, we still need to display the
-schemata in a way which provides intuition about its class. Heuristically,
-we can just keep the first child of apply (the operator) unsubstituted and
-replace only the other children (the operands) with query variables.
-The results obtained using this heuristic and the cross-reference system are
-further discussed in Section~\ref{sec:evaluation}.
-\ednote{Make a concrete and meaningful example}
-\ednote{Explain that we don't replace the first child of apply and why}
 
 \subsection{Naming query variables}\label{subsec:naming_qvars}
 As discussed in the section before, we will need a template to modify in order
@@ -769,15 +856,24 @@ following rules:
 \end{itemize}
 
 \section{Evaluation}\label{sec:evaluation}
-In this section, we will present an evaluation of our faceted search engine.
-Firstly, we will examine the front-end (\ref{subsec:fe_results_display}),
-obtained after applying the heuristics and improvements described in the
-Implementation section. Next, we will analyze the performance of the
-Schematizer deployed on an \arxiv index (\ref{subsec:sch_performance}).
-In the end, we will look at the API that the Schematizer exposes and elaborate
-on its potential (\ref{subsec:schematizer_api}).
 
-\subsection{Front-End results displaying}\label{subsec:fe_results_display}
+In this section, we will present an evaluation of our faceted search engine.
+To show the capability of the Schematizer we have prepared two demos.
+The first one~\ref{subsec:fe_results_display1} is a text-only search engine
+which returns the math from the matching documents, after running it through
+the Schematizer. This is the main demo for showcasing the schematization
+process. The second one~\ref{subsec:fe_results_display12} is a direct
+application of the Schematizer into a Math Search Engine which is capable of
+mathematical faceted search.
+Firstly, we will examine the 2 front-ends, obtained after applying the
+heuristics and improvements described in the Implementation section. Next, we
+will analyze the performance of the Schematizer deployed on an \arxiv index
+(\ref{subsec:sch_performance}). In the end, we will look at the API that the
+Schematizer exposes and elaborate on its potential
+(\ref{subsec:schematizer_api}).
+
+\subsection{SchemaSearch front-end}\label{subsec:fe_results_display1}
+\ednote{Intro to this front-end}
 Figure~\ref{fig:schemata_group} shows the formula schemata at depth 3 for a
 query containing the keyword ``Kohlhase''. By default, the top 40 schemata are
 shown, but the results are truncated for brevity.
@@ -791,53 +887,35 @@ are query variables (qvars).
     \caption{Faceted results at depth 3}\label{fig:schemata_group}
 \end{figure}
 \FloatBarrier
-\ednote{Bigger font}
 
 Figure~\ref{fig:schema_instantiation} shows the expansion of a formula class.
-There are three formulae in the class given by this particular math schema, as
-indicated by the count on the left upper side. We have one named query
-variable, corresponding to a \cmml leaf and 7 anonymous ones marked with
-letters from \verb|a| to \verb|g|. 
-\ednote{link the formulae to papers}
-
-As explained in Section~\ref{subsec:make_sch_recog}, the first formula from the
-class was also used as a template to solve CMML ambiguities. This fact is
-easily noticeable by comparing the first formula with the math schema. It is
-very intuitive that the former is an instantiation of the latter. We can see
-that the named qvar $\red{Z}$ instantiates to $Z$, as expected since it is a
-leaf. Other elements from the formula are at a higher depth, so entire
-nodes are replaced by the qvars, for example $\red{?b}$ replaces $m^{2}_{R}$.
-
-\ednote{Remove discussion about less intuitive instantiation}
-Despite the close relation between the first member of the class and the
-schema, it is slightly less intuitive to see why the other formulae from the
-class are instantiations. Between $\red{Z}$ and $\red{?a}$ there is an
-invisible times operator. Given the presence of this operator, the left
-hand-side of the equality can be expressed in CMML as
-\verb|apply(times, Z, ?a)|, which is equivalent to \verb|apply(f, k, 0)|
-because all arguments of apply are below the cut-off depth. Since we decided to
-keep the first child of apply (the operator) unsubstituted, the left hand-side
-might not initially appear as a function application.
-
-A similar issue arises with $\red{?b} + \red{?c}$ and $\frac{1}{\sqrt{W_k}}$.
-The user could be under the impression that the former is an addition between
-two qvars, when it is actually a function application to two qvars. The
-operator of this function application is division for the second formula.
-Since both the schema operator (addition) and the formula's operator (division)
-are below the cut-off depth, the CMML structure is essentially the same (up to
-the cut-off depth).
-
-As we have seen, there is an important trade-off to be made. We can either show
-a very cryptic schema which instantiates somewhat more intuitively, or show an
-easily recognizable schema with less intuitive instantiations. We have opted
-for the second choice, because it seems that the user would be more interested
-in receiving relevant schemata as titles for the classes.
+There are $22$ formulae in the class given by this particular math schema, as
+indicated by the count on the left upper side, out of which only ten are shown.
+We can see $2$ unnamed query variables marked with red as $\red{?a}$ and
+$\red{?b}$. By seeing the schema, the user can form an impression about the
+general structure of the formulae from that class. After expanding the class,
+the listing of concrete formulae appears. If the user clicks on one of them, he
+is redirected to the source document from which that expression was extracted.
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/schemaInstantiation.png}
-    \caption{Expansion of a formula class}\label{fig:schema_instantiation}
+    \includegraphics[width=12.8cm]{img/schemaInstGood.png}
+    \caption{Expansion of a formula class 1}\label{fig:schema_instantiation}
 \end{figure}
 \FloatBarrier
+
+Another class expansion which showcases the schematization can be seen in
+Figure~\ref{fig:schema_instantiation3}. By seeing this schema, the user can
+abstract away the complexity of the formulae and obtain a ``summary'' of the
+meaning behind it. Also, by expanding the class he can explore several related
+formulae easily, because they are grouped together.
+\begin{figure}[ht]\centering
+    \includegraphics[width=12.8cm]{img/schemaInstGood3.png}
+    \caption{Expansion of a formula class 2}\label{fig:schema_instantiation3}
+\end{figure}
+\FloatBarrier
+
+\subsection{TemaV2 front-end}\label{subsec:fe_results_display2}
+\ednote{Write this section}
 
 \subsection{Performance of the Schematizer}\label{subsec:sch_performance}
 We designed the Schematizer to be a very lightweight daemon, both as memory
@@ -898,24 +976,6 @@ XML) and \textsf{depth} (the depth for cut-off).  If JSON is used for the
 output, the IDs of PMML substitutions will be returned. If XML is used, formula
 schemata in CMML format will be returned.
 
-\section{Conclusion}\label{sec:conclusion}
-We have presented the design and implementation of a system capable of faceted
-search. Moreover, we have described a general-purpose Schematizer which can
-generate formula schemata and divide expressions into formula classes according
-to said schemata. Consequently, we have successfully addressed all challenges
-outlined in Section~\ref{subsec:prelim:goals}.
-
-Although the Schematizer provides easily recognizable formulae, some
-instantiations might be counterintuitive, which suggests a better cut-off
-heuristic is needed. Also, some queries (e.g. using an author as keyword)
-provide hits with a very low relevance.  This is because we cannot distinguish
-between the work of the author and work where the author is cited at the
-textual level. As a consequence, searching for ``Fermat'' would also show
-formulae from papers where Fermat was cited and if these papers are numerous,
-as it happens with known authors, would provide the user with misleading
-results. This suggests that a better source of mathematical expressions might
-be required for the Schematizer.
-
 \section{Applications and future work}\label{sec:future}
 As we have already noted in the sections before, the most important improvement
 we can bring to our faceted search engine is a more relevant source of
@@ -955,8 +1015,27 @@ definition. Given a large number of stored concepts and a high schemata
 relevance, the user should be able to see the definition of any encountered
 formulae on the web. For example, hovering over $a^2 + b^2 = c^2$ will show the
 definition of the Pythagorean theorem.
+
+\section{Conclusion}\label{sec:conclusion}
+We have presented the design and implementation of a system capable of faceted
+search. Moreover, we have described a general-purpose Schematizer which can
+generate formula schemata and divide expressions into formula classes according
+to said schemata. Consequently, we have successfully addressed all challenges
+outlined in Section~\ref{subsec:prelim:goals}.
+
+Although the Schematizer provides easily recognizable formulae, some
+instantiations might be counterintuitive, which suggests a better cut-off
+heuristic is needed. Also, some queries (e.g. using an author as keyword)
+provide hits with a very low relevance.  This is because we cannot distinguish
+between the work of the author and work where the author is cited at the
+textual level. As a consequence, searching for ``Fermat'' would also show
+formulae from papers where Fermat was cited and if these papers are numerous,
+as it happens with known authors, would provide the user with misleading
+results. This suggests that a better source of mathematical expressions might
+be required for the Schematizer.
+
 \ednote{Discussion about Ranking, Symsearch}
-\ednote{Move Conclusion at the end}
+\ednote{Rewrite conclusion}
 
 \printbibliography
 
