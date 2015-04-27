@@ -1,5 +1,4 @@
-The \textsf{SchemataSearch} 
-
+\documentclass[a4paper,oneside]{article}
 \usepackage{times}
 \usepackage{parskip}
 \usepackage{tikz}
@@ -936,8 +935,9 @@ formulae easily, because they are grouped together.
 
 \subsection{TemaV2 front-end}\label{subsec:fe_results_display2}
 Figure~\ref{fig:temaV2_results} shows the results of a query for ``Fermat'' and
-$\red{?a}^\red{?n} + \red{?b}^\red{?n}=\red{?c}^\red{?n}$. Besides the regular
-\tms results, the user is also presented with a ``Math Facets'' section.
+${\red{?a}}^{\red{?n}} + {\red{?b}}^{\red{?n}}={\red{?c}}^{\red{?n}}$. Besides
+the regular \tms results, the user is also presented with a ``Math Facets''
+section.
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.8cm]{img/temaV2_results.png}
@@ -1019,7 +1019,7 @@ The content of the GET request must be an \xml document, which \verb|mws:query|
 as the root element. The children of the \verb|mws:query| are the expressions
 to be schematized in \cmml format. The attributes of the query are
 \textsf{answsize} (the maximum number of schemata), \textsf{output} (JSON or
-XML), \textsf{depth} (the depth for cutoff) and \texsf{cutoff\_mode}
+XML), \textsf{depth} (the depth for cutoff) and \textsf{cutoff\_mode}
 (specifying whether the cutoff should be absolute or relative).  If JSON is
 used for the output, the IDs of PMML substitutions will be returned. If XML is
 used, formula schemata in CMML format will be returned.
