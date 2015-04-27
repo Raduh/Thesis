@@ -1,4 +1,4 @@
-\documentclass[a4paper,oneside]{article}
+The \textsf{SchemataSearch} 
 
 \usepackage{times}
 \usepackage{parskip}
@@ -760,16 +760,44 @@ Once the Schematizer has generated schemata and has classified the formulae,
 the proxy assembles the results into a JSON object which it sends to the
 front-end.
 
-\subsection{The Front-End}\label{subsec:frontend}
-To demonstrate the capabilities of the Schematizer, as well as provide an
-access point for the user, a simple front-end was developed.
-As shown in figure~\ref{fig:frontend}, the user can enter a set of keywords for
+\subsection{The Front-End}\label{subsec:frontend_schema}
+To show the capabilities of the Schematizer we have prepared two demos.
+The first one is a text-only search engine which returns the math from the
+matching documents, after running it through the Schematizer. This is the demo
+for showcasing the schematization process. The second one is a direct
+application of the Schematizer into a Math Search Engine which is capable of
+mathematical faceted search.
+
+\subsubsection{SchemaSearch}
+The \textsf{SchemaSearch} front-end provides just a textual search input field.
+It is intended for users who want an overview of the formulae contained in a
+corpus.
+As shown in figure~\ref{fig:frontend_schema}, the user can enter a set of keywords for
 the query, as well as a schema depth, which defaults to 3. The maximum result
 size is not accessible to the user, to prevent abuses and reduce server load.
+There is also an ``R'' checkbox which specifies if the cutoff depth should be
+absolute or relative. If relative, the depth should be given in percentages.
 
 \begin{figure}[ht]\centering
-    \includegraphics[width=12.8cm]{img/frontend.png}
-    \caption{Faceted search front-end}\label{fig:frontend}
+    \includegraphics[width=12.8cm]{img/frontend_schema.png}
+    \caption{Faceted search front-end}\label{fig:frontend_schema}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{TemaV2}
+The \textsf{TemaV2} front-end extends \tms to be able to perform mathematical
+faceted search. It is intended for users who want to filter query results based
+on a given facet (formula schema in this case).
+The look and feel is similar to the previous version of \tms,
+as shown in Figure~\ref{fig:frontend_temaV2}, where the first input field is
+used to specify keywords and the second one is used to specify \latex-style
+formulae for the query. When returning results, a ``Math Facets'' menu will be
+presented to the user. We discuss this in
+Section~\ref{subsec:fe_results_display2}.
+
+\begin{figure}[ht]\centering
+    \includegraphics[width=12.8cm]{img/frontend_temaV2.png}
+    \caption{Faceted search front-end}\label{fig:frontend_temaV2}
 \end{figure}
 \FloatBarrier
 
@@ -858,13 +886,6 @@ following rules:
 \section{Evaluation}\label{sec:evaluation}
 
 In this section, we will present an evaluation of our faceted search engine.
-To show the capability of the Schematizer we have prepared two demos.
-The first one~\ref{subsec:fe_results_display1} is a text-only search engine
-which returns the math from the matching documents, after running it through
-the Schematizer. This is the main demo for showcasing the schematization
-process. The second one~\ref{subsec:fe_results_display12} is a direct
-application of the Schematizer into a Math Search Engine which is capable of
-mathematical faceted search.
 Firstly, we will examine the 2 front-ends, obtained after applying the
 heuristics and improvements described in the Implementation section. Next, we
 will analyze the performance of the Schematizer deployed on an \arxiv index
@@ -873,7 +894,6 @@ Schematizer exposes and elaborate on its potential
 (\ref{subsec:schematizer_api}).
 
 \subsection{SchemaSearch front-end}\label{subsec:fe_results_display1}
-\ednote{Intro to this front-end}
 Figure~\ref{fig:schemata_group} shows the formula schemata at depth 3 for a
 query containing the keyword ``Kohlhase''. By default, the top 40 schemata are
 shown, but the results are truncated for brevity.
@@ -915,7 +935,29 @@ formulae easily, because they are grouped together.
 \FloatBarrier
 
 \subsection{TemaV2 front-end}\label{subsec:fe_results_display2}
-\ednote{Write this section}
+Figure~\ref{fig:temaV2_results} shows the results of a query for ``Fermat'' and
+$\red{?a}^\red{?n} + \red{?b}^\red{?n}=\red{?c}^\red{?n}$. Besides the regular
+\tms results, the user is also presented with a ``Math Facets'' section.
+
+\begin{figure}[ht]\centering
+    \includegraphics[width=12.8cm]{img/temaV2_results.png}
+    \caption{Expansion of a formula class 1}\label{fig:temaV2_results}
+\end{figure}
+\FloatBarrier
+
+When the ``Math Facets'' section is expanded the user can see the top 10
+schemata (ranked with respect to their coverage), as shown in
+Figure~\ref{fig:temaV2:facets}. We have also implemented a ``search-on-click''
+functionality that allows the user the do a fresh search using the clicked
+schema and the initial keyword, which effectively filters the current
+results.
+
+\begin{figure}[ht]\centering
+    \includegraphics[width=12.8cm]{img/temaV2_facets.png}
+    \caption{Expansion of a formula class}\label{fig:temaV2_facets}
+\end{figure}
+\FloatBarrier
+
 
 \subsection{Performance of the Schematizer}\label{subsec:sch_performance}
 We designed the Schematizer to be a very lightweight daemon, both as memory
@@ -964,6 +1006,11 @@ Considering the linear complexity, we can accommodate several millions of
 formulae on the mentioned server:
 $$80 GB \cdot \frac{1123}{20 MB} \approx 4.5 \cdot {10}^{6} \text{formulae}$$
 
+Due to its implementation, the Schematizer is indefinitely scalable, because it
+does not require shared state between formulae and can therefore be implemented
+as a MapReduce~\cite{mapreduce} job, where mappers compute the signature of
+assigned formulae and reducers assemble the signature hash table.
+
 \subsection{The API}\label{subsec:schematizer_api}
 Another relevant point of interest in the Schematizer is its simple, but
 sufficient API. By providing an HTTP endpoint, any application which wishes to
@@ -972,43 +1019,32 @@ The content of the GET request must be an \xml document, which \verb|mws:query|
 as the root element. The children of the \verb|mws:query| are the expressions
 to be schematized in \cmml format. The attributes of the query are
 \textsf{answsize} (the maximum number of schemata), \textsf{output} (JSON or
-XML) and \textsf{depth} (the depth for cut-off).  If JSON is used for the
-output, the IDs of PMML substitutions will be returned. If XML is used, formula
-schemata in CMML format will be returned.
+XML), \textsf{depth} (the depth for cutoff) and \texsf{cutoff\_mode}
+(specifying whether the cutoff should be absolute or relative).  If JSON is
+used for the output, the IDs of PMML substitutions will be returned. If XML is
+used, formula schemata in CMML format will be returned.
 
 \section{Applications and future work}\label{sec:future}
-As we have already noted in the sections before, the most important improvement
-we can bring to our faceted search engine is a more relevant source of
-formulae. One such source would be \mws. After running a regular \MWS query,
-the resulting math hits can be passed to the Schematizer and again divided into
-formula classes. This approach would have the advantage of using curated
-formulae focused in a specific direction. If the user searches for ``Fermat'',
-he might also provide the math query
-${\red{?a}}^{\red{?n}} + {\red{?b}}^{\red{?n}}={\red{?c}}^{\red{?n}}$.
-By the design of \mws, we would already receive relevant results and we just
-need to classify them and use a suitable description (the schema) for the
-classes. Moreover, since the query hits must be instantiations of the query,
-they would all be structurally similar and hence the relationship between the
-hits from a class and the schema will become much more intuitive.
+One improvement angle that can be worked on is the ranking of the schemata.
+We have used a simple method, ranking them in decreasing order of coverage,
+thus having the schema with most formulae in its class on the first place.
+However, this is not always a good approach. When users look at the facets,
+it is usually because they were not able to find what they were hoping for
+(because the result set is too large). The first schemata cover most of the
+formulae users have already looked at, so they are not of interest.
+However, the last schemata are not of interest either, because they typically
+only cover very rare formulae (1-2 occurrences). A good ranking approach would
+place the \textit{medium-coverage} schemata first, then the top-coverage and
+then the low-coverage. In order to define precisely what is the range for
+medium-coverage, further research is required.
 
-Another improvement angle that can be worked on is the cut-off heuristic. A
-good idea might be to use a higher cut-off depth for the first child of apply
-(the operator) and a lower cut-off for the other children of apply (the
-operands). This would lead to operator leaves being reached faster than other
-leafs, which in turn would cause formulae with different operators to separate
-into different classes. This should favorably influence the relevance and
-appearance of the results since instantiations will become more
-recognizable to the user. In our current approach, with a constant cut-off depth,
-operators might be treated in the same manner for two formulae, if the cut-off
-is too low.
-
-As soon as the relevance of schemata is improved, we can use the faceted search
-engine to provide mathematical definitions with the help of
+One other application of the faceted search engine can be providing
+mathematical definitions with the help of
 \textsf{NNexus}~\cite{GinCor:nnexus:14}. NNexus is an auto-linker for
-mathematical concepts from several encyclopedias, e.g. PlanetMath, Wikipedia.
+mathematical concepts from several encyclopedias, e.g.  PlanetMath, Wikipedia.
 Assuming we are able to generate relevant schemata in response to keyword
 queries, we can target the faceted search engine with all the concepts stored
-by NNexus and store a schema for each such concept. Afterwards, for a given
+by NNexus and store a schema for each such concept.  Afterwards, for a given
 query, we can obtain the schema and check it against our stored set of
 schemata. If we find it, we can link the given expression to its mathematical
 definition. Given a large number of stored concepts and a high schemata
@@ -1016,26 +1052,30 @@ relevance, the user should be able to see the definition of any encountered
 formulae on the web. For example, hovering over $a^2 + b^2 = c^2$ will show the
 definition of the Pythagorean theorem.
 
+Another, more direct, application of the Schematizer would be
+\textit{Similarity Search}. One could create a \mws based search engine, which
+accepts an input formula and a similarity degree (between 0\% and 100\%). The
+engine would then create a formula schema at a relative depth corresponding to
+the similarity degree and use this schema to search the corpus. This approach
+defines the similarity between two formulae as the percentage of the CMML tree
+depth that they share.
+
 \section{Conclusion}\label{sec:conclusion}
 We have presented the design and implementation of a system capable of faceted
-search. Moreover, we have described a general-purpose Schematizer which can
-generate formula schemata and divide expressions into formula classes according
-to said schemata. Consequently, we have successfully addressed all challenges
-outlined in Section~\ref{subsec:prelim:goals}.
+search. Moreover, we have described a general-purpose scalable Schematizer
+which can generate recognizable formula schemata and divide expressions into
+formula classes according to said schemata. Consequently, we have successfully
+addressed all challenges outlined in Section~\ref{subsec:prelim:goals}.
 
 Although the Schematizer provides easily recognizable formulae, some
-instantiations might be counterintuitive, which suggests a better cut-off
-heuristic is needed. Also, some queries (e.g. using an author as keyword)
-provide hits with a very low relevance.  This is because we cannot distinguish
-between the work of the author and work where the author is cited at the
-textual level. As a consequence, searching for ``Fermat'' would also show
-formulae from papers where Fermat was cited and if these papers are numerous,
-as it happens with known authors, would provide the user with misleading
-results. This suggests that a better source of mathematical expressions might
-be required for the Schematizer.
-
-\ednote{Discussion about Ranking, Symsearch}
-\ednote{Rewrite conclusion}
+\textsf{SchemaSearch} queries (e.g. using an author as keyword) provide hits
+with a very low relevance. This is because we cannot distinguish between the
+work of the author and work where the author is cited at the textual level. As
+a consequence, searching for ``Fermat'' would also show formulae from papers
+where Fermat was cited and if these papers are numerous, as it happens with
+known authors, would provide the user with misleading results. This suggests
+that a better source of mathematical expressions might be required for the
+SchemaSearch demo.
 
 \printbibliography
 
