@@ -920,7 +920,7 @@ is redirected to the source document from which that expression was extracted.
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.1cm]{img/schemaInstGood.png}
-    \caption{Expansion of a formula class 1}\label{fig:schema_instantiation}
+    \caption{Expansion of a formula class}\label{fig:schema_instantiation}
 \end{figure}
 \FloatBarrier
 
@@ -931,7 +931,7 @@ meaning behind it. Also, by expanding the class he can explore several related
 formulae easily, because they are grouped together.
 \begin{figure}[ht]\centering
     \includegraphics[width=12.1cm]{img/schemaInstGood3.png}
-    \caption{Expansion of a formula class 2}\label{fig:schema_instantiation3}
+    \caption{Math facets in TeMa V2}\label{fig:schema_instantiation3}
 \end{figure}
 \FloatBarrier
 
@@ -967,8 +967,8 @@ requirements and as CPU usage. To test if we achieved this goal, we benchmarked
 it on a server running Linux 3.2.0, with 10 cores (Intel Xeon CPU E5-2650
 2.00GHz) and 80 GB of RAM. 
 
-We obtained the 1123 expressions to be schematized by querying Elasticsearch by
-the keyword ``Fermat''. While the overall time taken by the faceted search
+We obtained the 1123 expressions to be schematized by querying Elasticsearch
+with the keyword ``Fermat''. While the overall time taken by the faceted search
 engine was around 5 seconds, less than a second was spent in the Schematizer.
 Also, the CPU utilized by the Schematizer never rose higher than 15\% (as
 indicated by the \textsf{top} utility). Asymptotically, the algorithm would run
