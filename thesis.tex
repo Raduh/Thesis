@@ -550,12 +550,10 @@ the \textsf{divide} operator.
 \end{figure}
 \FloatBarrier
 
-
-\section{Implementation}\label{sec:implementation}
-
-In this section, I explain the key details of the formula classifier's
-implementation, the overall system architecture, as well as the challenges and
-trade-offs associated with the taken design decisions.
+\section{Schematization of Formula Sets}\label{sec:schematization_fs}
+In this section, I provide a theoretical approach to the problem of generating
+formula schemata, by formalizing the problem and describing an efficient
+algorithm to solve it.
 
 \subsection{Formalizing the Problem}\label{subsec:formal_problem}
 Let us now formulate the problem at hand more carefully.
@@ -714,6 +712,12 @@ will ignore them when proposing the following combined heuristic. In our
 project we use the dynamic cutoff (thus preserving operators) and offer the
 user a choice on whether the operands cutoff should be absolute or relative.
 
+
+\section{Implementation}\label{sec:implementation}
+
+In this section, I explain the key details of the formula classifier's
+implementation, the overall system architecture, as well as the challenges and
+trade-offs associated with the taken design decisions.
 
 \subsection{Design Overview}\label{subsec:design_overview}
 \begin{wrapfigure}r{5.6cm}\vspace*{-1em}
