@@ -372,28 +372,28 @@ documents.
 We can exemplify the role played by the \MWS components using
 Listing~\ref{lst:harvest_ex}, which shows a simple harvest containing some
 opaque data (``\textit{Addition of variables.}'') and the expression $a+b$.
-The data element is referenced by the expression using the \textsf{data_id}
+The data element is referenced by the expression using the \textsf{data\_id}
 attribute (which has the value $0$ in this example).
 If \MWS indexes this harvest, its content will be split among the
 components in the following manner:
 
 \begin{itemize}
     \item The Meaning Dictionary will contain the encoding $\{(0,
-            \mtext{apply}), (1, \mtext{plus}), (2, \mtext{ci#a}), (3,
-        \mtext{ci#b})\}$. This means that the \textsf{TokenID} $0$ will be
+            \text{apply}), (1, \text{plus}), (2, \text{ci\#a}), (3,
+        \text{ci\#b})\}$. This means that the \textsf{TokenID} $0$ will be
         decoded as an ``apply'' node, the \textsf{TokenID} $2$ will be decoded
         as a ``ci'' node with ``a'' as content, etc.
     \item The Index will be a tree with one branch containing the encoded DFS
         traversal of the expression, which is``0 -> 1 -> 2 -> 3''. The leaf of
         this branch will have a \textsf{LeafID} of 1.
     \item The Formula DB will contain a mapping from $1$ (the \textsf{LeafID}
-        of the indexed expression) to $[\mtext{#m1.1}, 0]$. The first element
+        of the indexed expression) to $[\text{\#m1.1}, 0]$. The first element
         of the pair represents the URI of the formula. The second element
-        represents the \textsf{data_id} of the opaque data which was referenced
-        by the formula.
+        represents the \textsf{data\_id} of the opaque data which was
+        referenced by the formula.
     \item The Crawl DB will link the key $0$ to the opaque data that was
-        associated with the \textsf{data_id} $0$. In this case, the Crawl
-        database would contain the key-value pair $(0, \mtext{``Addition of
+        associated with the \textsf{data\_id} $0$. In this case, the Crawl
+        database would contain the key-value pair $(0, \text{``Addition of
         variables''})$.
 \end{itemize}
 
