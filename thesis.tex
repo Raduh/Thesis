@@ -369,9 +369,56 @@ includes information about the \xpath and the source documents of every
 crawled opaque data, which usually represents the textual part of the source
 documents.
 
+We can exemplify the role played by the \MWS components using
+Listing~\ref{lst:harvest_ex}, which shows a simple harvest containing some
+opaque data (``\textit{Addition of variables.}'') and the expression $a+b$.
+The data element is referenced by the expression using the \textsf{data_id}
+attribute (which has the value $0$ in this example).
+If \MWS indexes this harvest, its content will be split among the
+components in the following manner:
+
+\begin{itemize}
+    \item The Meaning Dictionary will contain the encoding $\{(0,
+            \mtext{apply}), (1, \mtext{plus}), (2, \mtext{ci#a}), (3,
+        \mtext{ci#b})\}$. This means that the \textsf{TokenID} $0$ will be
+        decoded as an ``apply'' node, the \textsf{TokenID} $2$ will be decoded
+        as a ``ci'' node with ``a'' as content, etc.
+    \item The Index will be a tree with one branch containing the encoded DFS
+        traversal of the expression, which is``0 -> 1 -> 2 -> 3''. The leaf of
+        this branch will have a \textsf{LeafID} of 1.
+    \item The Formula DB will contain a mapping from $1$ (the \textsf{LeafID}
+        of the indexed expression) to $[\mtext{#m1.1}, 0]$. The first element
+        of the pair represents the URI of the formula. The second element
+        represents the \textsf{data_id} of the opaque data which was referenced
+        by the formula.
+    \item The Crawl DB will link the key $0$ to the opaque data that was
+        associated with the \textsf{data_id} $0$. In this case, the Crawl
+        database would contain the key-value pair $(0, \mtext{``Addition of
+        variables''})$.
+\end{itemize}
+
+\begin{lstlisting}[language={[m]MathML},
+                   label=lst:harvest_ex,
+                   frame=lines,
+                   caption={Harvest Example}]
+<mws:harvest>
+   <mws:data mws:data_id="0">
+       Addition of variables.
+   </mws:data>
+   <mws:expr url="#m1.1" mws:data_id="0">
+       <apply>
+           <plus>
+           <ci>a</ci>
+           <ci>b</ci>
+       </apply>
+   </mws:expr>
+</mws:harvest>
+\end{lstlisting}
+
+
 \begin{figure}[ht]\centering
-    \includegraphics[scale=0.3]{img/simple_index.png}
-    \caption{MWS core components}\label{fig:simple_index}
+\includegraphics[scale=0.3]{img/simple_index.png}
+\caption{MWS Core Components}\label{fig:simple_index}
 \end{figure}
 \FloatBarrier
 
@@ -397,8 +444,8 @@ multitude of features via its domain specific language:  nested queries,
 filters, ranking, scoring, searching using wildcards/ranges and faceted search.
 
 The faceted search feature\footnote{Faceted search as such is now deprecated in
-    ES and was replaced by the more powerful ``aggregations'' feature, which
-    also allows facets of facets, i.e. nested facets.} is of
+ES and was replaced by the more powerful ``aggregations'' feature, which
+also allows facets of facets, i.e. nested facets.} is of
 particular interest to us. 
 One way to use this feature is the terms aggregation: a multi-bucket
 aggregation, with dynamically built buckets.  We can specify an array field
@@ -499,7 +546,7 @@ the \textsf{divide} operator.
 
 \begin{figure}[ht]\centering
     \includegraphics[scale=0.3]{img/crossreference_diag.png}
-    \caption{The CMML/PMML parallel markup}\label{fig:crossreference_diag}
+    \caption{The CMML/PMML Parallel Markup}\label{fig:crossreference_diag}
 \end{figure}
 \FloatBarrier
 
@@ -510,7 +557,7 @@ In this section, I explain the key details of the formula classifier's
 implementation, the overall system architecture, as well as the challenges and
 trade-offs associated with the taken design decisions.
 
-\subsection{Formalizing the problem}\label{subsec:formal_problem}
+\subsection{Formalizing the Problem}\label{subsec:formal_problem}
 Let us now formulate the problem at hand more carefully.
 
 \begin{definition}
@@ -552,9 +599,9 @@ expressions), we can find the set $\cF$ in the following way:
         schema and return the result set.
 \end{enumerate}
 
-\begin{wrapfigure}r{5.6cm}\vspace*{-1em}
-    \includegraphics[scale=0.24]{img/FFG_Algo_diag.png}
-\caption{Simplified index at depth 1}\label{fig:algoindex}
+\begin{wrapfigure}r{5.7cm}\vspace*{-1em}
+    \includegraphics[scale=0.25]{img/FFG_Algo_diag.png}
+\caption{Simplified Index at depth 1}\label{fig:algoindex}
 \end{wrapfigure}
 
 Figure~\ref{fig:algoindex} shows a simplified \MWS index at depth 1.
@@ -569,14 +616,14 @@ The length of the arrows symbolizes the depth of the omitted subterms
 Notice how both formula with ID 1 and formula with ID 3 show the same
 ``path'' when ignoring subterms below a cutoff depth.
 
-\subsection{Finding a cutoff heuristic}\label{subsec:cutoffheur}
+\subsection{Finding a Cutoff Heuristic}\label{subsec:cutoffheur}
 To generate formula schemata, we must define a ``cutoff heuristic'',
 which tells the program when two formulae belong to the same schema class.
 If there is no heuristic, two formulae would belong to the same class,
 only if they were identical. However, we want formulae that have something in
 common to be grouped together, even if they are not perfectly identical.
 
-\subsubsection{Absolute cutoff}\label{subsubsec:absolute_cutoff}
+\subsubsection{Absolute Cutoff}\label{subsubsec:absolute_cutoff}
 One reasonable cutoff heuristic would be a fixed expression depth, given as a
 parameter to the Schematizer. In this way, a depth of 0 would always return
 $?x$ which corresponds to the 0-unification.
@@ -587,7 +634,7 @@ representation of the schema shown on the right side.
 
 \begin{figure}[ht]\centering
     \includegraphics[scale=0.3]{img/cutoff_naive.png}
-    \caption{Cutoff at a fixed depth}\label{fig:cutoff_naive}
+    \caption{Cutoff at a Fixed Depth}\label{fig:cutoff_naive}
 \end{figure}
 \FloatBarrier
 
@@ -601,7 +648,7 @@ example, the schema $\red{?x} + \red{?y}$ will also include $a - b$ in its
 class, which is not desired since we only want to abstract out the operands of
 an expression.
 
-\subsubsection{Relative cutoff}\label{subsubsec:relative_cutoff}
+\subsubsection{Relative Cutoff}\label{subsubsec:relative_cutoff}
 A slight improvement over the absolute cutoff heuristic would be to choose the
 cutoff depth depending on the depth of the CMML tree. For this, the user would
 specify a relative cutoff, e.g. $50\%$, and each tree would be truncated at
@@ -616,7 +663,7 @@ the user has the choice to either see only the simple schemata, or only the
 complex ones. By using the relative heuristic, both complex and simple schemata
 would share the result set.
 
-\subsubsection{Dynamic cutoff}\label{subsubsec:dynamic_cutoff}
+\subsubsection{Dynamic Cutoff}\label{subsubsec:dynamic_cutoff}
 As we have already seen, a uniform cutoff heuristic is generally not the
 optimal choice as it also removes operators. We would like to ``schematize''an
 expression by abstracting out only the operands, while leaving the operators
@@ -630,7 +677,7 @@ included in the schema.
 
 \begin{figure}[ht]\centering
     \includegraphics[scale=0.3]{img/cutoff_dynamic.png}
-    \caption{Dynamic cutoff}\label{fig:cutoff_dynamic}
+    \caption{Dynamic Cutoff}\label{fig:cutoff_dynamic}
 \end{figure}
 \FloatBarrier
 
@@ -639,7 +686,7 @@ intuitive instantiations, it is relatively difficult to implement because the
 operator might occupy several levels (not just one, as shown in the figure) and
 we must do the expansion directly using the DFS traversal of the CMML tree.
 
-\subsubsection{Coverage-aware cutoff}\label{subsubsec:coverage_aware_cutoff}
+\subsubsection{Coverage-aware Cutoff}\label{subsubsec:coverage_aware_cutoff}
 To report optimal results to the user, we could try a ``brute-force'' approach,
 in which we compute the schematization for a large range of fixed depths, and
 then select schemata with the \textit{best} coverage from all the results. The
@@ -649,7 +696,7 @@ important). Consequently, we will choose several cutoffs for a given query.
 However, this method is very computationally expensive and defeats
 the \textsf{R3} goal of this project.
 
-\subsubsection{Length based cutoff}\label{subsubsec:length_based_cutoff}
+\subsubsection{Length based Cutoff}\label{subsubsec:length_based_cutoff}
 Another possibility is to place the cutoff on length, instead of depth. This
 method would group together formulae which begin the same way. To implement
 a length based cutoff, we generate the DFS encoding of a formula and then take
@@ -659,7 +706,7 @@ which are not as interesting as those generated by a depth based heuristic
 (because the former will only show the first few elements in a formula, whereas
 the latter will also show the last tokens).
 
-\subsubsection{Combining heuristics}\label{subsubsec:combining_cutoffs}
+\subsubsection{Combining Heuristics}\label{subsubsec:combining_cutoffs}
 As we have seen, there are several advantages and drawbacks associated with
 each heuristic. Since the coverage-aware cutoff is too expensive to compute and
 the length-based cutoff does not generate interesting enough results, we
@@ -671,7 +718,7 @@ user a choice on whether the operands cutoff should be absolute or relative.
 \subsection{Design Overview}\label{subsec:design_overview}
 \begin{wrapfigure}r{5.6cm}\vspace*{-1em}
     \includegraphics[scale=0.15]{img/SchemaArchitecture.png}
-    \caption{FS engine architecture}\label{fig:sys_architecture}
+    \caption{FS Engine Architecture}\label{fig:sys_architecture}
 \end{wrapfigure}
 
 The full faceted search system comprises of the following components: the
@@ -739,7 +786,7 @@ query variables in place of missing subtrees.
 We finally return these \cmml trees with query variables (the formula
 schemata), together with the formulae which they cover.
 
-\subsection{The Elasticsearch proxy}\label{subsec:esproxy}
+\subsection{The Elasticsearch Proxy}\label{subsec:esproxy}
 To obtain formulae to feed as input to the Schematizer, we make use of
 Elasticsearch. The corpus indexed by Elasticsearch consists of 176 GB of \arxiv
 documents annotated using the format described in
@@ -781,7 +828,7 @@ percentages.
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.1cm]{img/frontend_schema.png}
-    \caption{SchemaSearch front-end}\label{fig:frontend_schema}
+    \caption{SchemaSearch Front-end}\label{fig:frontend_schema}
 \end{figure}
 \FloatBarrier
 
@@ -798,11 +845,11 @@ Section~\ref{subsec:fe_results_display2}.
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.1cm]{img/frontend_temaV2.png}
-    \caption{TemaV2 front-end}\label{fig:frontend_temaV2}
+    \caption{TemaV2 Front-end}\label{fig:frontend_temaV2}
 \end{figure}
 \FloatBarrier
 
-\subsection{ES aggregations}\label{subsec:esagg}
+\subsection{ES Aggregations}\label{subsec:esagg}
 Initially, the ``aggregations'' feature of Elasticsearch seemed to be a
 suitable improvement for the Schematizer and the ES script was originally
 designed to request math in a term-based aggregation format, as described in
@@ -831,7 +878,7 @@ using a configurable length heuristic. In practice, this change allowed us to
 process more than ten thousand formulae in less than five seconds, which is a
 drastic improvement from the approach using aggregations.
 
-\subsection{Presentation by replacement}\label{subsec:make_sch_recog}
+\subsection{Presentation by Replacement}\label{subsec:make_sch_recog}
 After obtaining the schemata and formula classes, we need to be able to display
 the result to the user. One possibility would be to have the Schematizer return
 \cmml expressions for the schemata and use an XSL
@@ -856,16 +903,17 @@ technique for a given schema. The Schematizer returned a schema which was
 checked against the first formula in its class ($\frac{2}{x+3}$) to generate
 two substitutions, marked with red on the left side. Due to the cross-reference
 system provided by \latexml, we are able to find the corresponding PMML
-elements and substitute them with \verb|<mi>| tokens.
+elements and substitute them with \verb|<mi>| tokens. The result will be
+displayed to the user as $\frac{\red{?x}}{\red{?y}}$.
 
 \begin{figure}[ht]\centering
     \includegraphics[scale=0.3]{img/replacement_pres.png}
-    \caption{Presentation by replacement}\label{fig:replacement_pres}
+    \caption{Presentation by Replacement}\label{fig:replacement_pres}
 \end{figure}
 \FloatBarrier
 
-\subsection{Naming query variables}\label{subsec:naming_qvars}
-As discussed in the section before, we will need a template to modify in order
+\subsection{Naming Query Variables}\label{subsec:naming_qvars}
+As discussed in the section above, we will need a template to modify in order
 to display the schema of a class. We are using the first formula as a template,
 but any formula in a given class would work as a template for that class.
 Since we will process an existing expression, it would be appropriate to name
@@ -894,18 +942,18 @@ will analyze the performance of the Schematizer deployed on an \arxiv index
 Schematizer exposes and elaborate on its potential
 (\ref{subsec:schematizer_api}).
 
-\subsection{SchemaSearch front-end}\label{subsec:fe_results_display1}
-Figure~\ref{fig:schemata_group} shows the formula schemata at depth 3 for a
-query containing the keyword ``Kohlhase''. By default, the top 40 schemata are
-shown, but the results are truncated for brevity.
-The bold number on the left side of each result item indicates how many
-formulae are present in each formula class. For instance, the third schema
-represents a formula class containing 10 formulae. The entities marked in red
-are query variables (qvars).
+\subsection{SchemaSearch Front-end}\label{subsec:fe_results_display1}
+Figure~\ref{fig:schemata_group} shows the formula schemata at depth 3, over the
+\arxiv corpus, for a query containing the keyword ``Kohlhase''. By default, the
+top 40 schemata are shown, but the results are truncated for brevity.  The bold
+number on the left side of each result item indicates how many formulae are
+present in each formula class. For instance, the third schema represents a
+formula class containing 10 formulae. The entities marked in red are query
+variables (qvars).
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.1cm]{img/schemataGroup.png}
-    \caption{Faceted results at depth 3}\label{fig:schemata_group}
+    \caption{Faceted Results at depth 3}\label{fig:schemata_group}
 \end{figure}
 \FloatBarrier
 
@@ -920,7 +968,7 @@ is redirected to the source document from which that expression was extracted.
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.1cm]{img/schemaInstGood.png}
-    \caption{Expansion of a formula class}\label{fig:schema_instantiation}
+    \caption{Expansion of a Formula Class 1}\label{fig:schema_instantiation}
 \end{figure}
 \FloatBarrier
 
@@ -931,11 +979,11 @@ meaning behind it. Also, by expanding the class he can explore several related
 formulae easily, because they are grouped together.
 \begin{figure}[ht]\centering
     \includegraphics[width=12.1cm]{img/schemaInstGood3.png}
-    \caption{Math facets in TeMa V2}\label{fig:schema_instantiation3}
+    \caption{Expansion of a Formula Class 2}\label{fig:schema_instantiation3}
 \end{figure}
 \FloatBarrier
 
-\subsection{TemaV2 front-end}\label{subsec:fe_results_display2}
+\subsection{TemaV2 Front-end}\label{subsec:fe_results_display2}
 Figure~\ref{fig:temaV2_results} shows the results of a query for ``Fermat'' and
 ${\red{?a}}^{\red{?n}} + {\red{?b}}^{\red{?n}}={\red{?c}}^{\red{?n}}$. Besides
 the regular \tms results, the user is also presented with a ``Math Facets''
@@ -943,7 +991,7 @@ section.
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.1cm]{img/temaV2_results.png}
-    \caption{Expansion of a formula class 1}\label{fig:temaV2_results}
+    \caption{TeMa v2 Query Results}\label{fig:temaV2_results}
 \end{figure}
 \FloatBarrier
 
@@ -956,7 +1004,7 @@ results.
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.1cm]{img/temaV2_facets.png}
-    \caption{Expansion of a formula class}\label{fig:temaV2_facets}
+    \caption{Math Facets in TeMa v2}\label{fig:temaV2_facets}
 \end{figure}
 \FloatBarrier
 
@@ -986,19 +1034,21 @@ single query (containing 1123 expressions). Massif reports time using the
 number of executed instructions as unit of measurement. The heap memory size is
 given in bytes.
 
-There is a short initial steep increase moments after the program started.
-This can be attributed to the dynamic linker. Then, the consumption keeps
-increasing because we are receiving the formulae (storing them in memory) and
-generating the schemata. The peak is reached at 20 MiB, which is impressively
-low. Afterwards, there is a sudden decrease in heap size when we drop the
-schemata which are not needed (because a \textsf{max\_size} parameter was
-specified by the caller). For most of the next part, the heap size stays
+There is a short, steep, increase in heap usage after the program started. This
+can be attributed to the query set being received (since we are storing the
+formulae in memory first). Then, the consumption keeps increasing because we
+are generating the schemata signatures. The peak is reached at 20 MiB, which is
+relatively low. Afterwards, there is a sudden decrease in heap size when we
+drop the schemata which are not needed (because a \textsf{max\_size} parameter
+was specified by the caller). For most of the next part, the heap size stays
 constant because we are only processing the signatures and finding the PMML
-substitution IDs.
+substitution IDs. In the end, the memory footprint decreases to (almost) zero,
+because after answering the query, all formulae and associated objects are
+being discarded.
 
 \begin{figure}[ht]\centering
     \includegraphics[width=12.1cm]{img/heapUsage.png}
-    \caption{Schematizer heap usage for a query}\label{fig:heap_usage}
+    \caption{Schematizer Heap Usage for a Query}\label{fig:heap_usage}
 \end{figure}
 \FloatBarrier
 
@@ -1026,7 +1076,7 @@ XML), \textsf{depth} (the depth for cutoff) and \textsf{cutoff\_mode}
 used for the output, the IDs of PMML substitutions will be returned. If XML is
 used, formula schemata in CMML format will be returned.
 
-\section{Applications and future work}\label{sec:future}
+\section{Applications and Future Work}\label{sec:future}
 One improvement angle that can be worked on is the ranking of the schemata.
 We have used a simple method, ranking them in decreasing order of coverage,
 thus having the schema with most formulae in its class on the first place.

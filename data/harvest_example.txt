@@ -1,0 +1,12 @@
+<mws:harvest>
+<mws:data mws:data_id="0">
+    Addition of variables.
+</mws:data>
+<mws:expr url="#m1.1" mws:data_id="0">
+<apply>
+  <plus>
+  <ci>a</ci>
+  <ci>b</ci>
+</apply>
+</mws:expr>
+</mws:harvest>
