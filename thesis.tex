@@ -369,6 +369,12 @@ includes information about the \xpath and the source documents of every
 crawled opaque data, which usually represents the textual part of the source
 documents.
 
+\begin{figure}[ht]\centering
+\includegraphics[scale=0.3]{img/simple_index.png}
+\caption{MWS Core Components}\label{fig:simple_index}
+\end{figure}
+\FloatBarrier
+
 We can exemplify the role played by the \MWS components using
 Listing~\ref{lst:harvest_ex}, which shows a simple harvest containing some
 opaque data (``\textit{Addition of variables.}'') and the expression $a+b$.
@@ -378,18 +384,18 @@ If \MWS indexes this harvest, its content will be split among the
 components in the following manner:
 
 \begin{itemize}
-    \item The Meaning Dictionary will contain the encoding $\{(0,
-            \text{apply}), (1, \text{plus}), (2, \text{ci\#a}), (3,
+    \item The Meaning Dictionary will contain the encoding\\
+        $\{(0, \text{apply}), (1, \text{plus}), (2, \text{ci\#a}), (3,
         \text{ci\#b})\}$. This means that the \textsf{TokenID} $0$ will be
         decoded as an ``apply'' node, the \textsf{TokenID} $2$ will be decoded
         as a ``ci'' node with ``a'' as content, etc.
     \item The Index will be a tree with one branch containing the encoded DFS
-        traversal of the expression, which is``0 -> 1 -> 2 -> 3''. The leaf of
+        traversal of the expression, which is ``0 -> 1 -> 2 -> 3''. The leaf of
         this branch will have a \textsf{LeafID} of 1.
     \item The Formula DB will contain a mapping from $1$ (the \textsf{LeafID}
-        of the indexed expression) to $[\text{\#m1.1}, 0]$. The first element
-        of the pair represents the URI of the formula. The second element
-        represents the \textsf{data\_id} of the opaque data which was
+        of the indexed expression) to $[\text{``\#m1.1''}, 0]$. The first
+        element of the pair represents the URI of the formula. The second
+        element represents the \textsf{data\_id} of the opaque data which was
         referenced by the formula.
     \item The Crawl DB will link the key $0$ to the opaque data that was
         associated with the \textsf{data\_id} $0$. In this case, the Crawl
@@ -397,7 +403,8 @@ components in the following manner:
         variables''})$.
 \end{itemize}
 
-\begin{lstlisting}[language={[m]MathML},
+\begin{lstlisting}[float,
+                   language={[m]MathML},
                    label=lst:harvest_ex,
                    frame=lines,
                    caption={Harvest Example}]
@@ -414,12 +421,6 @@ components in the following manner:
    </mws:expr>
 </mws:harvest>
 \end{lstlisting}
-
-
-\begin{figure}[ht]\centering
-\includegraphics[scale=0.3]{img/simple_index.png}
-\caption{MWS Core Components}\label{fig:simple_index}
-\end{figure}
 \FloatBarrier
 
 \mws exposes a RESTful HTTP API which accepts \xml queries.
@@ -461,8 +462,11 @@ specifying that we want an aggregation called \textit{Formulae} on ``terms''
 (i.e. we want bucket counting) and the target of the aggregation is the fields
 \emph{ids}.
 
-\begin{lstlisting}[language=json,firstnumber=1,caption=Elastic Search Term
-Aggregation Query, captionpos=b, label=lst:es_agg_query]
+\begin{lstlisting}[float,
+    language=json,
+    firstnumber=1,
+    caption=Elastic Search Term Aggregation Query,
+    captionpos=b, label=lst:es_agg_query]
 {
   "query" : {
       "match" : {
@@ -479,6 +483,7 @@ Aggregation Query, captionpos=b, label=lst:es_agg_query]
   }
 }
 \end{lstlisting}
+\FloatBarrier
 
 A possible response to the above query can be found in
 Listing~\ref{lst:es_agg_resp}. In the response we can see the returned
@@ -488,7 +493,8 @@ aggregations. In our example there is only one and it is called
 Here, the most frequent formulae were the one with ID 230 and the one with ID
 93. The former appeared in 10 documents and the latter appeared in 9 documents.
 
-\begin{lstlisting}[language=json,firstnumber=1,caption=Elastic Search Term
+\begin{lstlisting}[float,
+    language=json,firstnumber=1,caption=Elastic Search Term
 Aggregation Response, captionpos=b, label=lst:es_agg_resp]
 {
     ...
@@ -509,6 +515,7 @@ Aggregation Response, captionpos=b, label=lst:es_agg_resp]
     }
 }
 \end{lstlisting}
+\FloatBarrier
 
 \subsection{arXiv}\label{subsec:arxiv}
 \textbf{arXiv} is a repository of over one million publicly accessible
@@ -597,8 +604,8 @@ expressions), we can find the set $\cF$ in the following way:
         schema and return the result set.
 \end{enumerate}
 
-\begin{wrapfigure}r{5.7cm}\vspace*{-1em}
-    \includegraphics[scale=0.25]{img/FFG_Algo_diag.png}
+\begin{wrapfigure}r{5.2cm}\vspace*{-1em}
+    \includegraphics[scale=0.21]{img/FFG_Algo_diag.png}
 \caption{Simplified Index at depth 1}\label{fig:algoindex}
 \end{wrapfigure}
 
