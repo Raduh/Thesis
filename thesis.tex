@@ -199,12 +199,14 @@ As a consequence, search engines have become the prevalent tool for exploring
 digital data.
 
 Although text search engines (e.g. Google~\cite{google:online} or
-Bing~\cite{bing:online}) seem to be successful for the average user, they are
-limited when it comes to finding scientific content. This is because
-STEM\footnote{Science, Technology, Engineering and Mathematics} documents are
-also relevant for the mathematical formulae they contain and math cannot be
-properly indexed by a textual search engine, because the hierarchical structure
-of the content is also important.
+DuckDuckGo~\cite{duckduckgo:online}) seem to be sufficient for the average
+user, they are limited when it comes to finding scientific content. The
+limitation arises because STEM\footnote{Science, Technology, Engineering and
+Mathematics} documents are also relevant for the mathematical formulae they
+contain and math cannot be properly indexed by a textual search engine. Math
+comprises of tokens that are expressed as structural markup (fractions,
+square-roots, subscripts and superscripts), which are not captured by simply
+indexing the text content of a page.
 
 A good math search engine is therefore needed in several applications.
 For example, a large airline manufacturer may have many ongoing research
@@ -262,7 +264,7 @@ $\frac{\red\Gamma\vdash\red{A}\gg\red\alpha}{\red{D}}$
 \end{wrapfigure}
 
 I am attempting to solve this problem by extracting formula schemata from the
-query hits as formula facets. A math facet consists of a set of formula
+query hits, as formula facets. A math facet consists of a set of formula
 schemata generated to further disambiguate the query by refining it in a new
 dimension.  For instance, for the query above we could have the formulae in
 Figure~\ref{fig:formula-facets}, which allows the user to drill in on
@@ -548,8 +550,9 @@ displayed to the user.
 
 Figure~\ref{fig:crossreference_diag} illustrates the parallel markup for
 $\frac{2}{x+3}$. On the left side we have \pmml and on the right side, \cmml.
-As we can see, every Presentation element has a Content correspondent, except
-the \textsf{divide} operator.
+As we can see, every Content element has a Presentation correspondent, except
+the \textsf{divide} operator, whose meaning is reflected in the structure of
+the displayed formula.
 
 \begin{figure}[ht]\centering
     \includegraphics[scale=0.3]{img/crossreference_diag.png}
