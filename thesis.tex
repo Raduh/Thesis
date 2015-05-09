@@ -29,6 +29,7 @@
 \usepackage[show]{ed}
 
 \def\red#1{\textcolor{red}{#1}}
+\def\blue#1{\textcolor{blue}{#1}}
 \def\MWS{\textsf{MWS}\xspace}
 \def\schemasearch{\textsf{SchemaSearch}\xspace}
 
@@ -97,7 +98,7 @@
 \def\xml{\textsf{XML}\xspace}
 \def\xhtml{\textsf{XHTML}\xspace}
 \def\xpath{\textsf{XPath}\xspace}
-\def\arxiv{\textsf{ArXiv}\xspace}
+\def\arxiv{\textsf{arXiv}\xspace}
 \def\latexml{\LaTeX{ML}\xspace}
 \def\arxmliv{\textsf{ArXMLiv}\xspace}
 \def\mathml{\textsf{MathML}\xspace}
@@ -208,26 +209,26 @@ comprises of tokens that are expressed as structural markup (fractions,
 square-roots, subscripts and superscripts), which are not captured by simply
 indexing the text content of a page.
 
-A good math search engine is therefore needed in several applications.
-For example, a large airline manufacturer may have many ongoing research
-projects and could significantly improve efficiency if they had a way of
-searching for formulae in a corpus containing all their previous work. The same
-holds for all large physics-oriented research centers, such as CERN. Valuable
-time would be saved if scientists would have a fast, reliable and powerful math
-search engine to analyse previous related work. As a third application,
-university students should be mentioned. Their homework, research and overall
-study process would be facilitated once they are provided with more than
-textual search. For all these applications, we need first a strong math search
-engine and second a large corpus of math to index.
+A good math search engine is therefore needed in several applications. For
+example, a large airline manufacturer may have many ongoing research projects
+and could significantly improve efficiency if they had a way of searching for
+formulae in a corpus containing all their previous work in the fields of
+physics and mathematics. The same holds for all large physics-oriented research
+centers, such as CERN. Valuable time would be saved if scientists would have a
+fast, reliable and powerful math search engine to analyse previous related
+work. As a third application, university students should be mentioned. Their
+homework, research and overall study process would be facilitated once they are
+provided with more than textual search. For all these applications, we first
+need a strong math search engine and second, a large corpus of math to index.
 
 The Cornell e-Print Archive, \arxiv, is an example of such a corpus, containing
 over a million STEM documents from various scientific fields (Physics,
 Mathematics, Computer Science, Quantitative Biology, Quantitative Finance and
-Statistics)~\cite{arXiv:online}. Having almost a million documents, with
-possibly more than a billion formulae, the search engine must provide an
-expressive query language and query-refining options to be able to retrieve
-useful information. One service that provides both these is the Zentralblatt
-Math service~\cite{zbmath:online}.
+Statistics)~\cite{arXiv:online}. Given such a high number of documents, with
+several million formulae, the search engine must provide an expressive query
+language and query-refining options to be able to retrieve useful information.
+One service that provides both of these is the Zentralblatt Math
+service~\cite{zbmath:online}.
 
 Zentralblatt Math now employs formula search for access to mathematical
 reviews~\cite{KohMihSperTes:mfs13}. Their database contains over 3 million
@@ -237,20 +238,21 @@ is also capable of faceted search.  Figure~\ref{fig:zbFaceted} shows a typical
 situation: a user searched for a keyword (here an author name) and the faceted
 search generated links for search refinements (the \textbf{facets}) on the
 right. Currently, facets for the primary search dimensions are generated --
-authors, journals, MSC, but not for formulae. In this way, the user is given
-the ability to further explore the result space, without knowing in advance the
-specifics of what he/she is looking for.  Recently, formula search has been
-added as a component to the structured search facility. However, there is still
-no possibility of faceted search on the math content of the documents.
+authors, journals, MSC\footnote{Mathematics Subject Classification}, but not
+for formulae. In this way, the user is given the ability to further explore the
+result space, without knowing in advance the specifics of what he/she is
+looking for.  Recently, formula search has been added as a component to the
+structured search facility. However, there is still no possibility of faceted
+search on the math content of the documents.
 
 \begin{figure}[ht]\centering
 \includegraphics[width=12.1cm]{img/faceted-search.pdf}
 \caption{Faceted Search in ZBMath}\label{fig:zbFaceted}
 \end{figure}
 
-There are multiple ways in which we could understand a ``math facet''.  One way
-would be through the MSC classification~\cite{MSC-SKOS}.  However, this would
-be rather vague because it will only provide info about the field of
+There are multiple ways in which we could understand a ``math facet''. One way
+would be through the MSC classification~\cite{MSC-SKOS}. However, this would be
+rather vague because it will only provide information about the field of
 mathematics to which an article belongs. If the authors use formulae from
 another field in their paper, the results will suffer a drop in relevance.
 
@@ -292,14 +294,14 @@ based, with the intention of making this thesis self-contained. We will
 present these systems in detail in the rest of this section, but
 below is a summary of the role they play in our work:
 \begin{itemize}
-\item \textbf{MathWebSearch} which provides the necessary index structure
+\item \textbf{MathWebSearch} provides the necessary index structure
 for schema search.
-\item \textbf{Elasticsearch} which provides hits in response to text query,
+\item \textbf{Elasticsearch} provides hits in response to text queries,
     as well as run aggregations on the hits.
     These hits represent formulae to be schematized.
-\item \textbf{arXiv} which provides a large corpus of mathematical documents
+\item \textbf{arXiv} provides a large corpus of mathematical documents
     that we can index and run our system on.
-\item \textbf{\latexml} which converts {\latex} expressions to MathML.
+\item \textbf{\latexml} converts {\latex} expressions to MathML.
 \end{itemize}
 
 \subsection{Project Goals}\label{subsec:prelim:goals}
@@ -307,14 +309,14 @@ As discussed in Section~\ref{sec:intro}, the goal of this project is to
 develop a scalable formula schematization engine, capable of dividing a set of
 query hits into classes, according to the generated formula schemata.
 
-We have set the following end-user requirement for our system:
+We have set the following end-user requirements for our system:
 \begin{enumerate}
     \item[R1.] it should be able to generate formula schemata from a given set
         of formulae and the resulting schemata should be easily recognizable by
         the user.
     \item[R2.] it should be able to classify the given set of formulae
         according to the generated schemata.
-    \item[R3.] the system should be massively scalable, i.e. capable of
+    \item[R3.] the system should be massively scalable, i.e.\ capable of
         answering queries with hundreds of thousands of formulae in a matter of
         seconds.
 \end{enumerate}
@@ -325,9 +327,9 @@ At its core, the \mws~\cite{ProKoh:mwsofse11} system (MWS) is a content-based
 search engine for mathematical formulae. It indexes MathML~\cite{mathml:online}
 formulae, using a technique derived from automated theorem proving:
 Substitution Tree Indexing~\cite{Graf94}. Recently, it was augmented with
-full-text search capabilities, combining keywords query with unification-based
-formula search. The engine serving text queries is
-\els~\ref{subsec:prelim:els}.  From now on, in order to avoid confusion, we
+full-text search capabilities, combining keyword queries with
+unification-based formula search. The engine serving text queries is
+\els~\ref{subsec:prelim:els}. From now on, in order to avoid confusion, we
 will refer to the core system (providing just formula query capability) as \MWS
 and to the complete service (\MWS + \els) as \tms (Text + Math Search).
 
@@ -355,10 +357,11 @@ to lower the size of the resulting index. The (bijective) mapping is also
 stored together with the index and is needed to reconstruct the original
 formula. The index itself is an in-memory trie of substitution paths.
 
-For fast retrieval, in the leaves of the substitution tree, \MWS stores
-\textsf{FormulaID}s. These are numbers uniquely associated with formulae,
-and they are also used to store context and occurrences about the respective
-formula. They are stored in a separate LevelDB~\cite{leveldb:online} database.
+To facilitate fast retrieval, \MWS stores \textsf{FormulaID}s in the leaves of
+the substitution tree. These are integers uniquely associated with formulae, and
+they are used to store the context in which the respective expressions
+occurred. These identifiers are stored in a separate
+LevelDB~\cite{leveldb:online} database.
 
 Figure~\ref{fig:simple_index} shows the core components of \MWS and the
 relationship between them. The most important component is the index which
@@ -409,18 +412,19 @@ components in the following manner:
                    language={[m]MathML},
                    label=lst:harvest_ex,
                    frame=lines,
+                   columns=flexible,
                    caption={Harvest Example}]
 <mws:harvest>
-   <mws:data mws:data_id="0">
-       Addition of variables.
-   </mws:data>
-   <mws:expr url="#m1.1" mws:data_id="0">
-       <apply>
-           <plus>
-           <ci>a</ci>
-           <ci>b</ci>
-       </apply>
-   </mws:expr>
+    <mws:data mws:data_id="0">
+        Addition of variables.
+    </mws:data>
+    <mws:expr url="#m1.1" mws:data_id="0">
+        <apply>
+            <plus>
+            <ci>a</ci>
+            <ci>b</ci>
+        </apply>
+    </mws:expr>
 </mws:harvest>
 \end{lstlisting}
 \FloatBarrier
@@ -431,8 +435,8 @@ A valid query must obey the \cmml format, potentially augmented with
 a wildcard in a query, with the restriction that if two \emph{qvar}s have the
 same name, they must be substituted in the same way.
 
-\tms is using both \mws and \els to answer queries.
-In order to achieve cooperation between the two systems, annotated documents
+\tms is using both systems (\mws and \els) to answer queries.
+To achieve cooperation between the two components, annotated documents
 are used. These annotated documents contain metadata from the original document
 (e.g. URI, title, author, etc.) and a list of \textsf{FormulaID}s that can be
 found in that document.
@@ -538,15 +542,15 @@ idea. For this purpose, conversion engines have been developed to convert
 
 An open source example of such a conversion engine is
 \latexml~\cite{Miller:latexml:online}. The \mws project relies heavily on it,
-to convert \arxiv documents from \latex to XHTML which is later indexed by \MWS.
-It exposes a powerful API, allowing definition files to relate \tex elements to
-corresponding XML fragments that should be generated.
-For the scope of this project, we will be more interested in another feature of
-\latexml: cross-referencing between \pmml and \cmml. While converting \tex
-entities to a \pmml tree, each element receives a unique identifier which is
-later referenced from the corresponding \cmml element. In this manner, we can
-modify the \cmml tree and reflect the changes in the \pmml tree which can be
-displayed to the user.
+to convert \arxiv documents from \latex to XHTML which is later indexed by
+\MWS. It exposes a powerful API, accepting custom definition files which relate
+\tex elements to corresponding XML fragments that should be generated. For the
+scope of this project, we are more interested in another feature of
+\latexml: cross-referencing between \pmml and \cmml.
+While converting \tex entities to \pmml trees, \latexml assigns each PMML
+element a unique identifier which is later referenced from the corresponding
+\cmml element. In this manner, we can modify the \cmml tree and reflect the
+changes in the \pmml tree which can be displayed to the user.
 
 Figure~\ref{fig:crossreference_diag} illustrates the parallel markup for
 $\frac{2}{x+3}$. On the left side we have \pmml and on the right side, \cmml.
@@ -585,9 +589,9 @@ Let us now formulate the problem at hand more carefully.
 \end{definition}
 
 \subsection{An Algorithm for FSG}\label{subsec:fsgAlgorithm}
-I present an FSG algorithm and its implementation. It requires a \MWS index of
-the corpus. Given such an index, and a set $\cD$ of formulae (as CMML
-expressions), we can find the set $\cF$ in the following way:
+The algorithm that I present requires a \MWS index of a corpus. Given such an
+index, and a set $\cD$ of formulae (as CMML expressions), we can find the set
+$\cF$ in the following way:
 \begin{enumerate}
     \item Parse the given CMML expressions similarly to \MWS queries,
         to obtain their encoded DFS representations.
@@ -599,7 +603,7 @@ expressions), we can find the set $\cF$ in the following way:
         with the same path (excluding the leaves).
         We increase the counter each time we find a path already associated
         with a counter.
-    \item We sort these path-counter pairs by counter in descending order and
+    \item Sort these path-counter pairs by counter in descending order and
         take the first $n$ ($n$ being the width required by the FSG).
     \item If the threshold depth was smaller than a formula's expression
         depth, the path associated with it will have missing components. We
@@ -634,7 +638,7 @@ common to be grouped together, even if they are not perfectly identical.
 \subsubsection{Absolute Cutoff}\label{subsubsec:absolute_cutoff}
 One reasonable cutoff heuristic would be a fixed expression depth, given as a
 parameter to the Schematizer. In this way, a depth of 0 would always return
-$?x$ which corresponds to the 0-unification.
+$\red{?x}$ which corresponds to the 0-unification.
 Figure~\ref{fig:cutoff_naive} illustrates the absolute cutoff heuristic.
 On the left side, we have the initial \cmml representation for the formula
 $\frac{2}{x+3}$. Using an absolute cutoff depth of 1, we get the CMML
@@ -652,9 +656,9 @@ the group's schema. However, in practice this approach poses several
 disadvantages. By using a uniform cutoff for a given CMML tree, we might also
 remove the operator of an expression (first child of the \textsf{apply} node).
 This leads to unintuitive instantiations from the user point of view. For
-example, the schema $\red{?x} + \red{?y}$ will also include $a - b$ in its
-class, which is not desired since we only want to abstract out the operands of
-an expression.
+example, the schema $\red{?x} + \red{?y}$ will also include $\frac{a}{b}$ in
+its class, which is not desired since we only want to abstract out the operands
+of an expression.
 
 \subsubsection{Relative Cutoff}\label{subsubsec:relative_cutoff}
 A slight improvement over the absolute cutoff heuristic would be to choose the
@@ -666,22 +670,22 @@ On an individual basis, we are still using a uniform cutoff, so this approach
 also poses all disadvantages outlined in the previous section. The main
 advantage of this method stems from the ability to differentiate between
 complex and trivial formulae. If the cutoff were absolute, for low depths,
-complex formulae would be truncated into simple schema. This would mean that
+complex formulae would be truncated into simple schemata. This would mean that
 the user has the choice to either see only the simple schemata, or only the
 complex ones. By using the relative heuristic, both complex and simple schemata
 would share the result set.
 
 \subsubsection{Dynamic Cutoff}\label{subsubsec:dynamic_cutoff}
 As we have already seen, a uniform cutoff heuristic is generally not the
-optimal choice as it also removes operators. We would like to ``schematize''an
+optimal choice as it also removes operators. We would like to ``schematize'' an
 expression by abstracting out only the operands, while leaving the operators
 untouched. To do this, we can completely expand the first child of an
 \textsf{apply} tag and apply the cutoff depth (either absolute or relative)
 only to the other nodes. Figure~\ref{fig:cutoff_dynamic} illustrates this
 heuristic at depth 1. The \textsf{divide} element was kept, because it was the
-first child of \textsf{apply}, while the other children were removed.
-If we were to use a depth of 2, the \textsf{plus} element would also be
-included in the schema.
+first child of \textsf{apply}, while the other children were removed. If we
+were to use a depth of 2, the \textsf{plus} element would also be included in
+the schema.
 
 \begin{figure}[ht]\centering
     \includegraphics[scale=0.3]{img/cutoff_dynamic.png}
@@ -692,9 +696,10 @@ included in the schema.
 Although this method seems to yield recognizable schemata and classes with
 intuitive instantiations, it is relatively difficult to implement because the
 operator might occupy several levels (not just one, as shown in the figure) and
-we must do the expansion directly using the DFS traversal of the CMML tree.
+we must do the expansion of the first child of \textsf{apply} directly using
+the DFS traversal of the CMML tree.
 
-\subsubsection{Coverage-aware Cutoff}\label{subsubsec:coverage_aware_cutoff}
+\subsubsection{Coverage aware Cutoff}\label{subsubsec:coverage_aware_cutoff}
 To report optimal results to the user, we could try a ``brute-force'' approach,
 in which we compute the schematization for a large range of fixed depths, and
 then select schemata with the \textit{best} coverage from all the results. The
@@ -742,13 +747,13 @@ front-end. The architecture of the system is shown in
 Figure~\ref{fig:sys_architecture}. 
 
 Once the user enters a query (which consists of keywords and a depth), the
-front-end forwards the request to a back-end proxy. The proxy sends the
-text component of the query to Elasticsearch and receives back math
-contained in matching documents. Afterwards, it sends the retrieved math
-and the depth (from the original query) to the Schematizer. The Schematizer
-will respond with a classification of the math in formula classes, as well
-as the corresponding schema for each class. Finally, the proxy forwards the
-result to the front-end which displays it to the user.
+front-end forwards the request to a back-end proxy. The proxy sends the text
+component of the query to Elasticsearch and receives back math contained in
+matching documents. Afterwards, it sends the retrieved math and the depth
+parameter (from the original query) to the Schematizer. The Schematizer will
+respond with a classification of the math in formula classes, as well as the
+corresponding schema for each class. Finally, the proxy forwards the result to
+the front-end which displays it to the user.
 
 In the following sections, I will explain the core components of
 the system in detail and describe the challenges faced during
@@ -788,9 +793,9 @@ signature key. After filling the hash table, we sort it according to the number
 of formulae in a given class, since the signatures which cover the most
 formulae should come at the beginning of the reported result.
 
-The Schematizer caller can place a limit on the maximum number of schemata to
-be returned. If such a limit was specified, we apply it to our sorted list of
-signatures and take only the top ones.
+The Schematizer caller can place an optional limit on the maximum number of
+schemata to be returned. If such a limit was specified, we apply it to our
+sorted list of signatures and take only the top ones.
 
 As a last step, we need to construct \cmml trees from the signatures,
 to be able to show the schemata as formulae to the user. We are able to do
@@ -807,14 +812,14 @@ documents annotated using the format described in
 Section~\ref{subsec:prelim:mws}.
 
 To mediate the communication between the two components (Elasticsearch and the
-Schematizer), a NodeJS proxy was developed. The proxy exposes an HTTP
+Schematizer), I developed a NodeJS proxy. The proxy exposes an HTTP
 interface, which will be used by an eventual front-end for querying.
 There are three important query parameters: the keywords, the depth and the
 maximum schemata count.
 
 The main task of the proxy is to assemble the Elasticsearch JSON query after
 receiving the parameters from the front-end and forward the Elasticsearch
-results to the Schematizer. To ensure a fast response, only a minimum of
+results to the Schematizer. To ensure a fast response, only a minimal
 preprocessing is done between the stages.
 
 Once the Schematizer has generated schemata and has classified the formulae,
@@ -974,8 +979,8 @@ variables (qvars).
 Figure~\ref{fig:schema_instantiation} shows the expansion of a formula class.
 There are $22$ formulae in the class given by this particular math schema, as
 indicated by the count on the left upper side, out of which only ten are shown.
-We can see $2$ unnamed query variables marked with blue as $\red{?a}$ and
-$\red{?b}$. By seeing the schema, the user can form an impression about the
+We can see $2$ unnamed query variables marked with blue as $\blue{?a}$ and
+$\blue{?b}$. By seeing the schema, the user can form an impression about the
 general structure of the formulae from that class. After expanding the class,
 the listing of concrete formulae appears. If the user clicks on one of them, he
 is redirected to the source document from which that expression was extracted.
@@ -1081,7 +1086,7 @@ assigned formulae and reducers assemble the signature hash table.
 Another relevant point of interest in the Schematizer is its simple, but
 sufficient API. By providing an HTTP endpoint, any application which wishes to
 use the schematization service can do so, simply by issuing a GET request.
-The content of the GET request must be an \xml document, which \verb|mws:query|
+The content of the GET request must be an \xml document, with \verb|mws:query|
 as the root element. The children of the \verb|mws:query| are the expressions
 to be schematized in \cmml format. The attributes of the query are
 \textsf{answsize} (the maximum number of schemata), \textsf{output} (JSON or
@@ -1095,7 +1100,7 @@ One improvement angle that can be worked on is the ranking of the schemata.
 We have used a simple method, ranking them in decreasing order of coverage,
 thus having the schema with most formulae in its class on the first place.
 However, this is not always a good approach. When users look at the facets,
-it is usually because they were not able to find what they were hoping for
+it is usually because they were not able to find what they were looking for
 (because the result set is too large). The first schemata cover most of the
 formulae users have already looked at, so they are not of interest.
 However, the last schemata are not of interest either, because they typically
@@ -1115,7 +1120,7 @@ query, we can obtain the schema and check it against our stored set of
 schemata. If we find it, we can link the given expression to its mathematical
 definition. Given a large number of stored concepts and a high schemata
 relevance, the user should be able to see the definition of any encountered
-formulae on the web. For example, hovering over $a^2 + b^2 = c^2$ will show the
+formulae on the Web. For example, hovering over $a^2 + b^2 = c^2$ will show the
 definition of the Pythagorean theorem.
 
 Another, more direct, application of the Schematizer would be
@@ -1127,13 +1132,14 @@ defines the similarity between two formulae as the percentage of the CMML tree
 depth that they share.
 
 \section{Conclusion}\label{sec:conclusion}
-We have presented the design and implementation of a system capable of faceted
-search. Moreover, we have described a general-purpose scalable Schematizer
-which can generate recognizable formula schemata and divide expressions into
-formula classes according to said schemata. Consequently, we have successfully
-addressed all challenges outlined in Section~\ref{subsec:prelim:goals}.
+We have presented the design and implementation of a system capable of
+mathematical faceted search. Moreover, we have described a general-purpose
+scalable Schematizer which can generate intuitive and recognizable formula
+schemata and divide expressions into formula classes according to said
+schemata. Consequently, we have successfully addressed all challenges outlined
+in Section~\ref{subsec:prelim:goals}.
 
-Although the Schematizer provides easily recognizable formulae, some queries on
+Although the Schematizer provides recognizable formulae, some queries to
 \schemasearch (e.g. using an author as keyword) provide hits with a very low
 relevance. This is because we cannot distinguish between the work of the author
 and work where the author is cited at the textual level. As a consequence,
