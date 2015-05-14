@@ -33,14 +33,14 @@
 %\usetheme{CambridgeUS}
 %\usetheme{Copenhagen}
 %\usetheme{Darmstadt}
-\usetheme{Dresden}
+%\usetheme{Dresden}
 %\usetheme{Frankfurt}
 %\usetheme{Goettingen}
 %\usetheme{Hannover}
 %\usetheme{Ilmenau}
 %\usetheme{JuanLesPins}
 %\usetheme{Luebeck}
-%\usetheme{Madrid}
+\usetheme{Madrid}
 %\usetheme{Malmoe}
 %\usetheme{Marburg}
 %\usetheme{Montpellier}
@@ -118,7 +118,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[Math Faceted Search]{\huge{Faceted Search in Mathematics}} 
-\author{Hambasan Radu}
+\author[Hambasan Radu]{Hambasan Radu\\ \and Supervisor: Michael Kohlhase} 
 
 \institute[JUB]
 {
@@ -215,18 +215,18 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}
+    \frametitle{Example}
 \begin{itemize}
-    \item\visible<1->{Idea: use the index to generate similar schemata}
+    \item Formula: $\frac{2}{x+3}$
 \end{itemize}
-\vspace{3mm}
 \visible<2->{
     \begin{figure}
-        \includegraphics[scale=0.17]{img/naive_index}
-        \caption{Simplified Index at depth 1}
+        \includegraphics[scale=0.27]{img/mws_index_explained}
+        \caption{MWS Index}
     \end{figure}
 }
-
 \end{frame}
+%------------------------------------------------
 
 \subsection{Elasticsearch}
 \begin{frame}
@@ -252,6 +252,21 @@
 \end{frame}
 %------------------------------------------------
 \subsection{Working Principle}
+\begin{frame}
+\frametitle{Working Principle}
+\begin{itemize}
+    \item\visible<1->{Idea: use the index to generate similar schemata}
+\end{itemize}
+\vspace{3mm}
+\visible<2->{
+    \begin{figure}
+        \includegraphics[scale=0.17]{img/naive_index}
+        \caption{Simplified Index at depth 1}
+    \end{figure}
+}
+
+\end{frame}
+%------------------------------------------------
 \begin{frame}
 \frametitle{Working Principle}
 \begin{enumerate}
@@ -338,11 +353,20 @@
 \begin{frame}
 \frametitle{Future Work}
 \begin{itemize}
-    \item SimSearch
-    \item NNexus
+    \item Similarity Search
+    \item Improving NNexus
 \end{itemize}
 \end{frame}
-
+%------------------------------------------------
+\begin{frame}
+    \frametitle{Demos}
+    \begin{itemize}
+        \item \textbf{SchemaSearch}:\\
+            \textsf{http://jupiter.eecs.jacobs-university.de/schema}
+        \item \textbf{TeMa v2}:\\
+            \textsf{http://jupiter.eecs.jacobs-university.de/temaV2}
+    \end{itemize}
+\end{frame}
 %------------------------------------------------
 \section{Discussion}
 \begin{frame}
